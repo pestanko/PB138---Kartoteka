@@ -1,7 +1,5 @@
 package cz.muni.fi.pb138.kartoteka.entities;
 
-import java.math.BigDecimal;
-
 /**
  * Created by Peter Stanko on 5/5/15.
  *
@@ -13,7 +11,31 @@ public class Film {
     private String director;
     private int year;
     private String description;
-    private byte hodnotenie;
+    private byte rating;
+    private long id;
+
+    public Film(String name, String director, int year, String description, byte rating) {
+        this.name = name;
+        this.director = director;
+        this.year = year;
+        this.description = description;
+        this.rating = rating;
+    }
+
+    public Film(String name) {
+        this.name = name;
+    }
+
+    public Film() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getDirector() {
         return director;
@@ -39,12 +61,12 @@ public class Film {
         this.description = description;
     }
 
-    public byte getHodnotenie() {
-        return hodnotenie;
+    public byte getRating() {
+        return rating;
     }
 
-    public void setHodnotenie(byte hodnotenie) {
-        this.hodnotenie = hodnotenie;
+    public void setRating(byte rating) {
+        this.rating = rating;
     }
 
     public String getName() {
@@ -57,4 +79,15 @@ public class Film {
     }
 
 
+    @Override
+    public String toString() {
+        return "Film{" +
+                "name='" + name + '\'' +
+                ", director='" + director + '\'' +
+                ", year=" + year +
+                ", description='" + description + '\'' +
+                ", rating=" + rating +
+                ", id=" + id +
+                '}';
+    }
 }
