@@ -70,7 +70,6 @@ public class Film {
     }
 
     public String getName() {
-
         return name;
     }
 

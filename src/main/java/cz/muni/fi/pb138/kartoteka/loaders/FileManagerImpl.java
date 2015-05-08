@@ -3,7 +3,6 @@ package cz.muni.fi.pb138.kartoteka.loaders;
 import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
-import cz.muni.fi.pb138.kartoteka.exceptions.FileManagerException;
 import cz.muni.fi.pb138.kartoteka.exceptions.FilmException;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
@@ -12,7 +11,6 @@ import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
 import java.io.File;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -22,12 +20,12 @@ import java.util.List;
  */
 public class FileManagerImpl implements FileManager {
 
-    public final int FILM_NAME = 1;
-    public final int FILM_YEAR = 2;
-    public final int FILM_RATING = 3;
-    public final int FILM_DIECTOR = 4;
-    public final int FILM_DESCRIPTION = 5;
-    public final int FILM_ID = 0;
+    public static final int FILM_NAME = 1;
+    public static final int FILM_YEAR = 2;
+    public static final int FILM_RATING = 3;
+    public static final int FILM_DIRECTOR = 4;
+    public static final int FILM_DESCRIPTION = 5;
+    public static final int FILM_ID = 0;
 
 
     @Override
@@ -54,8 +52,6 @@ public class FileManagerImpl implements FileManager {
 
         }));
 
-
-
         return kartotekaManager;
     }
 
@@ -64,7 +60,6 @@ public class FileManagerImpl implements FileManager {
         for(int i = 1; i < table.getRowCount(); i++)
         {
             Film film = new Film();
-
 
             String name = getNameCell(table, i).getDisplayText();
             if(name == null || name.length() == 0) continue;
@@ -83,10 +78,7 @@ public class FileManagerImpl implements FileManager {
             film.setDescription(author);
 
             cat.addFilm(film);
-
-
         }
-
 
     }
 
@@ -101,7 +93,6 @@ public class FileManagerImpl implements FileManager {
             printHeaders(actualTable);
             
             printFilms(actualTable, category.getFilms());
-
 
         }));
 
@@ -121,7 +112,6 @@ public class FileManagerImpl implements FileManager {
             getDirectorCell(actualTable, row).setDisplayText(film.getDirector());
             getDescriptionCell(actualTable, row).setDisplayText(film.getDescription());
 
-
             row++;
         }
     }
@@ -139,7 +129,7 @@ public class FileManagerImpl implements FileManager {
         return table.getCellByPosition(FILM_RATING, row);
     }
     private Cell getDirectorCell(Table table,int row){
-        return table.getCellByPosition(FILM_DIECTOR, row);
+        return table.getCellByPosition(FILM_DIRECTOR, row);
     }
     private Cell getDescriptionCell(Table table,int row){
         return table.getCellByPosition(FILM_DESCRIPTION, row);
@@ -156,7 +146,6 @@ public class FileManagerImpl implements FileManager {
         getNameCell(actualTable, ROW)
                 .setDisplayText("Film name");
 
-
         getYearCell(actualTable,ROW).setDisplayText("Year");
 
         getRatingCell(actualTable, ROW).setDisplayText("Rating");
@@ -164,7 +153,6 @@ public class FileManagerImpl implements FileManager {
         getDirectorCell(actualTable,ROW).setDisplayText("Director");
 
         getDescriptionCell(actualTable, ROW).setDisplayText("Description");
-
 
     }
 }

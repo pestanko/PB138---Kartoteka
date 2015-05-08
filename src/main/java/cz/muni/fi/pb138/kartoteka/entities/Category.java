@@ -13,9 +13,8 @@ import java.util.stream.Collectors;
  */
 public class Category {
 
-
-    String name;
-    List<Film> films = new ArrayList<>();
+    private String name;
+    private List<Film> films = new ArrayList<>();
     private long id;
 
     public Category(String name) {
@@ -43,7 +42,7 @@ public class Category {
     }
 
     public void addFilm(Film film) throws FilmException {
-        if(film== null) // req
+        if(film == null) // req
         {
             throw new NullPointerException("film is null");
         }
@@ -62,16 +61,14 @@ public class Category {
     }
 
     private Film getFilm(String name) {
-        if(name == null)
-        {
+        if(name == null) {
             throw new NullPointerException("Name is null.");
         }
 
         final List<Film> collect = films.stream()
                                         .filter((elem) -> name.equals(elem.getName()))
                                         .collect(Collectors.toList());
-        if(collect.size() == 0)
-        {
+        if(collect.size() == 0) {
             return null;
         }
         return collect.get(0);
@@ -81,23 +78,23 @@ public class Category {
     public void deleteFilm(long id) throws FilmException
     {
         Film film = getFilm(id);
-        if(film == null) throw new FilmException("Film not exist in database.");
+        if(film == null) {
+            throw new FilmException("Film does not exist in database.");
+        }
         films.remove(film);
     }
 
 
 
     public Film getFilm(long id) throws FilmException {
-        if(id <= 0)
-        {
-            throw new IndexOutOfBoundsException("Id is negative od zero.");
+        if(id <= 0) {
+            throw new IndexOutOfBoundsException("Id is negative or zero.");
         }
 
         final List<Film> collect = films.stream()
                                         .filter((elem) -> elem.getId() == id)
                                         .collect(Collectors.toList());
-        if(collect.size() == 0)
-        {
+        if(collect.size() == 0) {
             return null;
         }
         return collect.get(0);
