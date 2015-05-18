@@ -29,28 +29,64 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by Peter Zaoral on 8.5.2015.
+ * Main form controller
+ *
+ * @author Peter Stanko
+ * @author Dominik Labuda
+ * @author Peter Zaoral
+ * @version 2015-05-18
  */
 public class Controller implements Initializable {
+    /**
+     * Application file manager
+     */
     private FileManager fm = new FileManagerImpl();
+
+    /**
+     * Kartoteka manager
+     */
     private KartotekaManager kart;
+
+    /**
+     * Currently opened/operated absolute file path
+     */
     private String openedFilePath;
+
+    /**
+     * Saves whether the changes have been saved
+     */
     private boolean docSaved = true;
 
+    /**
+     * Main panel
+     */
     @FXML
     private Parent root;
+
+    /**
+     * Panel with tabs
+     */
     @FXML
     private TabPane tabPane;
+
+    /**
+     * Status label at the bottom
+     */
     @FXML
     private Label statusLabel;
 
+    /**
+     * Initializes the UI
+     * @param location location
+     * @param resources resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
     /**
-     * Creates, saves and opens new document
-     * @param event
+     * Creates, saves and opens new {@link org.odftoolkit.simple.Document}
+     * @param event action event
      */
     @FXML
     public void newDocumentAction(ActionEvent event) {
@@ -79,8 +115,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Adds new category
-     * @param event
+     * Adds new {@link Category}
+     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
@@ -115,8 +151,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Updates existing category
-     * @param event
+     * Updates existing {@link Category}
+     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
@@ -148,8 +184,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Deletes currently opened category
-     * @param event
+     * Deletes currently opened {@link Category}
+     * @param event action event
      */
     @FXML
     public void deleteCategoryAction(ActionEvent event) {
@@ -165,8 +201,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Adds new Film
-     * @param event
+     * Adds new {@link Film}
+     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
@@ -203,8 +239,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Updates Film
-     * @param event
+     * Updates {@link Film}
+     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
@@ -239,8 +275,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Deletes currently opened film
-     * @param event
+     * Deletes currently selected {@link Film}
+     * @param event action event
      */
     @FXML
     public void deleteFilmAction(ActionEvent event) {
@@ -258,7 +294,7 @@ public class Controller implements Initializable {
 
     /**
      * Opens a file using FileChooser
-     * @param event
+     * @param event action event
      */
     @FXML
     public void openFileAction(ActionEvent event) {
@@ -279,7 +315,7 @@ public class Controller implements Initializable {
 
     /**
      * Saves the file to chosen path
-     * @param event
+     * @param event action event
      */
     @FXML
     public void saveAsAction(ActionEvent event) {
@@ -296,7 +332,7 @@ public class Controller implements Initializable {
 
     /**
      * Saves the file to its current path
-     * @param event
+     * @param event action event
      */
     @FXML
     public void saveChangesAction(ActionEvent event) {
@@ -305,7 +341,7 @@ public class Controller implements Initializable {
 
     /**
      * Closes application
-     * @param event
+     * @param event action event
      */
     @FXML
     public void closeAppAction(ActionEvent event) {
@@ -353,7 +389,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Adds tabs to the TabPane
+     * Adds tabs to the {@link Controller#tabPane}
      * @param name tab name
      */
     private void addTab(String name) {

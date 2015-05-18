@@ -1,7 +1,6 @@
 package cz.muni.fi.pb138.kartoteka.managers;
 
 import cz.muni.fi.pb138.kartoteka.entities.Category;
-import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
 
 import java.util.ArrayList;
@@ -11,21 +10,25 @@ import java.util.List;
  * Kartoteka Manager implementation
  *
  * @author Peter Stanko
+ * @author Dominik Labuda
+ * @author Peter Zaoral
+ * @version 2015-05-18
  */
 public class KartotekaManagerImpl implements KartotekaManager {
 
+    /**
+     * List of all categories in
+     */
     List<Category> categories = new ArrayList<>();
-    List<Film> movies = new ArrayList<>();
 
     /**
-     * Adds category to document
+     * Adds {@link Category} to document
      * @param category category to be added
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     @Override
     public void addCategory(Category category) throws CategoryException
     {
-
         if(category == null) {
             throw new NullPointerException("Category is null");
         }
@@ -40,9 +43,9 @@ public class KartotekaManagerImpl implements KartotekaManager {
     }
 
     /**
-     * Deletes the category from document
+     * Deletes the {@link Category} from document
      * @param category category to be deleted
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     @Override
     public void deleteCategory(Category category) throws CategoryException
@@ -54,19 +57,21 @@ public class KartotekaManagerImpl implements KartotekaManager {
     }
 
     /**
-     * Deletes the category from document
+     * Deletes the {@link Category} from document
      * @param id category id
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     @Override
     public void deleteCategory(long id) throws CategoryException{
-        if(id <= 0) throw new CategoryException("Id is negative or 0.");
+        if (id <= 0) {
+            throw new CategoryException("Id is negative or 0.");
+        }
         Category cat = getCategory(id);
-        if(cat == null) {
+        if (cat == null) {
             throw  new CategoryException("Category with id" + id + " not exists.");
         }
 
-        if(!cat.isEmpty()) {
+        if (!cat.isEmpty()) {
             throw new CategoryException("Category with id "+ id + " is not empty.");
         }
 
@@ -74,14 +79,14 @@ public class KartotekaManagerImpl implements KartotekaManager {
     }
 
     /**
-     * Getter for category
+     * Getter for {@link Category}
      * @param id category id
      * @return category
      */
     @Override
     public Category getCategory(long id)
     {
-        if(id <= 0 ) {
+        if (id <= 0) {
             throw new IndexOutOfBoundsException("id");
         }
 
@@ -94,12 +99,12 @@ public class KartotekaManagerImpl implements KartotekaManager {
     }
 
     /**
-     * Getter for category
+     * Getter for {@link Category}
      * @param name category name
      * @return category
      */
     public Category getCategory(String name) {
-        if(name == null ) {
+        if(name == null) {
             throw new NullPointerException("name");
         }
 
@@ -112,7 +117,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
     }
 
     /**
-     * Getter for all categories
+     * Getter for {@link KartotekaManagerImpl#categories}
      * @return list of categories
      */
     @Override

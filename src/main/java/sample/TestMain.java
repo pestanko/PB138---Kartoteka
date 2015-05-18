@@ -12,6 +12,7 @@ import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
  *
  * @author Peter Stanko
  */
+@Deprecated
 public class TestMain {
 
     public static void main(String[] args) {

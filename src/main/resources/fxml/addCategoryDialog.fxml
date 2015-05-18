@@ -9,6 +9,6 @@
         <Label layoutX="14.0" layoutY="14.0" text="Category name:" />
         <Button fx:id="cancelButton" layoutX="184.0" layoutY="86.0" mnemonicParsing="false" text="Cancel" />
         <Button fx:id="okButton" layoutX="125.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="OK" />
-        <TextField alignment="TOP_LEFT" layoutX="14.0" layoutY="38.0" promptText="Category name" fx:id="categoryNameTextField"/>
+        <TextField fx:id="categoryNameTextField" alignment="TOP_LEFT" layoutX="14.0" layoutY="38.0" promptText="Category name" />
     </children>
 </Pane>

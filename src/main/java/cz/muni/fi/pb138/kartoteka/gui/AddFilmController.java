@@ -16,29 +16,71 @@ import java.util.ResourceBundle;
 /**
  * Add Film dialog controller
  *
+ * @author Peter Stanko
  * @author Dominik Labuda
+ * @author Peter Zaoral
+ * @version 2015-05-18
  */
 public class AddFilmController implements Initializable {
 
+    /**
+     * Current film
+     */
     private Film film = new Film();
 
+    /**
+     * Main panel
+     */
     @FXML
     private Parent root;
+
+    /**
+     * OK button
+     */
     @FXML
     private Button okButton;
+
+    /**
+     * Cancel button
+     */
     @FXML
     private Button cancelButton;
+
+    /**
+     * Text field for name
+     */
     @FXML
     private TextField nameTextField;
+
+    /**
+     * Text field for year
+     */
     @FXML
     private TextField yearTextField;
+
+    /**
+     * Text field for rating
+     */
     @FXML
     private TextField ratingTextField;
+
+    /**
+     * Text field for director
+     */
     @FXML
     private TextField directorTextField;
+
+    /**
+     * Text field for description
+     */
     @FXML
     private TextField descriptionTextField;
 
+    /**
+     * Initializes the UI
+     * @param location location
+     * @param resources resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cancelButton.setCancelButton(true);
@@ -66,7 +108,7 @@ public class AddFilmController implements Initializable {
     }
 
     /**
-     * Getter for film
+     * Getter for {@link AddFilmController#film}
      * @return film
      */
     public Film getFilm() {
@@ -74,7 +116,7 @@ public class AddFilmController implements Initializable {
     }
 
     /**
-     * Sets the film and fills inputs
+     * Sets the {@link AddFilmController#film} and fills inputs
      * @param film film to be updated
      */
     public void updateSetUp(Film film) {

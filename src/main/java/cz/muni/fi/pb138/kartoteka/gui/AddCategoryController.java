@@ -16,23 +16,50 @@ import java.util.ResourceBundle;
 /**
  * Add Category dialog controller
  *
+ * @author Peter Stanko
  * @author Dominik Labuda
+ * @author Peter Zaoral
+ * @version 2015-05-18
  */
 public class AddCategoryController implements Initializable {
 
-    private Category category = new Category("");
+    /**
+     * Current category
+     */
+    private Category category = new Category();
 
+    /**
+     * Main panel
+     */
     @FXML
     private Parent root;
+
+    /**
+     * OK button
+     */
     @FXML
     private Button okButton;
+
+    /**
+     * Cancel button
+     */
     @FXML
     private Button cancelButton;
+
+    /**
+     * Text field for name
+     */
     @FXML
     private TextField categoryNameTextField;
 
+    /**
+     * Initializes the UI
+     * @param location location
+     * @param resources resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        okButton.setText(resources.getString("key.OK"));
         cancelButton.setCancelButton(true);
         okButton.setDefaultButton(true);
 
@@ -56,7 +83,7 @@ public class AddCategoryController implements Initializable {
     }
 
     /**
-     * Getter for category
+     * Getter for {@link AddCategoryController#category}
      * @return category
      */
     public Category getCategory() {
@@ -64,7 +91,7 @@ public class AddCategoryController implements Initializable {
     }
 
     /**
-     * Sets the category and fill the input
+     * Sets the {@link AddCategoryController#category} and fill the input
      * @param category category to be updated
      */
     public void updateSetUp(Category category) {

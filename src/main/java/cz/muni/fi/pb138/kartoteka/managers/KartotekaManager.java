@@ -9,39 +9,42 @@ import java.util.List;
  * Kartoteka Manager interface
  *
  * @author Peter Stanko
+ * @author Dominik Labuda
+ * @author Peter Zaoral
+ * @version 2015-05-18
  */
 public interface KartotekaManager {
 
     /**
-     * Adds category to document
+     * Adds {@link Category} to document
      * @param category category to be added
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     void addCategory(Category category) throws CategoryException;
 
     /**
-     * Deletes the category from document
+     * Deletes the {@link Category} from document
      * @param category category to be deleted
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     void deleteCategory(Category category) throws CategoryException;
 
     /**
-     * Deletes the category from document
+     * Deletes the {@link Category} from document
      * @param id category id
-     * @throws CategoryException
+     * @throws CategoryException when category has wrong attributes
      */
     void deleteCategory(long id) throws CategoryException;
 
     /**
-     * Getter for category
+     * Getter for {@link Category}
      * @param id category id
      * @return category
      */
     Category getCategory(long id);
 
     /**
-     * Getter for category
+     * Getter for {@link Category}
      * @param name category name
      * @return category
      */
