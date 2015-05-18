@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.Controller">
+    <children>
+        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open File" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveChangesAction" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveAsAction" text="Save as" />
+                        <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Add Category" onAction="#addCategoryAction"/>
+                        <MenuItem mnemonicParsing="false" text="Update Category" onAction="#updateCategoryAction" />
+                        <MenuItem mnemonicParsing="false" text="Delete Category" onAction="#deleteCategoryAction" />
+                        <MenuItem mnemonicParsing="false" text="Add Movie" onAction="#addFilmAction" />
+                        <MenuItem mnemonicParsing="false" text="Update Movie" onAction="#updateFilmAction" />
+                        <MenuItem mnemonicParsing="false" text="Delete Movie" onAction="#deleteFilmAction" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label fx:id="statusLabel" layoutX="7.0" layoutY="378.0" prefHeight="17.0" prefWidth="521.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+                <Insets left="5.0" />
+            </padding></Label>
+        <AnchorPane layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <children>
+                <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

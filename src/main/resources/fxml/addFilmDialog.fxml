@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.AddFilmController">
+   <children>
+      <Button fx:id="cancelButton" layoutX="534.0" layoutY="188.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="okButton" layoutX="491.0" layoutY="188.0" mnemonicParsing="false" text="OK" />
+      <TextField fx:id="nameTextField" layoutX="14.0" layoutY="14.0" promptText="Movie name" />
+      <TextField fx:id="yearTextField" layoutX="14.0" layoutY="48.0" promptText="Year" />
+      <TextField fx:id="ratingTextField" layoutX="14.0" layoutY="83.0" promptText="Rating" />
+      <TextField fx:id="directorTextField" layoutX="14.0" layoutY="119.0" promptText="Director" />
+      <TextField fx:id="descriptionTextField" layoutX="14.0" layoutY="158.0" promptText="Description" />
+   </children>
+</AnchorPane>

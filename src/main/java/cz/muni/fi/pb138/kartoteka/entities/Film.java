@@ -9,12 +9,12 @@ public class Film {
 
     private String name;
     private String director;
-    private int year;
+    private String year;
     private String description;
-    private byte rating;
+    private String rating;
     private long id;
 
-    public Film(String name, String director, int year, String description, byte rating) {
+    public Film(String name, String director, String year, String description, String rating) {
         this.name = name;
         this.director = director;
         this.year = year;
@@ -45,11 +45,11 @@ public class Film {
         this.director = director;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -61,11 +61,11 @@ public class Film {
         this.description = description;
     }
 
-    public byte getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(byte rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 

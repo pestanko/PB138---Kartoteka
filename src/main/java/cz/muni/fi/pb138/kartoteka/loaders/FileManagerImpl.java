@@ -66,16 +66,16 @@ public class FileManagerImpl implements FileManager {
             film.setName(name);
 
             String year = getYearCell(table, i).getDisplayText();
-            film.setYear(Integer.parseInt(year));
+            film.setYear(year);
 
             String rating = getRatingCell(table, i).getDisplayText();
-            film.setRating(Byte.parseByte(rating));
+            film.setRating(rating);
 
             String description = getDescriptionCell(table, i).getDisplayText();
             film.setDescription(description);
 
             String author = getDirectorCell(table, i).getDisplayText();
-            film.setDescription(author);
+            film.setDirector(author);
 
             cat.addFilm(film);
         }
@@ -146,11 +146,11 @@ public class FileManagerImpl implements FileManager {
         getNameCell(actualTable, ROW)
                 .setDisplayText("Film name");
 
-        getYearCell(actualTable,ROW).setDisplayText("Year");
+        getYearCell(actualTable, ROW).setDisplayText("Year");
 
         getRatingCell(actualTable, ROW).setDisplayText("Rating");
 
-        getDirectorCell(actualTable,ROW).setDisplayText("Director");
+        getDirectorCell(actualTable, ROW).setDisplayText("Director");
 
         getDescriptionCell(actualTable, ROW).setDisplayText("Description");
 
