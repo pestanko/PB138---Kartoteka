@@ -7,9 +7,9 @@ import cz.muni.fi.pb138.kartoteka.exceptions.FilmException;
 import cz.muni.fi.pb138.kartoteka.loaders.FileManager;
 import cz.muni.fi.pb138.kartoteka.loaders.FileManagerImpl;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
+import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +33,6 @@ import java.util.ResourceBundle;
  */
 public class Controller implements Initializable {
     private FileManager fm = new FileManagerImpl();
-    private ObservableList<String> list = FXCollections.observableArrayList();
     private KartotekaManager kart;
     private String openedFilePath;
     private boolean docSaved = true;
@@ -49,31 +49,62 @@ public class Controller implements Initializable {
     }
 
     /**
+     * Creates, saves and opens new document
+     * @param event
+     */
+    @FXML
+    public void newDocumentAction(ActionEvent event) {
+        KartotekaManager manager = new KartotekaManagerImpl();
+
+        try {
+            manager.addCategory(new Category("Filmy"));
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Document");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("ODS Files", "*.ods"));
+
+            File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
+
+            FileManager fm = new FileManagerImpl();
+            openedFilePath = selectedFile.getAbsolutePath();
+            fm.save(openedFilePath, manager);
+
+            openFile();
+        } catch (CategoryException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Adds new category
      * @param event
      * @throws IOException when FXML is not available
      */
     @FXML
-     public void addCategoryAction(ActionEvent event) throws IOException {
+    public void addCategoryAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"));
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Add Category");
         newStage.setScene(new Scene(root, 250, 125));
         newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         newStage.showAndWait();
 
         AddCategoryController controller = loader.getController();
-        String categoryName = controller.getCategoryName();
+        Category createdCategory = controller.getCategory();
 
-        if (categoryName != null) {
+        if (createdCategory != null) {
             try {
-                Category category = new Category(categoryName);
-                kart.addCategory(category);
-                addTab(categoryName);
+                kart.addCategory(createdCategory);
+                addTab(createdCategory.getName());
                 docSaved = false;
-                statusLabel.setText("Status: Category " + category.getName() + " was added");
+                statusLabel.setText("Status: Category " + createdCategory.getName() + " was added");
             } catch (CategoryException e) {
                 e.printStackTrace();
                 statusLabel.setText("Status: Exception was thrown while creating new category.");
@@ -96,23 +127,21 @@ public class Controller implements Initializable {
         newStage.setTitle("Update Category");
         newStage.setScene(new Scene(root, 250, 125));
         newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
 
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
 
         AddCategoryController controller = loader.getController();
-        controller.setCategoryNameText(selectedTab.getText());
+        controller.updateSetUp(kart.getCategory(selectedTab.getText()));
         newStage.showAndWait();
 
-        String categoryName = controller.getCategoryName();
 
-        if (categoryName != null) {
-
-                Category category = kart.getCategory(selectedTab.getText());
-                category.setName(categoryName);
-                selectedTab.setText(categoryName);
-                docSaved = false;
-                statusLabel.setText("Status: Category " + category.getName() + " was updated");
+        if (controller.getCategory() != null) {
+            selectedTab.setText(controller.getCategory().getName());
+            docSaved = false;
+            statusLabel.setText("Status: Category " + selectedTab.getText() + " was updated");
         } else {
             statusLabel.setText("Status: Category name dialog was closed.");
         }
@@ -148,29 +177,28 @@ public class Controller implements Initializable {
         newStage.setTitle("Add Movie");
         newStage.setScene(new Scene(root, 640, 225));
         newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         newStage.showAndWait();
 
         AddFilmController controller = loader.getController();
-        String name = controller.getName();
-        String year = controller.getYear();
-        String director = controller.getDirector();
-        String rating = controller.getRating();
-        String description = controller.getDescription();
+        Film createdFilm = controller.getFilm();
 
-        if (name != null || year != null || director != null || rating != null || description != null) {
+        if (createdFilm != null) {
             try {
-                Film newFilm = new Film(name, director, year, description, rating);
                 Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-                kart.getCategory(selectedTab.getText()).addFilm(newFilm);
-                ((TableView) selectedTab.getContent()).getItems().add(newFilm);
+                kart.getCategory(selectedTab.getText()).addFilm(createdFilm);
+                ((TableView) selectedTab.getContent()).getItems().add(createdFilm);
 
                 docSaved = false;
-                statusLabel.setText("Status: Movie \"" + name + "\" was added");
+                statusLabel.setText("Status: Movie \"" + createdFilm.getName() + "\" was added");
             } catch (FilmException e) {
                 e.printStackTrace();
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
             }
+        } else {
+            statusLabel.setText("Status: Movie creation was cancelled.");
         }
     }
 
@@ -187,39 +215,26 @@ public class Controller implements Initializable {
         newStage.setTitle("Update Movie");
         newStage.setScene(new Scene(root, 640, 225));
         newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
 
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         Film selectedFilm = ((TableView<Film>)selectedTab.getContent()).getSelectionModel().getSelectedItem();
-        AddFilmController controller = loader.getController();
 
-        controller.setNameText(selectedFilm.getName());
-        controller.setYearText(selectedFilm.getYear());
-        controller.setRatingText(selectedFilm.getRating());
-        controller.setDirectorText(selectedFilm.getDirector());
-        controller.setDescriptionText(selectedFilm.getDescription());
+        AddFilmController controller = loader.getController();
+        controller.updateSetUp(selectedFilm);
 
         newStage.showAndWait();
 
-        String name = controller.getName();
-        String year = controller.getYear();
-        String director = controller.getDirector();
-        String rating = controller.getRating();
-        String description = controller.getDescription();
-
-        if (name != null || year != null || director != null || rating != null || description != null) {
-                selectedFilm.setName(name);
-                selectedFilm.setYear(year);
-                selectedFilm.setRating(rating);
-                selectedFilm.setDirector(director);
-                selectedFilm.setDescription(description);
-
+        if (controller.getFilm() != null) {
             ((TableView) selectedTab.getContent()).getItems().clear();
-                ((TableView) selectedTab.getContent()).setItems(FXCollections.observableArrayList(kart.getCategory(selectedTab.getText()).getFilms()));
+            ((TableView) selectedTab.getContent()).setItems(FXCollections.observableArrayList(kart.getCategory(selectedTab.getText()).getFilms()));
 
-                docSaved = false;
-                statusLabel.setText("Status: Movie \"" + name + "\" was updated");
-
+            docSaved = false;
+            statusLabel.setText("Status: Movie \"" + controller.getFilm().getName() + "\" was updated");
+        } else {
+            statusLabel.setText("Status: Movie update was cancelled");
         }
     }
 
@@ -246,7 +261,7 @@ public class Controller implements Initializable {
      * @param event
      */
     @FXML
-    public void openFile(ActionEvent event) {
+    public void openFileAction(ActionEvent event) {
         tabPane.getTabs().clear();
         // FileChooser dialog setup
         FileChooser fileChooser = new FileChooser();
@@ -258,19 +273,7 @@ public class Controller implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         if (selectedFile != null) {
             openedFilePath = selectedFile.getAbsolutePath();
-            try {
-                kart = fm.load(openedFilePath);
-                statusLabel.setText("Status: File \"" + selectedFile.getName() + "\" was successfully opened.");
-            } catch (Exception e) {
-                e.printStackTrace();
-                statusLabel.setText("Status: An exception was thrown while opening a file");
-            }
-            if (kart != null)
-            {
-                for(Category category : kart.getCategories()) {
-                    addTab(category.getName());
-                }
-            }
+            openFile();
         }
     }
 
@@ -280,6 +283,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void saveAsAction(ActionEvent event) {
+        //File Chooser dialog setup
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Document");
         fileChooser.getExtensionFilters().addAll(
@@ -304,7 +308,7 @@ public class Controller implements Initializable {
      * @param event
      */
     @FXML
-    public void closeApp(ActionEvent event) {
+    public void closeAppAction(ActionEvent event) {
         if (!docSaved){
             statusLabel.setText("Status: Changes were not saved.");
             return;
@@ -313,6 +317,25 @@ public class Controller implements Initializable {
     }
 
     // Private (helper) methods
+
+    /**
+     * Opens a file
+     */
+    private void openFile() {
+        try {
+            kart = fm.load(openedFilePath);
+            statusLabel.setText("Status: File \"" + openedFilePath + "\" was successfully opened.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Status: An exception was thrown while opening a file");
+        }
+        if (kart != null)
+        {
+            for(Category category : kart.getCategories()) {
+                addTab(category.getName());
+            }
+        }
+    }
 
     /**
      * Saves the file
@@ -336,6 +359,7 @@ public class Controller implements Initializable {
     private void addTab(String name) {
         Tab tab = new Tab(name);
         TableView<Film> tableView = new TableView<>();
+        tableView.setColumnResizePolicy(param -> true);
 
         TableColumn<Film, String> nameCol = new TableColumn<>("Film name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));

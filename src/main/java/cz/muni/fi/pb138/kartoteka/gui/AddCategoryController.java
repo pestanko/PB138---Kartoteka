@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138.kartoteka.gui;
 
+import cz.muni.fi.pb138.kartoteka.entities.Category;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class AddCategoryController implements Initializable {
 
-    private String categoryName;
+    private Category category = new Category("");
 
     @FXML
     private Parent root;
@@ -39,7 +40,7 @@ public class AddCategoryController implements Initializable {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                categoryName = null;
+                category = null;
                 closeDialog();
             }
         });
@@ -48,26 +49,27 @@ public class AddCategoryController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                categoryName = categoryNameTextField.getText();
+                category.setName(categoryNameTextField.getText());
                 closeDialog();
             }
         });
     }
 
     /**
-     * Getter for category name
-     * @return category name
+     * Getter for category
+     * @return category
      */
-    public String getCategoryName() {
-        return categoryName;
+    public Category getCategory() {
+        return category;
     }
 
     /**
-     * Setter for category name input field
-     * @param name category name
+     * Sets the category and fill the input
+     * @param category category to be updated
      */
-    public void setCategoryNameText(String name) {
-        categoryNameTextField.setText(name);
+    public void updateSetUp(Category category) {
+        this.category = category;
+        categoryNameTextField.setText(category.getName());
     }
 
     /**

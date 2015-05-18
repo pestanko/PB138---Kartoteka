@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138.kartoteka.gui;
 
+import cz.muni.fi.pb138.kartoteka.entities.Film;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,11 +20,7 @@ import java.util.ResourceBundle;
  */
 public class AddFilmController implements Initializable {
 
-    private String name;
-    private String year;
-    private String rating;
-    private String director;
-    private String description;
+    private Film film = new Film();
 
     @FXML
     private Parent root;
@@ -50,11 +47,7 @@ public class AddFilmController implements Initializable {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                name = null;
-                year = null;
-                rating = null;
-                director = null;
-                description = null;
+                film = null;
                 closeDialog();
             }
         });
@@ -62,94 +55,35 @@ public class AddFilmController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                name = nameTextField.getText();
-                year = yearTextField.getText();
-                rating = ratingTextField.getText();
-                director = directorTextField.getText();
-                description = descriptionTextField.getText();
+                film.setName(nameTextField.getText());
+                film.setYear(yearTextField.getText());
+                film.setRating(ratingTextField.getText());
+                film.setDirector(directorTextField.getText());
+                film.setDescription(descriptionTextField.getText());
                 closeDialog();
             }
         });
     }
 
     /**
-     * Getter for name
-     * @return movie name
+     * Getter for film
+     * @return film
      */
-    public String getName() {
-        return name;
+    public Film getFilm() {
+        return film;
     }
 
     /**
-     * Getter for year
-     * @return movie year
+     * Sets the film and fills inputs
+     * @param film film to be updated
      */
-    public String getYear() {
-        return year;
-    }
-
-    /**
-     * Getter for rating
-     * @return movie rating
-     */
-    public String getRating() {
-        return rating;
-    }
-
-    /**
-     * Getter for director
-     * @return movie director
-     */
-    public String getDirector() {
-        return director;
-    }
-
-    /**
-     * Getter for description
-     * @return movie description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Setter for name input field
-     * @param name movie name
-     */
-    public void setNameText(String name) {
-        nameTextField.setText(name);
-    }
-
-    /**
-     * Setter for year input field
-     * @param year movie year
-     */
-    public void setYearText(String year) {
-        yearTextField.setText(year);
-    }
-
-    /**
-     * Setter for rating input field
-     * @param rating movie rating
-     */
-    public void setRatingText(String rating) {
-        ratingTextField.setText(rating);
-    }
-
-    /**
-     * Setter for director input field
-     * @param director movie director
-     */
-    public void setDirectorText(String director) {
-        directorTextField.setText(director);
-    }
-
-    /**
-     * Setter for description input field
-     * @param description movie description
-     */
-    public void setDescriptionText(String description) {
-        descriptionTextField.setText(description);
+    public void updateSetUp(Film film) {
+        this.film = film;
+        nameTextField.setText(film.getName());
+        yearTextField.setText(film.getYear());
+        ratingTextField.setText(film.getRating());
+        directorTextField.setText(film.getDirector());
+        descriptionTextField.setText(film.getDescription());
     }
 
     /**
