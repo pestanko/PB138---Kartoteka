@@ -8,10 +8,11 @@ import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 
 /**
- * Created by Peter Stanko on 5/6/15.
+ * Creates empty test document
  *
  * @author Peter Stanko
  */
+@Deprecated
 public class TestMain {
 
     public static void main(String[] args) {
