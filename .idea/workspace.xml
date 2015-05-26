@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ab96084-ee96-4f3c-b568-409e259df736" name="Default" comment="JavaDoc, minor refactoring along the way">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PB138_Kartoteka.iml" afterPath="$PROJECT_DIR$/PB138_Kartoteka.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/Program.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/sample/TestMain.java" afterPath="$PROJECT_DIR$/src/main/java/sample/TestMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+    <list default="true" id="8ab96084-ee96-4f3c-b568-409e259df736" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PB138_Kartoteka.iws" />
@@ -745,7 +738,7 @@
       <workItem from="1431888803925" duration="20929000" />
       <workItem from="1431936197603" duration="10356000" />
       <workItem from="1432640570297" duration="196000" />
-      <workItem from="1432642358585" duration="2600000" />
+      <workItem from="1432642358585" duration="2619000" />
     </task>
     <task id="LOCAL-00001" summary="Minor UI changes and refactoring&#10;&#10;Changelog:&#10;Minor refactoring&#10;Typo fixes&#10;Close button working&#10;File -&gt; Save added&#10;File -&gt; Save As added&#10;File Chooser dialog to open file&#10;File Chooser dialog to save file">
       <created>1431118552166</created>
@@ -765,11 +758,17 @@
       <option name="project" value="LOCAL" />
       <updated>1431939862154</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="JavaDoc, minor refactoring along the way">
+      <created>1432644965586</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432644965586</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46851000" />
+    <option name="totallyTimeSpent" value="46870000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -818,7 +817,8 @@
     <MESSAGE value="Minor UI changes and refactoring&#10;&#10;Changelog:&#10;Minor refactoring&#10;Typo fixes&#10;Close button working&#10;File -&gt; Save added&#10;File -&gt; Save As added&#10;File Chooser dialog to open file&#10;File Chooser dialog to save file" />
     <MESSAGE value="Major UI changes, bug fixes and refactoring&#10;&#10;Changelog:&#10;JavaDoc started&#10;Major UI overdo&#10;Category rename added&#10;Category deletion added&#10;Movie creation added&#10;Movie update added&#10;Movie deletion added&#10;Minor data types changes in Film (easier first implementation, will fix in other commit)" />
     <MESSAGE value="Minor UI changes, refactoring&#10;&#10;Changelog:&#10;Simplified dialog code&#10;Dialogs are not resizable anymore&#10;New Document creation added&#10;Table columns now resize automatically with content&#10;Some missing status messages added&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor UI changes, refactoring&#10;&#10;Changelog:&#10;Simplified dialog code&#10;Dialogs are not resizable anymore&#10;New Document creation added&#10;Table columns now resize automatically with content&#10;Some missing status messages added&#10;" />
+    <MESSAGE value="JavaDoc, minor refactoring along the way" />
+    <option name="LAST_COMMIT_MESSAGE" value="JavaDoc, minor refactoring along the way" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
