@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.io.IOException;
 
 /**
  * Main initialization class
@@ -17,11 +16,15 @@ import java.io.IOException;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-05-26
  */
 public class Program extends Application {
 
+    /**
+     * Class logger
+     */
     final static Logger logger = LoggerFactory.getLogger(Program.class);
+
     /**
      * Starts the javafx UI
      * @param primaryStage Main {@link Stage}
@@ -36,8 +39,6 @@ public class Program extends Application {
         } catch (Throwable e) {
             JOptionPane.showMessageDialog(null, "Oops something went wrong ...");
             logger.error("Main Exception -> WRONG ! ", e);
-
-
         }
     }
 

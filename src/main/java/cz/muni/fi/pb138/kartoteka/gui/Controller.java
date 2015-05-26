@@ -18,6 +18,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,13 +38,17 @@ import java.util.ResourceBundle;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-05-26
  */
 public class Controller implements Initializable {
     /**
      * Application file manager
      */
     private FileManager fm = new FileManagerImpl();
+
+    /**
+     * Class logger
+     */
     final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
 
     /**
@@ -78,12 +85,48 @@ public class Controller implements Initializable {
     private Label statusLabel;
 
     /**
+     * Close menu item
+     */
+    @FXML
+    private MenuItem closeCmd;
+
+    /**
+     * Save menu item
+     */
+    @FXML
+    private MenuItem saveCmd;
+
+    /**
+     * Save as menu item
+     */
+    @FXML
+    private MenuItem saveAsCmd;
+
+    /**
+     * New document menu item
+     */
+    @FXML
+    private MenuItem newDocumentCmd;
+
+    /**
+     * Open menu item
+     */
+    @FXML
+    private MenuItem openCmd;
+
+    /**
      * Initializes the UI
+     * Sets the key shortcuts to the menu items
      * @param location location
      * @param resources resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        closeCmd.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
+        saveCmd.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
+        saveAsCmd.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN));
+        newDocumentCmd.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
+        openCmd.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
     }
 
     /**
@@ -110,12 +153,9 @@ public class Controller implements Initializable {
 
             openFile();
         } catch (CategoryException e) {
-            //e.printStackTrace();
             logger.error("New document exception",e);
         } catch (Exception e) {
-            //e.printStackTrace();
             logger.error("New document exception",e);
-
         }
     }
 
@@ -147,7 +187,6 @@ public class Controller implements Initializable {
                 docSaved = false;
                 statusLabel.setText("Status: Category " + createdCategory.getName() + " was added");
             } catch (CategoryException e) {
-                //e.printStackTrace();
                 logger.error("Add category: ", e);
                 statusLabel.setText("Status: Exception was thrown while creating new category.");
             }
@@ -201,7 +240,6 @@ public class Controller implements Initializable {
             tabPane.getTabs().remove(selectedTab);
             docSaved = false;
         } catch (CategoryException e) {
-            //e.printStackTrace();
             logger.error("Delete Category", e);
             statusLabel.setText("Status: Exception was thrown while deleting the category.");
         }
@@ -237,7 +275,6 @@ public class Controller implements Initializable {
                 docSaved = false;
                 statusLabel.setText("Status: Movie \"" + createdFilm.getName() + "\" was added");
             } catch (FilmException e) {
-                e.printStackTrace();
                 logger.error("Add Film:", e);
                 JOptionPane.showMessageDialog(null, "Category is not empty => cannot remove category.");
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
@@ -296,7 +333,6 @@ public class Controller implements Initializable {
             ((TableView) selectedTab.getContent()).getItems().remove(selectedFilm);
             docSaved = false;
         } catch (FilmException e) {
-            //e.printStackTrace();
             logger.error("Delete film action", e);
             statusLabel.setText("Status: Exception was thrown while deleting the movie.");
         }
@@ -346,7 +382,11 @@ public class Controller implements Initializable {
      */
     @FXML
     public void saveChangesAction(ActionEvent event) {
-        saveFile(openedFilePath);
+        if (openedFilePath == null) {
+            JOptionPane.showMessageDialog(null, "There's nothing to save");
+        } else {
+            saveFile(openedFilePath);
+        }
     }
 
     /**
@@ -356,8 +396,16 @@ public class Controller implements Initializable {
     @FXML
     public void closeAppAction(ActionEvent event) {
         if (!docSaved){
-            statusLabel.setText("Status: Changes were not saved.");
-            return;
+            int reply = JOptionPane.showConfirmDialog(null,
+                    "You haven't saved changes in your file.\nAre you sure you want to exit?",
+                    "Exit Application",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (reply == JOptionPane.YES_OPTION) {
+                statusLabel.setText("Status: Changes were not saved.");
+            } else {
+                return;
+            }
         }
         Platform.exit();
     }
@@ -375,7 +423,6 @@ public class Controller implements Initializable {
         {
             JOptionPane.showMessageDialog(null,"Unsupported format.");
         }catch (Exception e) {
-            //e.printStackTrace();
             logger.error("Open File", e);
             statusLabel.setText("Status: An exception was thrown while opening a file");
         }
@@ -398,7 +445,6 @@ public class Controller implements Initializable {
             docSaved = true;
             statusLabel.setText("Status: Changes saved");
         } catch (Exception e) {
-            //e.printStackTrace();
             logger.error("Save File: ", e);
             statusLabel.setText("Status: Exception was thrown during saving. Try again.");
         }

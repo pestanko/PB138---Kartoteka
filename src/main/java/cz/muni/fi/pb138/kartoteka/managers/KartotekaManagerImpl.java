@@ -27,8 +27,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * @throws CategoryException when category has wrong attributes
      */
     @Override
-    public void addCategory(Category category) throws CategoryException
-    {
+    public void addCategory(Category category) throws CategoryException {
         if(category == null) {
             throw new NullPointerException("Category is null");
         }
@@ -48,8 +47,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * @throws CategoryException when category has wrong attributes
      */
     @Override
-    public void deleteCategory(Category category) throws CategoryException
-    {
+    public void deleteCategory(Category category) throws CategoryException {
         if(category == null) {
             throw new NullPointerException("Category is null");
         }
@@ -62,7 +60,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * @throws CategoryException when category has wrong attributes
      */
     @Override
-    public void deleteCategory(long id) throws CategoryException{
+    public void deleteCategory(long id) throws CategoryException {
         if (id <= 0) {
             throw new CategoryException("Id is negative or 0.");
         }
@@ -84,8 +82,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * @return category
      */
     @Override
-    public Category getCategory(long id)
-    {
+    public Category getCategory(long id) {
         if (id <= 0) {
             throw new IndexOutOfBoundsException("id");
         }

@@ -1,6 +1,5 @@
 package cz.muni.fi.pb138.kartoteka.loaders;
 
-import com.sun.org.apache.bcel.internal.classfile.Unknown;
 import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
@@ -13,7 +12,6 @@ import org.odftoolkit.simple.table.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
@@ -23,7 +21,7 @@ import java.util.List;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-05-26
  */
 public class FileManagerImpl implements FileManager {
 
@@ -33,8 +31,11 @@ public class FileManagerImpl implements FileManager {
     public static final int FILM_RATING = 3;
     public static final int FILM_DIRECTOR = 4;
     public static final int FILM_DESCRIPTION = 5;
-    final static Logger logger = LoggerFactory.getLogger(FileManagerImpl.class);
 
+    /**
+     * Class logger
+     */
+    final static Logger logger = LoggerFactory.getLogger(FileManagerImpl.class);
 
     /**
      * Loads the document from file into {@link KartotekaManager}
@@ -46,8 +47,6 @@ public class FileManagerImpl implements FileManager {
     public KartotekaManager load(String path) throws Exception {
         KartotekaManager kartotekaManager = new KartotekaManagerImpl();
 
-
-
         SpreadsheetDocument document = SpreadsheetDocument.loadDocument(path);
 
         document.getTableList().forEach((table -> {
@@ -56,15 +55,12 @@ public class FileManagerImpl implements FileManager {
             try {
                 kartotekaManager.addCategory(cat);
             } catch (CategoryException e) {
-                //e.printStackTrace();
                 logger.error("Load", e);
             }
 
             try {
                 loadAllFilms(table, cat);
             } catch (FilmException e) {
-                //e.printStackTrace();
-
                 logger.error("Load", e);
 
             }
@@ -105,8 +101,7 @@ public class FileManagerImpl implements FileManager {
                 film.setDirector(author);
 
                 cat.addFilm(film);
-            }catch (NullPointerException ex)
-            {
+            } catch (NullPointerException ex) {
                 logger.warn("Unsupported format:", ex);
                 throw  new UnsupportedOperationException("Unsupported format exception!", ex);
             }
@@ -143,15 +138,13 @@ public class FileManagerImpl implements FileManager {
      * @param films films
      */
     private void printFilms(Table actualTable, List<Film> films) {
-
         int row = 1;
 
-        for(Film film : films)
-        {
-            getIdCell(actualTable, row).setDisplayText("" +film.getId());
+        for(Film film : films) {
+            getIdCell(actualTable, row).setDisplayText("" + film.getId());
             getNameCell(actualTable, row).setDisplayText(film.getName());
             getYearCell(actualTable, row).setDisplayText("" + film.getYear());
-            getRatingCell(actualTable, row).setDisplayText(""+film.getRating());
+            getRatingCell(actualTable, row).setDisplayText("" + film.getRating());
             getDirectorCell(actualTable, row).setDisplayText(film.getDirector());
             getDescriptionCell(actualTable, row).setDisplayText(film.getDescription());
 
@@ -195,7 +188,7 @@ public class FileManagerImpl implements FileManager {
      * @param row row index
      * @return found cell
      */
-    private Cell getDirectorCell(Table table,int row){
+    private Cell getDirectorCell(Table table,int row) {
         return table.getCellByPosition(FILM_DIRECTOR, row);
     }
 
@@ -223,8 +216,7 @@ public class FileManagerImpl implements FileManager {
      * Writes all headers into table
      * @param actualTable table
      */
-    private void printHeaders(Table actualTable)
-    {
+    private void printHeaders(Table actualTable) {
         final int ROW = 0;
 
         getNameCell(actualTable, ROW)

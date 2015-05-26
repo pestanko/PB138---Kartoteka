@@ -11,11 +11,11 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#newDocumentAction" text="New Document" />
-                        <MenuItem mnemonicParsing="false" onAction="#openFileAction" text="Open File" />
-                        <MenuItem mnemonicParsing="false" onAction="#saveChangesAction" text="Save" />
-                        <MenuItem mnemonicParsing="false" onAction="#saveAsAction" text="Save as" />
-                        <MenuItem mnemonicParsing="false" onAction="#closeAppAction" text="Close" />
+                        <MenuItem fx:id="newDocumentCmd" mnemonicParsing="false" onAction="#newDocumentAction" text="New Document" />
+                        <MenuItem fx:id="openCmd" mnemonicParsing="false" onAction="#openFileAction" text="Open File" />
+                        <MenuItem fx:id="saveCmd" mnemonicParsing="false" onAction="#saveChangesAction" text="Save" />
+                        <MenuItem fx:id="saveAsCmd" mnemonicParsing="false" onAction="#saveAsAction" text="Save as" />
+                        <MenuItem fx:id="closeCmd" mnemonicParsing="false" onAction="#closeAppAction" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">

@@ -59,11 +59,9 @@ public class AddCategoryController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        okButton.setText(resources.getString("key.OK"));
         cancelButton.setCancelButton(true);
         okButton.setDefaultButton(true);
 
-        // Closes dialog and does not return anything
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -72,7 +70,6 @@ public class AddCategoryController implements Initializable {
             }
         });
 
-        // Closes dialog and returns name
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
