@@ -1,5 +1,6 @@
 package cz.muni.fi.pb138.kartoteka.loaders;
 
+import com.sun.org.apache.bcel.internal.classfile.Unknown;
 import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
@@ -9,7 +10,10 @@ import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
@@ -29,6 +33,8 @@ public class FileManagerImpl implements FileManager {
     public static final int FILM_RATING = 3;
     public static final int FILM_DIRECTOR = 4;
     public static final int FILM_DESCRIPTION = 5;
+    final static Logger logger = LoggerFactory.getLogger(FileManagerImpl.class);
+
 
     /**
      * Loads the document from file into {@link KartotekaManager}
@@ -41,6 +47,7 @@ public class FileManagerImpl implements FileManager {
         KartotekaManager kartotekaManager = new KartotekaManagerImpl();
 
 
+
         SpreadsheetDocument document = SpreadsheetDocument.loadDocument(path);
 
         document.getTableList().forEach((table -> {
@@ -49,13 +56,17 @@ public class FileManagerImpl implements FileManager {
             try {
                 kartotekaManager.addCategory(cat);
             } catch (CategoryException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                logger.error("Load", e);
             }
 
             try {
                 loadAllFilms(table, cat);
             } catch (FilmException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+
+                logger.error("Load", e);
+
             }
 
         }));
@@ -75,23 +86,30 @@ public class FileManagerImpl implements FileManager {
         {
             Film film = new Film();
 
-            String name = getNameCell(table, i).getDisplayText();
-            if(name == null || name.length() == 0) continue;
-            film.setName(name);
+            try {
 
-            String year = getYearCell(table, i).getDisplayText();
-            film.setYear(year);
+                String name = getNameCell(table, i).getDisplayText();
+                if (name == null || name.length() == 0) continue;
+                film.setName(name);
 
-            String rating = getRatingCell(table, i).getDisplayText();
-            film.setRating(rating);
+                String year = getYearCell(table, i).getDisplayText();
+                film.setYear(year);
 
-            String description = getDescriptionCell(table, i).getDisplayText();
-            film.setDescription(description);
+                String rating = getRatingCell(table, i).getDisplayText();
+                film.setRating(rating);
 
-            String author = getDirectorCell(table, i).getDisplayText();
-            film.setDirector(author);
+                String description = getDescriptionCell(table, i).getDisplayText();
+                film.setDescription(description);
 
-            cat.addFilm(film);
+                String author = getDirectorCell(table, i).getDisplayText();
+                film.setDirector(author);
+
+                cat.addFilm(film);
+            }catch (NullPointerException ex)
+            {
+                logger.warn("Unsupported format:", ex);
+                throw  new UnsupportedOperationException("Unsupported format exception!", ex);
+            }
         }
 
     }

@@ -23,6 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +42,7 @@ public class Controller implements Initializable {
      * Application file manager
      */
     private FileManager fm = new FileManagerImpl();
+    final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
 
     /**
      * Kartoteka manager
@@ -108,9 +110,12 @@ public class Controller implements Initializable {
 
             openFile();
         } catch (CategoryException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("New document exception",e);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("New document exception",e);
+
         }
     }
 
@@ -142,7 +147,8 @@ public class Controller implements Initializable {
                 docSaved = false;
                 statusLabel.setText("Status: Category " + createdCategory.getName() + " was added");
             } catch (CategoryException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                logger.error("Add category: ", e);
                 statusLabel.setText("Status: Exception was thrown while creating new category.");
             }
         } else {
@@ -195,7 +201,8 @@ public class Controller implements Initializable {
             tabPane.getTabs().remove(selectedTab);
             docSaved = false;
         } catch (CategoryException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Delete Category", e);
             statusLabel.setText("Status: Exception was thrown while deleting the category.");
         }
     }
@@ -231,6 +238,8 @@ public class Controller implements Initializable {
                 statusLabel.setText("Status: Movie \"" + createdFilm.getName() + "\" was added");
             } catch (FilmException e) {
                 e.printStackTrace();
+                logger.error("Add Film:", e);
+                JOptionPane.showMessageDialog(null, "Category is not empty => cannot remove category.");
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
             }
         } else {
@@ -287,7 +296,8 @@ public class Controller implements Initializable {
             ((TableView) selectedTab.getContent()).getItems().remove(selectedFilm);
             docSaved = false;
         } catch (FilmException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Delete film action", e);
             statusLabel.setText("Status: Exception was thrown while deleting the movie.");
         }
     }
@@ -361,10 +371,15 @@ public class Controller implements Initializable {
         try {
             kart = fm.load(openedFilePath);
             statusLabel.setText("Status: File \"" + openedFilePath + "\" was successfully opened.");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedOperationException ex)
+        {
+            JOptionPane.showMessageDialog(null,"Unsupported format.");
+        }catch (Exception e) {
+            //e.printStackTrace();
+            logger.error("Open File", e);
             statusLabel.setText("Status: An exception was thrown while opening a file");
         }
+
         if (kart != null)
         {
             for(Category category : kart.getCategories()) {
@@ -383,7 +398,8 @@ public class Controller implements Initializable {
             docSaved = true;
             statusLabel.setText("Status: Changes saved");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Save File: ", e);
             statusLabel.setText("Status: Exception was thrown during saving. Try again.");
         }
     }

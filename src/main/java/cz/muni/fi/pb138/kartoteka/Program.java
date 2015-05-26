@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -18,6 +21,7 @@ import java.io.IOException;
  */
 public class Program extends Application {
 
+    final static Logger logger = LoggerFactory.getLogger(Program.class);
     /**
      * Starts the javafx UI
      * @param primaryStage Main {@link Stage}
@@ -29,8 +33,11 @@ public class Program extends Application {
             primaryStage.setTitle("PB138 - Kartoteka");
             primaryStage.setScene(new Scene(root, 1280, 720));
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Throwable e) {
+            JOptionPane.showMessageDialog(null, "Oops something went wrong ...");
+            logger.error("Main Exception -> WRONG ! ", e);
+
+
         }
     }
 

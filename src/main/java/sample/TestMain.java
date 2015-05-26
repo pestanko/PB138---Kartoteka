@@ -6,6 +6,8 @@ import cz.muni.fi.pb138.kartoteka.loaders.FileManager;
 import cz.muni.fi.pb138.kartoteka.loaders.FileManagerImpl;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Creates empty test document
@@ -14,6 +16,8 @@ import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
  */
 @Deprecated
 public class TestMain {
+
+    final static Logger logger = LoggerFactory.getLogger(TestMain.class);
 
     public static void main(String[] args) {
         KartotekaManager manager = new KartotekaManagerImpl();
@@ -29,9 +33,10 @@ public class TestMain {
             KartotekaManager kart = fm.load("dokument.ods");
 
         } catch (CategoryException e) {
-            e.printStackTrace();
+            logger.error("Category exception.",e);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception",e);
         }
     }
 }
