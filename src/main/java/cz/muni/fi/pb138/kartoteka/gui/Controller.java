@@ -191,8 +191,6 @@ public class Controller implements Initializable {
         KartotekaManager manager = new KartotekaManagerImpl();
 
         try {
-            manager.addCategory(new Category("Filmy"));
-
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save Document");
             fileChooser.getExtensionFilters().addAll(
@@ -205,6 +203,7 @@ public class Controller implements Initializable {
             fm.save(openedFilePath, manager);
 
             openFile();
+            initFilter();
         } catch (CategoryException e) {
             logger.error("New document exception",e);
         } catch (Exception e) {

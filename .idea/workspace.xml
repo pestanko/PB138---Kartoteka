@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8ab96084-ee96-4f3c-b568-409e259df736" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PB138_Kartoteka.iws" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="NewUI.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.724138">
-              <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+            <state vertical-scroll-proportion="-23.206896">
+              <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -63,11 +62,31 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19565217">
-              <caret line="543" column="100" selection-start-line="543" selection-start-column="100" selection-end-line="543" selection-end-column="100" />
+            <state vertical-scroll-proportion="0.2430279">
+              <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileManagerImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,44 +97,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="25" column="35" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="35" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringBinding.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/javafx-src.zip!/javafx/beans/binding/StringBinding.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#5595#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3919#3920#0" expanded="false" />
-                <element signature="e#3977#3978#0" expanded="false" />
-                <element signature="e#4951#4952#0" expanded="false" />
-                <element signature="e#4979#4980#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringPropertyBase.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/javafx-src.zip!/javafx/beans/property/StringPropertyBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#6083#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#1483#1484#0" expanded="false" />
-                <element signature="e#1524#1525#0" expanded="false" />
-                <element signature="e#2583#2584#0" expanded="false" />
-                <element signature="e#2645#2646#0" expanded="false" />
-                <element signature="e#3743#3744#0" expanded="false" />
-                <element signature="e#3784#3785#0" expanded="false" />
-                <element signature="e#5728#5729#0" expanded="false" />
-                <element signature="e#5788#5789#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -226,79 +207,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextInputControl.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/javafx-src.zip!/javafx/scene/control/TextInputControl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1123" column="0" selection-start-line="1123" selection-start-column="0" selection-end-line="1123" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#45695#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#7768#7769#0" expanded="false" />
-                <element signature="e#7839#7840#0" expanded="false" />
-                <element signature="e#7908#7909#0" expanded="false" />
-                <element signature="e#7976#7977#0" expanded="false" />
-                <element signature="e#8045#8046#0" expanded="false" />
-                <element signature="e#8098#8099#0" expanded="false" />
-                <element signature="e#9254#9255#0" expanded="false" />
-                <element signature="e#9284#9285#0" expanded="false" />
-                <element signature="e#10136#10137#0" expanded="false" />
-                <element signature="e#10215#10216#0" expanded="false" />
-                <element signature="e#10576#10588#0" expanded="false" />
-                <element signature="e#14557#14558#0" expanded="false" />
-                <element signature="e#14602#14603#0" expanded="false" />
-                <element signature="e#14829#14830#0" expanded="false" />
-                <element signature="e#14876#14877#0" expanded="false" />
-                <element signature="e#15127#15128#0" expanded="false" />
-                <element signature="e#15165#15166#0" expanded="false" />
-                <element signature="e#15652#15653#0" expanded="false" />
-                <element signature="e#15695#15696#0" expanded="false" />
-                <element signature="e#20434#20435#0" expanded="false" />
-                <element signature="e#20469#20470#0" expanded="false" />
-                <element signature="e#20637#20638#0" expanded="false" />
-                <element signature="e#20668#20669#0" expanded="false" />
-                <element signature="e#20839#20840#0" expanded="false" />
-                <element signature="e#20875#20876#0" expanded="false" />
-                <element signature="e#21147#21148#0" expanded="false" />
-                <element signature="e#21181#21182#0" expanded="false" />
-                <element signature="e#21441#21442#0" expanded="false" />
-                <element signature="e#21471#21472#0" expanded="false" />
-                <element signature="e#21636#21637#0" expanded="false" />
-                <element signature="e#21671#21672#0" expanded="false" />
-                <element signature="e#25127#25128#0" expanded="false" />
-                <element signature="e#25170#25171#0" expanded="false" />
-                <element signature="e#26007#26008#0" expanded="false" />
-                <element signature="e#26050#26051#0" expanded="false" />
-                <element signature="e#32119#32120#0" expanded="false" />
-                <element signature="e#32193#32194#0" expanded="false" />
-                <element signature="e#39690#39691#0" expanded="false" />
-                <element signature="e#39739#39740#0" expanded="false" />
-                <element signature="e#40448#40449#0" expanded="false" />
-                <element signature="e#40500#40501#0" expanded="false" />
-                <element signature="e#40545#40546#0" expanded="false" />
-                <element signature="e#40582#40583#0" expanded="false" />
-                <element signature="e#40738#40739#0" expanded="false" />
-                <element signature="e#40785#40786#0" expanded="false" />
-                <element signature="e#42631#42632#0" expanded="false" />
-                <element signature="e#42705#42706#0" expanded="false" />
-                <element signature="e#43131#43168#0" expanded="false" />
-                <element signature="e#43773#43774#0" expanded="false" />
-                <element signature="e#43817#43818#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FXMLLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3090" column="0" selection-start-line="3090" selection-start-column="0" selection-end-line="3090" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Category.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Category.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -307,6 +215,26 @@
               <folding>
                 <element signature="e#1014#1015#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Film.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Film.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddCategoryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -993,7 +921,7 @@
       <workItem from="1432727122062" duration="1458000" />
       <workItem from="1432730763614" duration="4002000" />
       <workItem from="1432735366988" duration="10228000" />
-      <workItem from="1432747925153" duration="2128000" />
+      <workItem from="1432747925153" duration="5777000" />
     </task>
     <task id="LOCAL-00001" summary="Minor UI changes and refactoring&#10;&#10;Changelog:&#10;Minor refactoring&#10;Typo fixes&#10;Close button working&#10;File -&gt; Save added&#10;File -&gt; Save As added&#10;File Chooser dialog to open file&#10;File Chooser dialog to save file">
       <created>1431118552166</created>
@@ -1031,11 +959,23 @@
       <option name="project" value="LOCAL" />
       <updated>1432744964923</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changelog:&#10;Cosmetic changes&#10;Added JavaDoc">
+      <created>1432750093593</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1432750093593</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Changelog:&#10;Added &quot;Toolbar for Actions&quot;&#10;Improved filter- fixed working with more tabs">
+      <created>1432752548208</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1432752548208</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70289000" />
+    <option name="totallyTimeSpent" value="73938000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1052,7 +992,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2043222" sideWeight="0.48134327" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1108742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18550107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1087,11 +1027,13 @@
     <MESSAGE value="JavaDoc, minor refactoring along the way" />
     <MESSAGE value="Minor improvements, minor refactoring, Javadoc update&#10;&#10;Changelog:&#10;Added keyboard shortcuts for menu items&#10;Added checking for changes on exit (working only via menu item &quot;Close&quot;)&#10;Minor refactoring to fit Java coding conventions&#10;Minor bug fixed, which caused adding category fail&#10;Javadoc updated and issued in wiki" />
     <MESSAGE value="Changelog:&#10;Added search feature&#10;New dependency in maven project - http://fxexperience.com/controlsfx/ (used to create filterTextField, but normal textField works as well)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changelog:&#10;Added search feature&#10;New dependency in maven project - http://fxexperience.com/controlsfx/ (used to create filterTextField, but normal textField works as well)" />
+    <MESSAGE value="Changelog:&#10;Cosmetic changes&#10;Added JavaDoc" />
+    <MESSAGE value="Changelog:&#10;Added &quot;Toolbar for Actions&quot;&#10;Improved filter- fixed working with more tabs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changelog:&#10;Added &quot;Toolbar for Actions&quot;&#10;Improved filter- fixed working with more tabs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="89" />
+      <option name="time" value="90" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1420,6 +1362,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1427,20 +1370,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5866208">
-          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3207547">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1469,23 +1399,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7375643">
           <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Film.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Category.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#1014#1015#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1502,8 +1416,8 @@
         <state vertical-scroll-proportion="0.3327616">
           <caret line="253" column="32" selection-start-line="253" selection-start-column="32" selection-end-line="253" selection-end-column="32" />
           <folding>
-            <element signature="e#8207#8208#0" expanded="true" />
-            <element signature="e#8235#8236#0" expanded="true" />
+            <element signature="e#8207#8208#0" expanded="false" />
+            <element signature="e#8235#8236#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1736,8 +1650,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.724138">
-          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        <state vertical-scroll-proportion="-23.206896">
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1745,10 +1659,52 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="e#1014#1015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Film.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19565217">
-          <caret line="543" column="100" selection-start-line="543" selection-start-column="100" selection-end-line="543" selection-end-column="100" />
+        <state vertical-scroll-proportion="0.2430279">
+          <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
