@@ -154,7 +154,9 @@ public class Controller implements Initializable {
      */
     @FXML
     private MenuItem deleteMovieCmd;
-
+    /**
+     * Filter text field item from ControlsFX library
+     */
     @FXML
     private TextField filterTextField = TextFields.createSearchField() ;
 
@@ -537,9 +539,11 @@ public class Controller implements Initializable {
         tab.setContent(tableView);
         tabPane.getTabs().add(tab);
     }
+
+    /**
+     * Initialize filter text field, method implements listener that monitoring changes in textField
+     */
     private void initFilter() {
-        //filterTextField = TextFields.createSearchField();
-        filterTextField.setPromptText("Start typing...");
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         List<Film> films = kart.getCategory(selectedTab.getText()).getFilms();
         TableView tableView = ((TableView) selectedTab.getContent());
@@ -566,7 +570,6 @@ public class Controller implements Initializable {
                             break;
                         }
                     }
-
                 }
                 tableView.setItems(tableItems);
             }
