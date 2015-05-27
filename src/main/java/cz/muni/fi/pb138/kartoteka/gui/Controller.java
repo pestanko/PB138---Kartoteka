@@ -9,7 +9,10 @@ import cz.muni.fi.pb138.kartoteka.loaders.FileManagerImpl;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +28,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.TextFields;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -149,6 +154,9 @@ public class Controller implements Initializable {
      */
     @FXML
     private MenuItem deleteMovieCmd;
+
+    @FXML
+    private TextField filterTextField = TextFields.createSearchField() ;
 
     /**
      * Initializes the UI
@@ -399,6 +407,7 @@ public class Controller implements Initializable {
         if (selectedFile != null) {
             openedFilePath = selectedFile.getAbsolutePath();
             openFile();
+            initFilter();
         }
     }
 
@@ -527,5 +536,40 @@ public class Controller implements Initializable {
 
         tab.setContent(tableView);
         tabPane.getTabs().add(tab);
+    }
+    private void initFilter() {
+        //filterTextField = TextFields.createSearchField();
+        filterTextField.setPromptText("Start typing...");
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        List<Film> films = kart.getCategory(selectedTab.getText()).getFilms();
+        TableView tableView = ((TableView) selectedTab.getContent());
+        filterTextField.textProperty().addListener(new InvalidationListener() {
+
+            @Override
+            public void invalidated(Observable o) {
+
+                if(filterTextField.textProperty().get().isEmpty()) {
+                    tableView.setItems(FXCollections.observableArrayList(films));
+                    return;
+                }
+                kart.getCategory(selectedTab.getText()).getFilms();
+                ObservableList<Film> tableItems = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Film, ?>> cols =((TableView) selectedTab.getContent()).getColumns();
+                for(int i=0; i<films.size(); i++) {
+
+                    for(int j=0; j<cols.size(); j++) {
+                        TableColumn col = cols.get(j);
+                        String cellValue = col.getCellData(films.get(i)).toString();
+                        cellValue = cellValue.toLowerCase();
+                        if(cellValue.contains(filterTextField.textProperty().get().toLowerCase())) {
+                            tableItems.add(films.get(i));
+                            break;
+                        }
+                    }
+
+                }
+                tableView.setItems(tableItems);
+            }
+        });
     }
 }
