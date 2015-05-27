@@ -20,12 +20,12 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Add Category" onAction="#addCategoryAction"/>
-                        <MenuItem mnemonicParsing="false" text="Update Category" onAction="#updateCategoryAction" />
-                        <MenuItem mnemonicParsing="false" text="Delete Category" onAction="#deleteCategoryAction" />
-                        <MenuItem mnemonicParsing="false" text="Add Movie" onAction="#addFilmAction" />
-                        <MenuItem mnemonicParsing="false" text="Update Movie" onAction="#updateFilmAction" />
-                        <MenuItem mnemonicParsing="false" text="Delete Movie" onAction="#deleteFilmAction" />
+                        <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" text="Add Category" onAction="#addCategoryAction"/>
+                        <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" text="Update Category" onAction="#updateCategoryAction" />
+                        <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" text="Delete Category" onAction="#deleteCategoryAction" />
+                        <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" text="Add Movie" onAction="#addFilmAction" />
+                        <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" text="Update Movie" onAction="#updateFilmAction" />
+                        <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" text="Delete Movie" onAction="#deleteFilmAction" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">

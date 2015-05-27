@@ -115,6 +115,42 @@ public class Controller implements Initializable {
     private MenuItem openCmd;
 
     /**
+     * Add category menu item
+     */
+    @FXML
+    private MenuItem addCategoryCmd;
+
+    /**
+     * Update category menu item
+     */
+    @FXML
+    private MenuItem updateCategoryCmd;
+
+    /**
+     * Delete category menu item
+     */
+    @FXML
+    private MenuItem deleteCategoryCmd;
+
+    /**
+     * Add movie menu item
+     */
+    @FXML
+    private MenuItem addMovieCmd;
+
+    /**
+     * Update movie menu item
+     */
+    @FXML
+    private MenuItem updateMovieCmd;
+
+    /**
+     * Delete movie menu item
+     */
+    @FXML
+    private MenuItem deleteMovieCmd;
+
+    /**
      * Initializes the UI
      * Sets the key shortcuts to the menu items
      * @param location location
@@ -122,11 +158,18 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Menu shortcuts initialization
         closeCmd.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
         saveCmd.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
         saveAsCmd.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN));
         newDocumentCmd.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
         openCmd.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
+        addCategoryCmd.setAccelerator(new KeyCodeCombination(KeyCode.F1, KeyCombination.CONTROL_DOWN));
+        updateCategoryCmd.setAccelerator(new KeyCodeCombination(KeyCode.F2, KeyCombination.CONTROL_DOWN));
+        deleteCategoryCmd.setAccelerator(new KeyCodeCombination(KeyCode.F3, KeyCombination.CONTROL_DOWN));
+        addMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F4, KeyCombination.CONTROL_DOWN));
+        updateMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F5, KeyCombination.CONTROL_DOWN));
+        deleteMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F6, KeyCombination.CONTROL_DOWN));
     }
 
     /**
