@@ -544,13 +544,13 @@ public class Controller implements Initializable {
      * Initialize filter text field, method implements listener that monitoring changes in textField
      */
     private void initFilter() {
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-        List<Film> films = kart.getCategory(selectedTab.getText()).getFilms();
-        TableView tableView = ((TableView) selectedTab.getContent());
         filterTextField.textProperty().addListener(new InvalidationListener() {
 
             @Override
             public void invalidated(Observable o) {
+                Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+                List<Film> films = kart.getCategory(selectedTab.getText()).getFilms();
+                TableView tableView = ((TableView) selectedTab.getContent());
 
                 if(filterTextField.textProperty().get().isEmpty()) {
                     tableView.setItems(FXCollections.observableArrayList(films));
@@ -560,7 +560,6 @@ public class Controller implements Initializable {
                 ObservableList<Film> tableItems = FXCollections.observableArrayList();
                 ObservableList<TableColumn<Film, ?>> cols =((TableView) selectedTab.getContent()).getColumns();
                 for(int i=0; i<films.size(); i++) {
-
                     for(int j=0; j<cols.size(); j++) {
                         TableColumn col = cols.get(j);
                         String cellValue = col.getCellData(films.get(i)).toString();
