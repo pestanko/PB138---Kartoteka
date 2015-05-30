@@ -20,12 +20,17 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="Add Category" />
-                        <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="Update Category" />
-                        <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="Delete Category" />
-                        <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="Add Movie" />
-                        <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="Update Movie" />
-                        <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="Delete Movie" />
+                        <Menu mnemonicParsing="false" text="Category">
+                            <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="Add Category" />
+                            <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="Update Category" />
+                            <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="Delete Category" />
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Movie">
+                            <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="Add Movie" />
+                            <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="Change movie category" />
+                            <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="Update Movie" />
+                            <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="Delete Movie" />
+                        </Menu>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -47,7 +52,7 @@
             <Label layoutX="14.0" layoutY="6.0" text="Filter:" />
             </children>
         </AnchorPane>
-      <AnchorPane layoutX="3.0" layoutY="23.0" prefHeight="25.0" prefWidth="600.0">
+      <AnchorPane layoutX="3.0" layoutY="27.0" prefHeight="25.0" prefWidth="600.0">
          <children>
             <Button layoutX="7.0" mnemonicParsing="false" onAction="#addCategoryAction" text="Add category" />
             <Button layoutX="95.0" mnemonicParsing="false" onAction="#updateCategoryAction" text="Update category" />

@@ -337,6 +337,32 @@ public class Controller implements Initializable {
     }
 
     /**
+     * Changes {@link Film} category
+     * @param event action event
+     * @throws IOException when FXML is not available
+     */
+    @FXML
+    public void changeFilmCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changeCategoryDialog.fxml"));
+        Parent root = loader.load();
+        Stage newStage = new Stage();
+        newStage.setTitle("Update Movie");
+        newStage.setScene(new Scene(root, 640, 225));
+        newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.setResizable(false);
+        newStage.initOwner(this.root.getScene().getWindow());
+
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        Film selectedFilm = ((TableView<Film>)selectedTab.getContent()).getSelectionModel().getSelectedItem();
+
+        ChangeCategoryController controller = loader.getController();
+        controller.initializeData(kart, selectedFilm, kart.getCategory(selectedTab.getText()));
+
+        newStage.showAndWait();
+    }
+
+    /**
      * Updates {@link Film}
      * @param event action event
      * @throws IOException when FXML is not available

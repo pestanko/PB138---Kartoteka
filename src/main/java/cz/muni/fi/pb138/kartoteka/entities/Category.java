@@ -135,6 +135,7 @@ public class Category {
             throw new FilmException("Film does not exist in database.");
         }
         films.remove(film);
+        film.setId(-1);
     }
 
     /**
