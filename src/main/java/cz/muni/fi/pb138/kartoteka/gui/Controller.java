@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -242,6 +243,12 @@ public class Controller implements Initializable {
                 logger.error("Add category: ", e);
                 statusLabel.setText("Status: Exception was thrown while creating new category.");
             }
+            catch (NullPointerException e)
+            {
+                logger.error("KartotekaManager is null", e);
+                AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+                statusLabel.setText("Status: Exception was thrown while creating new category.");
+            }
         } else {
             statusLabel.setText("Status: Category name dialog was closed.");
         }
@@ -254,30 +261,39 @@ public class Controller implements Initializable {
      */
     @FXML
     public void updateCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"));
-        Parent root = loader.load();
-        Stage newStage = new Stage();
-        newStage.setTitle("Update Category");
-        newStage.setScene(new Scene(root, 250, 125));
-        newStage.initModality(Modality.WINDOW_MODAL);
-        newStage.initStyle(StageStyle.UTILITY);
-        newStage.setResizable(false);
-        newStage.initOwner(this.root.getScene().getWindow());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"));
+            Parent root = loader.load();
+            Stage newStage = new Stage();
+            newStage.setTitle("Update Category");
+            newStage.setScene(new Scene(root, 250, 125));
+            newStage.initModality(Modality.WINDOW_MODAL);
+            newStage.initStyle(StageStyle.UTILITY);
+            newStage.setResizable(false);
+            newStage.initOwner(this.root.getScene().getWindow());
 
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
 
-        AddCategoryController controller = loader.getController();
-        controller.updateSetUp(kart.getCategory(selectedTab.getText()));
-        newStage.showAndWait();
+            AddCategoryController controller = loader.getController();
+            controller.updateSetUp(kart.getCategory(selectedTab.getText()));
+            newStage.showAndWait();
 
 
-        if (controller.getCategory() != null) {
-            selectedTab.setText(controller.getCategory().getName());
-            docSaved = false;
-            statusLabel.setText("Status: Category " + selectedTab.getText() + " was updated");
-        } else {
-            statusLabel.setText("Status: Category name dialog was closed.");
+            if (controller.getCategory() != null) {
+                selectedTab.setText(controller.getCategory().getName());
+                docSaved = false;
+                statusLabel.setText("Status: Category " + selectedTab.getText() + " was updated");
+            } else {
+                statusLabel.setText("Status: Category name dialog was closed.");
+            }
+
+        }catch (NullPointerException e)
+        {
+            logger.error("KartotekaManager is null", e);
+            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            statusLabel.setText("Status: Exception was thrown while updating category.");
         }
+
     }
 
     /**
@@ -294,6 +310,12 @@ public class Controller implements Initializable {
         } catch (CategoryException e) {
             logger.error("Delete Category", e);
             statusLabel.setText("Status: Exception was thrown while deleting the category.");
+        }
+        catch (NullPointerException e)
+        {
+            logger.error("KartotekaManager or selected tab is null",e);
+            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            statusLabel.setText("Status: Exception was thrown while deleting category.");
         }
     }
 
@@ -328,7 +350,13 @@ public class Controller implements Initializable {
                 statusLabel.setText("Status: Movie \"" + createdFilm.getName() + "\" was added");
             } catch (FilmException e) {
                 logger.error("Add Film:", e);
-                JOptionPane.showMessageDialog(null, "Category is not empty => cannot remove category.");
+                AlertBox.displayError("Ooops, there was an error!", "Category is not empty => cannot remove category.");
+                statusLabel.setText("Status: Exception was thrown while creating new movie.");
+            }
+            catch (NullPointerException e)
+            {
+                logger.error("KartotekaManager or tab that was selected is null",e);
+                AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
             }
         } else {
@@ -369,6 +397,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void updateFilmAction(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"));
         Parent root = loader.load();
         Stage newStage = new Stage();
@@ -378,24 +407,33 @@ public class Controller implements Initializable {
         newStage.initStyle(StageStyle.UTILITY);
         newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
+        try {
 
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-        Film selectedFilm = ((TableView<Film>)selectedTab.getContent()).getSelectionModel().getSelectedItem();
 
-        AddFilmController controller = loader.getController();
-        controller.updateSetUp(selectedFilm);
+            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+            Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
 
-        newStage.showAndWait();
+            AddFilmController controller = loader.getController();
+            controller.updateSetUp(selectedFilm);
 
-        if (controller.getFilm() != null) {
-            ((TableView) selectedTab.getContent()).getItems().clear();
-            ((TableView) selectedTab.getContent()).setItems(FXCollections.observableArrayList(kart.getCategory(selectedTab.getText()).getFilms()));
+            newStage.showAndWait();
 
-            docSaved = false;
-            statusLabel.setText("Status: Movie \"" + controller.getFilm().getName() + "\" was updated");
-        } else {
-            statusLabel.setText("Status: Movie update was cancelled");
+            if (controller.getFilm() != null) {
+                ((TableView) selectedTab.getContent()).getItems().clear();
+                ((TableView) selectedTab.getContent()).setItems(FXCollections.observableArrayList(kart.getCategory(selectedTab.getText()).getFilms()));
+
+                docSaved = false;
+                statusLabel.setText("Status: Movie \"" + controller.getFilm().getName() + "\" was updated");
+            } else {
+                statusLabel.setText("Status: Movie update was cancelled");
+            }
+        } catch (NullPointerException e)
+        {
+            logger.error("KartotekaManager or tab that was selected is null",e);
+            AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
+            statusLabel.setText("Status: Exception was thrown while updating movie.");
         }
+
     }
 
     /**
@@ -413,6 +451,12 @@ public class Controller implements Initializable {
         } catch (FilmException e) {
             logger.error("Delete film action", e);
             statusLabel.setText("Status: Exception was thrown while deleting the movie.");
+        }
+        catch (NullPointerException e)
+        {
+            logger.error("KartotekaManager or tab that was selected is null",e);
+            AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
+            statusLabel.setText("Status: Exception was thrown while deleting movie.");
         }
     }
 
@@ -462,7 +506,7 @@ public class Controller implements Initializable {
     @FXML
     public void saveChangesAction(ActionEvent event) {
         if (openedFilePath == null) {
-            JOptionPane.showMessageDialog(null, "There's nothing to save");
+            AlertBox.displayError("Ooops, there was an error!", "There's nothing to save");
         } else {
             saveFile(openedFilePath);
         }
@@ -475,12 +519,9 @@ public class Controller implements Initializable {
     @FXML
     public void closeAppAction(ActionEvent event) {
         if (!docSaved){
-            int reply = JOptionPane.showConfirmDialog(null,
-                    "You haven't saved changes in your file.\nAre you sure you want to exit?",
-                    "Exit Application",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE);
-            if (reply == JOptionPane.YES_OPTION) {
+            Optional<ButtonType> result = AlertBox.displayConfirmation("You haven't saved changes in your file.","Are you sure you want to exit?");
+
+            if (result.get() == ButtonType.OK) {
                 statusLabel.setText("Status: Changes were not saved.");
             } else {
                 return;
@@ -500,7 +541,7 @@ public class Controller implements Initializable {
             statusLabel.setText("Status: File \"" + openedFilePath + "\" was successfully opened.");
         } catch (UnsupportedOperationException ex)
         {
-            JOptionPane.showMessageDialog(null,"Unsupported format.");
+            AlertBox.displayError("Ooops, there was an error!", "Unsupported format.");
         }catch (Exception e) {
             logger.error("Open File", e);
             statusLabel.setText("Status: An exception was thrown while opening a file");
