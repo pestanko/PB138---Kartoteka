@@ -34,8 +34,8 @@ public class Program extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUI.fxml"),textsEN);
+            ResourceBundle texts = ResourceBundle.getBundle("texts");
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUI.fxml"),texts);
             primaryStage.setTitle("PB138 - Kartoteka");
             primaryStage.setScene(new Scene(root, 1280, 720));
             primaryStage.show();

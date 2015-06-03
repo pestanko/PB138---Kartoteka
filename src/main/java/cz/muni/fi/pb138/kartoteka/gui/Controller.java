@@ -71,6 +71,10 @@ public class Controller implements Initializable {
      * Saves whether the changes have been saved
      */
     private boolean docSaved = true;
+    /**
+     * Resource bundle of text serving to internationalization
+     */
+    private ResourceBundle texts = ResourceBundle.getBundle("texts");
 
     /**
      * Main panel
@@ -330,9 +334,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void addFilmAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"));
-        ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-        loader.setResources(textsEN);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Add Movie");
@@ -377,9 +379,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void changeFilmCategory(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changeCategoryDialog.fxml"));
-        ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-        loader.setResources(textsEN);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changeCategoryDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Update Movie");
@@ -406,9 +406,7 @@ public class Controller implements Initializable {
     @FXML
     public void updateFilmAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"));
-        ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-        loader.setResources(textsEN);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Update Movie");
