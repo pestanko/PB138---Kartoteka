@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.Controller">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.Controller">
     <children>
         <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
@@ -20,15 +21,19 @@
                 <Menu mnemonicParsing="false" text="%edit">
                     <items>
                         <Menu mnemonicParsing="false" text="%category">
-                            <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
-                            <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="%update_category" />
-                            <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="%delete_category" />
+                           <items>
+                               <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
+                               <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="%update_category" />
+                               <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="%delete_category" />
+                           </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="%movie">
-                            <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
-                            <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="%change_category" />
-                            <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
-                            <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />
+                           <items>
+                               <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
+                               <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="%change_category" />
+                               <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
+                               <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />
+                           </items>
                         </Menu>
                     </items>
                 </Menu>
@@ -39,7 +44,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label fx:id="statusLabel" layoutX="7.0" layoutY="378.0" prefHeight="17.0" prefWidth="521.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="statusLabel" layoutX="7.0" layoutY="378.0" prefHeight="17.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <padding>
                 <Insets left="5.0" />
             </padding></Label>
@@ -47,18 +52,18 @@
             <children>
                 <TabPane fx:id="tabPane" layoutY="29.0" prefHeight="326.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
                 </TabPane>
-            <TextField fx:id="filterTextField" layoutX="46.0" layoutY="2.0" prefHeight="25.0" prefWidth="554.0" promptText="%prompt.start_typing" />
+            <TextField fx:id="filterTextField" layoutX="50.0" layoutY="2.0" prefHeight="25.0" prefWidth="632.0" promptText="%prompt.start_typing" />
             <Label layoutX="14.0" layoutY="6.0" text="%filter" />
             </children>
         </AnchorPane>
-      <AnchorPane layoutX="3.0" layoutY="27.0" prefHeight="25.0" prefWidth="600.0">
+      <AnchorPane layoutY="25.0" prefHeight="25.0" prefWidth="889.0">
          <children>
-            <Button layoutX="7.0" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
-            <Button layoutX="95.0" mnemonicParsing="false" onAction="#updateCategoryAction" text="%update_category" />
-            <Button layoutX="200.0" mnemonicParsing="false" onAction="#deleteCategoryAction" text="%delete_category" />
-            <Button layoutX="300.0" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
-            <Button layoutX="374.0" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
-            <Button layoutX="465.0" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />
+            <Button mnemonicParsing="false" onAction="#addCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%add_category" />
+            <Button layoutX="162.0" mnemonicParsing="false" onAction="#updateCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%update_category" />
+            <Button layoutX="324.0" mnemonicParsing="false" onAction="#deleteCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%delete_category" />
+            <Button layoutX="486.0" mnemonicParsing="false" onAction="#addFilmAction" prefHeight="25.0" prefWidth="162.0" text="%add_movie" />
+            <Button layoutX="648.0" mnemonicParsing="false" onAction="#deleteFilmAction" prefHeight="25.0" prefWidth="162.0" text="%delete_movie" />
+            <Button layoutX="810.0" mnemonicParsing="false" onAction="#updateFilmAction" prefHeight="25.0" prefWidth="162.0" text="%update_movie" />
          </children>
       </AnchorPane>
     </children>

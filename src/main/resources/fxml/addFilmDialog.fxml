@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.AddFilmController">
    <children>
       <Button fx:id="cancelButton" layoutX="534.0" layoutY="188.0" mnemonicParsing="false" text="%cancel" />
       <Button fx:id="okButton" layoutX="491.0" layoutY="188.0" mnemonicParsing="false" text="%ok" />
-      <TextField fx:id="nameTextField" layoutX="14.0" layoutY="14.0" promptText="%movie_name" />
-      <TextField fx:id="yearTextField" layoutX="14.0" layoutY="48.0" promptText="%year" />
-      <TextField fx:id="ratingTextField" layoutX="14.0" layoutY="83.0" promptText="%rating" />
-      <TextField fx:id="directorTextField" layoutX="14.0" layoutY="119.0" promptText="%director" />
-      <TextField fx:id="descriptionTextField" layoutX="14.0" layoutY="158.0" promptText="%description" />
+      <TextField fx:id="nameTextField" layoutX="127.0" layoutY="14.0" prefHeight="25.0" prefWidth="195.0" promptText="%prompt.movie_name" />
+      <TextField fx:id="yearTextField" layoutX="127.0" layoutY="48.0" prefHeight="25.0" prefWidth="195.0" promptText="%prompt.year" />
+      <TextField fx:id="ratingTextField" layoutX="127.0" layoutY="83.0" prefHeight="25.0" prefWidth="195.0" promptText="%prompt.rating" />
+      <TextField fx:id="directorTextField" layoutX="127.0" layoutY="119.0" prefHeight="25.0" prefWidth="195.0" promptText="%prompt.director" />
+      <TextField fx:id="descriptionTextField" layoutX="127.0" layoutY="158.0" prefHeight="25.0" prefWidth="195.0" promptText="%prompt.description" />
+      <Label layoutX="14.0" layoutY="18.0" text="%movie_name" />
+      <Label layoutX="14.0" layoutY="52.0" text="%year" />
+      <Label layoutX="14.0" layoutY="87.0" text="%rating" />
+      <Label layoutX="14.0" layoutY="123.0" text="%director" />
+      <Label layoutX="14.0" layoutY="162.0" text="%description" />
    </children>
 </AnchorPane>
