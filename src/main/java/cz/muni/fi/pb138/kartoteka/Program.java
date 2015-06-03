@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Main initialization class
@@ -32,7 +34,8 @@ public class Program extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUI.fxml"));
+            ResourceBundle textsEN = ResourceBundle.getBundle("texts");
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUI.fxml"),textsEN);
             primaryStage.setTitle("PB138 - Kartoteka");
             primaryStage.setScene(new Scene(root, 1280, 720));
             primaryStage.show();
