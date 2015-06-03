@@ -26,7 +26,7 @@ public class AddCategoryController implements Initializable {
     /**
      * Current category
      */
-    private Category category = new Category();
+    private Category category = null;
 
     /**
      * Main panel

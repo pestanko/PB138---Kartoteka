@@ -223,9 +223,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void addCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"));
-        ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-        loader.setResources(textsEN);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Add Category");
@@ -244,19 +242,19 @@ public class Controller implements Initializable {
                 kart.addCategory(createdCategory);
                 addTab(createdCategory.getName());
                 docSaved = false;
-                statusLabel.setText("Status: Category " + createdCategory.getName() + " was added");
+                statusLabel.setText(texts.getString("label.status2") + createdCategory.getName());
             } catch (CategoryException e) {
                 logger.error("Add category: ", e);
-                statusLabel.setText("Status: Exception was thrown while creating new category.");
+                statusLabel.setText(texts.getString("label.status3"));
             }
             catch (NullPointerException e)
             {
                 logger.error("KartotekaManager is null", e);
                 AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
-                statusLabel.setText("Status: Exception was thrown while creating new category.");
+                statusLabel.setText(texts.getString("label.status3"));
             }
         } else {
-            statusLabel.setText("Status: Category name dialog was closed.");
+            statusLabel.setText(texts.getString("label.status4"));
         }
     }
 
@@ -268,9 +266,7 @@ public class Controller implements Initializable {
     @FXML
     public void updateCategoryAction(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"));
-            ResourceBundle textsEN = ResourceBundle.getBundle("texts");
-            loader.setResources(textsEN);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"),texts);
             Parent root = loader.load();
             Stage newStage = new Stage();
             newStage.setTitle("Update Category");
@@ -290,16 +286,16 @@ public class Controller implements Initializable {
             if (controller.getCategory() != null) {
                 selectedTab.setText(controller.getCategory().getName());
                 docSaved = false;
-                statusLabel.setText("Status: Category " + selectedTab.getText() + " was updated");
+                statusLabel.setText(texts.getString("label.status5") + selectedTab.getText());
             } else {
-                statusLabel.setText("Status: Category name dialog was closed.");
+                statusLabel.setText(texts.getString("label.status6"));
             }
 
         }catch (NullPointerException e)
         {
             logger.error("KartotekaManager is null", e);
             AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
-            statusLabel.setText("Status: Exception was thrown while updating category.");
+            statusLabel.setText(texts.getString("label.status7"));
         }
 
     }
@@ -574,7 +570,7 @@ public class Controller implements Initializable {
             statusLabel.setText("Status: Changes saved");
         } catch (Exception e) {
             logger.error("Save File: ", e);
-            statusLabel.setText("Status: Exception was thrown during saving. Try again.");
+            statusLabel.setText(texts.getString("label.status1"));
         }
     }
 

@@ -26,7 +26,7 @@ public class AddFilmController implements Initializable {
     /**
      * Current film
      */
-    private Film film = new Film();
+    private Film film = null;
 
     /**
      * Main panel
