@@ -52,8 +52,10 @@ public class FileManagerImpl implements FileManager {
         document.getTableList().forEach((table -> {
 
             Category cat = new Category(table.getTableName());
+            logger.info("Loading category: " + cat);
             try {
                 kartotekaManager.addCategory(cat);
+                logger.info("Adding category to memory: "+ cat);
             } catch (CategoryException e) {
                 logger.error("Load", e);
             }
@@ -82,6 +84,7 @@ public class FileManagerImpl implements FileManager {
         {
             Film film = new Film();
 
+
             try {
 
                 String name = getNameCell(table, i).getDisplayText();
@@ -101,6 +104,7 @@ public class FileManagerImpl implements FileManager {
                 film.setDirector(author);
 
                 cat.addFilm(film);
+                logger.info("Adding film to memory: "+ film);
             } catch (NullPointerException ex) {
                 logger.warn("Unsupported format:", ex);
                 throw  new UnsupportedOperationException("Unsupported format exception!", ex);
@@ -126,10 +130,12 @@ public class FileManagerImpl implements FileManager {
             printHeaders(actualTable);
             
             printFilms(actualTable, category.getFilms());
+            logger.info("Saving category: "+ category);
 
         }));
 
         document.save(new File(path));
+        logger.info("Saving document.");
     }
 
     /**
@@ -149,6 +155,8 @@ public class FileManagerImpl implements FileManager {
             getDescriptionCell(actualTable, row).setDisplayText(film.getDescription());
 
             row++;
+
+            logger.info("Saving film: "+ film );
         }
     }
 

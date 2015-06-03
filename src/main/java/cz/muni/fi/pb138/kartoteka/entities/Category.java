@@ -1,6 +1,8 @@
 package cz.muni.fi.pb138.kartoteka.entities;
 
 import cz.muni.fi.pb138.kartoteka.exceptions.FilmException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,9 @@ import java.util.stream.Collectors;
  * @version 2015-05-18
  */
 public class Category {
+
+    final static Logger logger = LoggerFactory.getLogger(Category.class);
+
 
     /**
      * Category name
@@ -102,6 +107,7 @@ public class Category {
 
         film.setId(films.size() + 1);
         this.films.add(film);
+        logger.info("Adding film: "+ film);
     }
 
     /**
@@ -118,8 +124,11 @@ public class Category {
                                         .filter((elem) -> name.equals(elem.getName()))
                                         .collect(Collectors.toList());
         if(collect.size() == 0) {
+            logger.info("No film with name " + name);
             return null;
         }
+
+        logger.info("Returning film: " + collect.get(0));
         return collect.get(0);
 
     }
@@ -135,6 +144,7 @@ public class Category {
             throw new FilmException("Film does not exist in database.");
         }
         films.remove(film);
+        logger.info("Deleting film with id " + id);
         film.setId(-1);
     }
 
@@ -152,8 +162,11 @@ public class Category {
                                         .filter((elem) -> elem.getId() == id)
                                         .collect(Collectors.toList());
         if(collect.size() == 0) {
+            logger.info("No film with id " + id);
             return null;
         }
+
+        logger.info("Returning film: "+ collect.get(0));
         return collect.get(0);
     }
 

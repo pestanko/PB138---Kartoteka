@@ -2,6 +2,8 @@ package cz.muni.fi.pb138.kartoteka.managers;
 
 import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * List of all categories in
      */
     List<Category> categories = new ArrayList<>();
+    final static Logger logger = LoggerFactory.getLogger(KartotekaManagerImpl.class);
 
     /**
      * Adds {@link Category} to document
@@ -39,6 +42,8 @@ public class KartotekaManagerImpl implements KartotekaManager {
         }
         category.setId(categories.size() + 1);
         categories.add(category);
+
+        logger.info("Added new category: "+ category);
     }
 
     /**
@@ -52,6 +57,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
             throw new NullPointerException("Category is null");
         }
         deleteCategory(category.getId());
+
     }
 
     /**
@@ -74,6 +80,8 @@ public class KartotekaManagerImpl implements KartotekaManager {
         }
 
         categories.remove(cat);
+        logger.info("Deleting category with id: " + id);
+
     }
 
     /**
@@ -89,9 +97,11 @@ public class KartotekaManagerImpl implements KartotekaManager {
 
         for(Category category : categories) {
             if (id == category.getId()) {
+                logger.info("Returning category: "+ category);
                 return category;
             }
         }
+        logger.info("No category for id: " + id);
         return null;
     }
 
@@ -107,9 +117,11 @@ public class KartotekaManagerImpl implements KartotekaManager {
 
         for(Category category : categories) {
             if (name.equals(category.getName())) {
+                logger.info("Returning category: "+ category);
                 return category;
             }
         }
+        logger.info("No category for name: " + name);
         return null;
     }
 
