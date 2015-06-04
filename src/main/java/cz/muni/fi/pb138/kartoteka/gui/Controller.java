@@ -199,18 +199,20 @@ public class Controller implements Initializable {
 
         try {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Save Document");
+            fileChooser.setTitle(texts.getString("dialog.title.save_document"));
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("ODS Files", "*.ods"));
+                    new FileChooser.ExtensionFilter(texts.getString("dialog.filter.ods_files"), "*.ods"));
 
             File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
 
-            FileManager fm = new FileManagerImpl();
-            openedFilePath = selectedFile.getAbsolutePath();
-            fm.save(openedFilePath, manager);
+            if(selectedFile != null) {
+                FileManager fm = new FileManagerImpl();
+                openedFilePath = selectedFile.getAbsolutePath();
+                fm.save(openedFilePath, manager);
 
-            openFile();
-            initFilter();
+                openFile();
+                initFilter();
+            }
         } catch (CategoryException e) {
             logger.error("New document exception", e);
         } catch (Exception e) {
@@ -226,7 +228,7 @@ public class Controller implements Initializable {
     @FXML
     public void addCategoryAction(ActionEvent event) throws IOException {
         if (openedFilePath == null) {
-            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            AlertBox.displayError(texts.getString("error.category"), "No spreadsheet has been created or opened first.");
             return;
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"), texts);
@@ -269,6 +271,13 @@ public class Controller implements Initializable {
      */
     @FXML
     public void updateCategoryAction(ActionEvent event) throws IOException {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+
+        if (selectedTab == null) {
+            AlertBox.displayError(texts.getString("error.category"), "No category has been chosen");
+            return;
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"),texts);
             Parent root = loader.load();
@@ -280,12 +289,9 @@ public class Controller implements Initializable {
             newStage.setResizable(false);
             newStage.initOwner(this.root.getScene().getWindow());
 
-            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-
             AddCategoryController controller = loader.getController();
             controller.updateSetUp(kart.getCategory(selectedTab.getText()));
             newStage.showAndWait();
-
 
             if (controller.getCategory() != null) {
                 selectedTab.setText(controller.getCategory().getName());
@@ -308,17 +314,21 @@ public class Controller implements Initializable {
      */
     @FXML
     public void deleteCategoryAction(ActionEvent event) {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+
+        if (selectedTab == null) {
+            AlertBox.displayError(texts.getString("error.category"), "No category has been chosen");
+            return;
+        }
+
         try {
-            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
             kart.deleteCategory(kart.getCategory(selectedTab.getText()));
             tabPane.getTabs().remove(selectedTab);
             docSaved = false;
         } catch (CategoryException e) {
             logger.error("Delete Category", e);
             statusLabel.setText("Status: Exception was thrown while deleting the category.");
-        }
-        catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             logger.error("KartotekaManager or selected tab is null",e);
             AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
             statusLabel.setText("Status: Exception was thrown while deleting category.");
@@ -333,9 +343,10 @@ public class Controller implements Initializable {
     @FXML
     public void addFilmAction(ActionEvent event) throws IOException {
         if (openedFilePath == null) {
-            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            AlertBox.displayError(texts.getString("error.film"), "No spreadsheet has been created or opened first.");
             return;
         }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
@@ -380,6 +391,18 @@ public class Controller implements Initializable {
      */
     @FXML
     public void changeFilmCategory(ActionEvent event) throws IOException {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null) {
+            AlertBox.displayError(texts.getString("error.category"), "No category has been chosen, or no spreadsheet has been loaded.");
+            return;
+        }
+
+        Film selectedFilm = ((TableView<Film>)selectedTab.getContent()).getSelectionModel().getSelectedItem();
+        if (selectedFilm == null) {
+            AlertBox.displayError(texts.getString("error.film"), "No movie has been selected");
+            return;
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changeCategoryDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
@@ -390,13 +413,14 @@ public class Controller implements Initializable {
         newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
 
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-        Film selectedFilm = ((TableView<Film>)selectedTab.getContent()).getSelectionModel().getSelectedItem();
-
         ChangeCategoryController controller = loader.getController();
         controller.initializeData(kart, selectedFilm, kart.getCategory(selectedTab.getText()));
 
+        int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
+
         newStage.showAndWait();
+        refreshTableData();
+        tabPane.getSelectionModel().select(selectedTabIndex);
     }
 
     /**
@@ -406,6 +430,17 @@ public class Controller implements Initializable {
      */
     @FXML
     public void updateFilmAction(ActionEvent event) throws IOException {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null) {
+            AlertBox.displayError(texts.getString("error.category"), "No category has been chosen, or no spreadsheet has been loaded.");
+            return;
+        }
+
+        Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
+        if (selectedFilm == null) {
+            AlertBox.displayError(texts.getString("error.film"), "No movie has been selected");
+            return;
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
         Parent root = loader.load();
@@ -417,9 +452,6 @@ public class Controller implements Initializable {
         newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         try {
-            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-            Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
-
             AddFilmController controller = loader.getController();
             controller.updateSetUp(selectedFilm);
 
@@ -448,9 +480,19 @@ public class Controller implements Initializable {
      */
     @FXML
     public void deleteFilmAction(ActionEvent event) {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null) {
+            AlertBox.displayError(texts.getString("error.category"), "No category has been chosen, or no spreadsheet has been loaded.");
+            return;
+        }
+
+        Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
+        if (selectedFilm == null) {
+            AlertBox.displayError(texts.getString("error.film"), "No movie has been selected");
+            return;
+        }
+
         try {
-            Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-            Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
             kart.getCategory(selectedTab.getText()).deleteFilm((int) selectedFilm.getId());
             ((TableView) selectedTab.getContent()).getItems().remove(selectedFilm);
             docSaved = false;
@@ -474,10 +516,10 @@ public class Controller implements Initializable {
         tabPane.getTabs().clear();
         // FileChooser dialog setup
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Document");
+        fileChooser.setTitle(texts.getString("dialog.title.open_document"));
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("ODS Files", "*.ods"),
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
+                new FileChooser.ExtensionFilter(texts.getString("dialog.filter.ods_files"), "*.ods"),
+                new FileChooser.ExtensionFilter(texts.getString("dialog.filter.all_files"), "*.*"));
 
         File selectedFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         if (selectedFile != null) {
@@ -495,9 +537,9 @@ public class Controller implements Initializable {
     public void saveAsAction(ActionEvent event) {
         //File Chooser dialog setup
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Document");
+        fileChooser.setTitle(texts.getString("dialog.title.save_document"));
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("ODS Files", "*.ods"));
+                new FileChooser.ExtensionFilter(texts.getString("dialog.filter.ods_files"), "*.ods"));
         File selectedFile = fileChooser.showSaveDialog(root.getScene().getWindow());
         if (selectedFile != null) {
             saveFile(selectedFile.getAbsolutePath());
@@ -511,7 +553,7 @@ public class Controller implements Initializable {
     @FXML
     public void saveChangesAction(ActionEvent event) {
         if (openedFilePath == null) {
-            AlertBox.displayError("Ooops, there was an error!", "There's nothing to save");
+            AlertBox.displayError(texts.getString("error.file"), "There's nothing to save");
         } else {
             saveFile(openedFilePath);
         }
@@ -558,11 +600,7 @@ public class Controller implements Initializable {
             statusLabel.setText("Status: An exception was thrown while opening a file");
         }
 
-        if (kart != null) {
-            for(Category category : kart.getCategories()) {
-                addTab(category.getName());
-            }
-        }
+        refreshTableData();
     }
 
     /**
@@ -573,7 +611,7 @@ public class Controller implements Initializable {
         try {
             fm.save(path, kart);
             docSaved = true;
-            statusLabel.setText("Status: Changes saved");
+            statusLabel.setText("Status: " + texts.getString("status.changes_saved"));
         } catch (Exception e) {
             logger.error("Save File: ", e);
             statusLabel.setText(texts.getString("label.status1"));
@@ -597,7 +635,7 @@ public class Controller implements Initializable {
         yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         TableColumn<Film, String> ratingCol = new TableColumn<>(texts.getString("rating"));
-        ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating_"));
+        ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
         TableColumn<Film, String> directorCol = new TableColumn<>(texts.getString("director"));
         directorCol.setCellValueFactory(new PropertyValueFactory<>("director"));
@@ -615,6 +653,18 @@ public class Controller implements Initializable {
 
         tab.setContent(tableView);
         tabPane.getTabs().add(tab);
+    }
+
+    /**
+     * Refreshes the {@link Controller#tabPane}
+     */
+    private void refreshTableData() {
+        tabPane.getTabs().clear();
+        if (kart != null) {
+            for(Category category : kart.getCategories()) {
+                addTab(category.getName());
+            }
+        }
     }
 
     /**

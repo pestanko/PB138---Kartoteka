@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac77f129-35d5-4d92-970f-f88fc2093e65" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddFilmController.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddFilmController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AlertBox.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AlertBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Category.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/entities/Category.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/managers/KartotekaManagerImpl.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/managers/KartotekaManagerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PB138_Kartoteka.iml" afterPath="$PROJECT_DIR$/PB138_Kartoteka.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/Program.java" afterPath="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/addFilmDialog.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/addFilmDialog.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/texts.properties" afterPath="$PROJECT_DIR$/src/main/resources/texts.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/texts_SK.properties" afterPath="$PROJECT_DIR$/src/main/resources/texts_SK.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -57,8 +51,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/loaders/FileManagerImpl.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/changeCategoryDialog.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AlertBox.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/managers/KartotekaManagerImpl.java" />
@@ -67,9 +59,11 @@
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/Program.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/addFilmDialog.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/texts_SK.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/texts.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml" />
+        <option value="$PROJECT_DIR$/src/main/resources/texts.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/texts_SK.properties" />
       </list>
     </option>
   </component>
@@ -144,7 +138,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -443,8 +436,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -765,7 +759,8 @@
       <workItem from="1433352826392" duration="5667000" />
       <workItem from="1433365292853" duration="4524000" />
       <workItem from="1433439412277" duration="8010000" />
-      <workItem from="1433447649193" duration="39000" />
+      <workItem from="1433447649193" duration="559000" />
+      <workItem from="1433448957508" duration="8630000" />
     </task>
     <task id="LOCAL-00001" summary="Opravene resource bundles + pridane logovanie do &quot;low-endu&quot; -&gt; &quot;high-end&quot; neskor">
       <created>1433346137113</created>
@@ -779,11 +774,17 @@
       <option name="project" value="LOCAL" />
       <updated>1433357753692</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Minor bugfixes and validations&#10;&#10;Changelog:&#10;Adding category and film working&#10;Checks for unsaved changes on exit&#10;Some translations added&#10;Minor refactoring to fit Java conventions&#10;Javadoc fixed and updated">
+      <created>1433447881759</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1433447881759</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20393000" />
+    <option name="totallyTimeSpent" value="29543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -791,28 +792,28 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24946696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24946696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39891893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -855,7 +856,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Opravene resource bundles + pridane logovanie do &quot;low-endu&quot; -&gt; &quot;high-end&quot; neskor" />
     <MESSAGE value="CHANGELOG:&#10;-finished and repaired basic internationalization in dialogs&#10;-some changes in layouts(added labels,changed positions etc...)" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHANGELOG:&#10;-finished and repaired basic internationalization in dialogs&#10;-some changes in layouts(added labels,changed positions etc...)" />
+    <MESSAGE value="Minor bugfixes and validations&#10;&#10;Changelog:&#10;Adding category and film working&#10;Checks for unsaved changes on exit&#10;Some translations added&#10;Minor refactoring to fit Java conventions&#10;Javadoc fixed and updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor bugfixes and validations&#10;&#10;Changelog:&#10;Adding category and film working&#10;Checks for unsaved changes on exit&#10;Some translations added&#10;Minor refactoring to fit Java conventions&#10;Javadoc fixed and updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1094,39 +1096,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/changeCategoryDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1198,6 +1167,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,6 +1175,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1212,34 +1183,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AlertBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34075725">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/ChangeCategoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22383073">
-          <caret line="66" column="51" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
-          <folding>
-            <element signature="e#1467#1468#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1264,31 +1208,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding>
-            <element signature="e#1780#1781#0" expanded="true" />
-            <element signature="e#1825#1826#0" expanded="true" />
+            <element signature="e#1780#1781#0" expanded="false" />
+            <element signature="e#1825#1826#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/addFilmDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3521289">
-          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/texts_SK.properties">
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,33 +1222,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sample/Oficiálne_zadanie.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.056792874">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AlertBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3411371">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/ChangeCategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0089186">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/AddCategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31772575">
+          <caret line="71" column="62" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
+          <folding>
+            <element signature="e#1422#1423#0" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/addCategoryDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23502304">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/addFilmDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39170507">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/changeCategoryDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23502304">
+          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/NewUI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6451613">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/texts_SK.properties">
+      <provider selected="true" editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/texts.properties">
       <provider editor-type-id="ResourceBundle">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16455697">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        <state vertical-scroll-proportion="-8.206897">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/muni/fi/pb138/kartoteka/gui/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state vertical-scroll-proportion="3.1081383">
+          <caret line="200" column="56" selection-start-line="200" selection-start-column="56" selection-end-line="200" selection-end-column="56" />
           <folding>
-            <element signature="e#18796#18797#0" expanded="true" />
-            <element signature="e#18828#18829#0" expanded="true" />
+            <element signature="e#20666#20667#0" expanded="true" />
+            <element signature="e#20698#20699#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample/Oficiálne_zadanie.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.056792874">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
