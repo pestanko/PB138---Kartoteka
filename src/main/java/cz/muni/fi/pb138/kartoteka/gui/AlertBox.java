@@ -15,12 +15,12 @@ import java.util.Optional;
  */
 
 public class AlertBox {
+
     /**
      * Displays error dialog
      * @param title dialog's title
      * @param message error message
      */
-
     public static void displayError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error Dialog");
@@ -44,9 +44,4 @@ public class AlertBox {
         alert.setContentText(message);
         return alert.showAndWait();
     }
-
-
-
-
-
 }

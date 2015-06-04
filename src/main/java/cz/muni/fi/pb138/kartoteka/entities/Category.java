@@ -18,8 +18,10 @@ import java.util.stream.Collectors;
  */
 public class Category {
 
+    /**
+     * Class logger
+     */
     final static Logger logger = LoggerFactory.getLogger(Category.class);
-
 
     /**
      * Category name

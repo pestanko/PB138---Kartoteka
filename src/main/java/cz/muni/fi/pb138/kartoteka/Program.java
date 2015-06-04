@@ -1,15 +1,17 @@
 package cz.muni.fi.pb138.kartoteka;
 
+import cz.muni.fi.pb138.kartoteka.gui.AlertBox;
+import cz.muni.fi.pb138.kartoteka.gui.Controller;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -18,7 +20,7 @@ import java.util.ResourceBundle;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-26
+ * @version 2015-06-04
  */
 public class Program extends Application {
 
@@ -28,6 +30,11 @@ public class Program extends Application {
     final static Logger logger = LoggerFactory.getLogger(Program.class);
 
     /**
+     * Loader fot the main UI window
+     */
+    private FXMLLoader loader;
+
+    /**
      * Starts the javafx UI
      * @param primaryStage Main {@link Stage}
      */
@@ -35,12 +42,20 @@ public class Program extends Application {
     public void start(Stage primaryStage) {
         try {
             ResourceBundle texts = ResourceBundle.getBundle("texts");
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/NewUI.fxml"),texts);
+            loader = new FXMLLoader(getClass().getResource("/fxml/NewUI.fxml"),texts);
+            Parent root = loader.load();
             primaryStage.setTitle("PB138 - Kartoteka");
             primaryStage.setScene(new Scene(root, 1280, 720));
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    event.consume();
+                    ((Controller) loader.getController()).unsavedChanges();
+                }
+            });
             primaryStage.show();
         } catch (Throwable e) {
-            JOptionPane.showMessageDialog(null, "Oops something went wrong ...");
+            AlertBox.displayError("Error dialog", "Oops something went wrong ...");
             logger.error("Main Exception -> WRONG ! ", e);
         }
     }

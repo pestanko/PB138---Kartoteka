@@ -24,13 +24,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.TextFields;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +71,7 @@ public class Controller implements Initializable {
      * Saves whether the changes have been saved
      */
     private boolean docSaved = true;
+
     /**
      * Resource bundle of text serving to internationalization
      */
@@ -159,11 +160,12 @@ public class Controller implements Initializable {
      */
     @FXML
     private MenuItem deleteMovieCmd;
+
     /**
      * Filter text field item from ControlsFX library
      */
     @FXML
-    private TextField filterTextField = TextFields.createSearchField() ;
+    private TextField filterTextField = TextFields.createSearchField();
 
     /**
      * Initializes the UI
@@ -210,9 +212,9 @@ public class Controller implements Initializable {
             openFile();
             initFilter();
         } catch (CategoryException e) {
-            logger.error("New document exception",e);
+            logger.error("New document exception", e);
         } catch (Exception e) {
-            logger.error("New document exception",e);
+            logger.error("New document exception", e);
         }
     }
 
@@ -223,7 +225,11 @@ public class Controller implements Initializable {
      */
     @FXML
     public void addCategoryAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"),texts);
+        if (openedFilePath == null) {
+            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"), texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Add Category");
@@ -246,9 +252,7 @@ public class Controller implements Initializable {
             } catch (CategoryException e) {
                 logger.error("Add category: ", e);
                 statusLabel.setText(texts.getString("label.status3"));
-            }
-            catch (NullPointerException e)
-            {
+            } catch (NullPointerException e) {
                 logger.error("KartotekaManager is null", e);
                 AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
                 statusLabel.setText(texts.getString("label.status3"));
@@ -290,9 +294,7 @@ public class Controller implements Initializable {
             } else {
                 statusLabel.setText(texts.getString("label.status6"));
             }
-
-        }catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             logger.error("KartotekaManager is null", e);
             AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
             statusLabel.setText(texts.getString("label.status7"));
@@ -330,6 +332,10 @@ public class Controller implements Initializable {
      */
     @FXML
     public void addFilmAction(ActionEvent event) throws IOException {
+        if (openedFilePath == null) {
+            AlertBox.displayError("Ooops, there was an error!", "First, you must create some spreadsheet!");
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
@@ -357,8 +363,7 @@ public class Controller implements Initializable {
                 AlertBox.displayError("Ooops, there was an error!", "Category is not empty => cannot remove category.");
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
             }
-            catch (NullPointerException e)
-            {
+            catch (NullPointerException e) {
                 logger.error("KartotekaManager or tab that was selected is null",e);
                 AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
                 statusLabel.setText("Status: Exception was thrown while creating new movie.");
@@ -412,8 +417,6 @@ public class Controller implements Initializable {
         newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         try {
-
-
             Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
             Film selectedFilm = ((TableView<Film>) selectedTab.getContent()).getSelectionModel().getSelectedItem();
 
@@ -431,8 +434,7 @@ public class Controller implements Initializable {
             } else {
                 statusLabel.setText("Status: Movie update was cancelled");
             }
-        } catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             logger.error("KartotekaManager or tab that was selected is null",e);
             AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
             statusLabel.setText("Status: Exception was thrown while updating movie.");
@@ -456,8 +458,7 @@ public class Controller implements Initializable {
             logger.error("Delete film action", e);
             statusLabel.setText("Status: Exception was thrown while deleting the movie.");
         }
-        catch (NullPointerException e)
-        {
+        catch (NullPointerException e) {
             logger.error("KartotekaManager or tab that was selected is null",e);
             AlertBox.displayError("Ooops, there was an error!", "First, you must add some category!");
             statusLabel.setText("Status: Exception was thrown while deleting movie.");
@@ -522,6 +523,13 @@ public class Controller implements Initializable {
      */
     @FXML
     public void closeAppAction(ActionEvent event) {
+        unsavedChanges();
+    }
+
+    /**
+     * Checks unsaved changes, if there aren't any or user allows it, app quits
+     */
+    public void unsavedChanges() {
         if (!docSaved){
             Optional<ButtonType> result = AlertBox.displayConfirmation("You haven't saved changes in your file.","Are you sure you want to exit?");
 
@@ -543,16 +551,14 @@ public class Controller implements Initializable {
         try {
             kart = fm.load(openedFilePath);
             statusLabel.setText("Status: File \"" + openedFilePath + "\" was successfully opened.");
-        } catch (UnsupportedOperationException ex)
-        {
+        } catch (UnsupportedOperationException ex) {
             AlertBox.displayError("Ooops, there was an error!", "Unsupported format.");
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Open File", e);
             statusLabel.setText("Status: An exception was thrown while opening a file");
         }
 
-        if (kart != null)
-        {
+        if (kart != null) {
             for(Category category : kart.getCategories()) {
                 addTab(category.getName());
             }
@@ -582,20 +588,21 @@ public class Controller implements Initializable {
         Tab tab = new Tab(name);
         TableView<Film> tableView = new TableView<>();
         tableView.setColumnResizePolicy(param -> true);
+        tableView.setPlaceholder(new Text(texts.getString("empty_tableview")));
 
-        TableColumn<Film, String> nameCol = new TableColumn<>("Film name");
+        TableColumn<Film, String> nameCol = new TableColumn<>(texts.getString("movie_name"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<Film, String> yearCol = new TableColumn<>("Year");
+        TableColumn<Film, String> yearCol = new TableColumn<>(texts.getString("year"));
         yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        TableColumn<Film, String> ratingCol = new TableColumn<>("Rating");
-        ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        TableColumn<Film, String> ratingCol = new TableColumn<>(texts.getString("rating"));
+        ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating_"));
 
-        TableColumn<Film, String> directorCol = new TableColumn<>("Director");
+        TableColumn<Film, String> directorCol = new TableColumn<>(texts.getString("director"));
         directorCol.setCellValueFactory(new PropertyValueFactory<>("director"));
 
-        TableColumn<Film, String> descriptonCol = new TableColumn<>("Description");
+        TableColumn<Film, String> descriptonCol = new TableColumn<>(texts.getString("description"));
         descriptonCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         tableView.getColumns().add(nameCol);

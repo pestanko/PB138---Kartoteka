@@ -22,6 +22,10 @@ public class KartotekaManagerImpl implements KartotekaManager {
      * List of all categories in
      */
     List<Category> categories = new ArrayList<>();
+
+    /**
+     * Class logger
+     */
     final static Logger logger = LoggerFactory.getLogger(KartotekaManagerImpl.class);
 
     /**

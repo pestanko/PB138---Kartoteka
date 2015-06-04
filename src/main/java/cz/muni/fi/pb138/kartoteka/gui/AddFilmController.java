@@ -26,7 +26,7 @@ public class AddFilmController implements Initializable {
     /**
      * Current film
      */
-    private Film film = null;
+    private Film film;
 
     /**
      * Main panel
@@ -89,7 +89,6 @@ public class AddFilmController implements Initializable {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                film = null;
                 closeDialog();
             }
         });
@@ -97,6 +96,7 @@ public class AddFilmController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                film = new Film();
                 film.setName(nameTextField.getText());
                 film.setYear(yearTextField.getText());
                 film.setRating(ratingTextField.getText());

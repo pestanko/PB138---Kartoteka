@@ -26,7 +26,7 @@ public class AddCategoryController implements Initializable {
     /**
      * Current category
      */
-    private Category category = null;
+    private Category category;
 
     /**
      * Main panel
@@ -65,7 +65,6 @@ public class AddCategoryController implements Initializable {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                category = null;
                 closeDialog();
             }
         });
@@ -73,6 +72,7 @@ public class AddCategoryController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                category = new Category();
                 category.setName(categoryNameTextField.getText());
                 closeDialog();
             }
