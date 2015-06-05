@@ -24,6 +24,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -166,6 +168,11 @@ public class Controller implements Initializable {
      */
     @FXML
     private TextField filterTextField = TextFields.createSearchField();
+    /**
+     * NewUI HBox
+     */
+    @FXML
+    private HBox filterHBox;
 
     /**
      * Initializes the UI
@@ -175,6 +182,10 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Filter HBox initialization
+        filterTextField.setPromptText(texts.getString("prompt.start_typing"));
+        filterHBox.setHgrow(filterTextField, Priority.ALWAYS);
+        filterHBox.getChildren().addAll(filterTextField);
         // Menu shortcuts initialization
         closeCmd.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
         saveCmd.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));

@@ -50,14 +50,13 @@
                     </menus>
                 </MenuBar>
 
-                <HBox>
+                <HBox fx:id="filterHBox">
                     <children>
                         <Label text="%filter">
                             <padding>
                                 <Insets left="5.0" right="5.0" top="2.5" />
                             </padding>
                         </Label>
-                        <TextField fx:id="filterTextField" promptText="%prompt.start_typing" HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
 
