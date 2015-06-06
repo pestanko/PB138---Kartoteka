@@ -37,6 +37,11 @@
                     </padding>
                 </Label>
                 <TextField fx:id="descriptionTextField" promptText="%prompt.description" />
+                <Label fx:id="statusLabel" textFill="red">
+                    <padding>
+                        <Insets bottom="2.5" top="2.5" />
+                    </padding>
+                </Label>
             </children>
         </VBox>
         <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >

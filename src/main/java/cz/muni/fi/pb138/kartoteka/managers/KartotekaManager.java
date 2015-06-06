@@ -11,7 +11,7 @@ import java.util.List;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-06-06
  */
 public interface KartotekaManager {
 
@@ -55,4 +55,11 @@ public interface KartotekaManager {
      * @return list of categories
      */
     List<Category> getCategories();
+
+    /**
+     * Checks whether category with given name already exists
+     * @param name name of category
+     * @return true if category exists, false otherwise
+     */
+    boolean containsCategory(String name);
 }

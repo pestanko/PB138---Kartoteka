@@ -1,12 +1,14 @@
 package cz.muni.fi.pb138.kartoteka.gui;
 
 import cz.muni.fi.pb138.kartoteka.entities.Category;
+import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-06-06
  */
 public class AddCategoryController implements Initializable {
 
@@ -27,6 +29,11 @@ public class AddCategoryController implements Initializable {
      * Current category
      */
     private Category category;
+
+    /**
+     * Kartoteka
+     */
+    private KartotekaManager kartoteka;
 
     /**
      * Main panel
@@ -53,6 +60,12 @@ public class AddCategoryController implements Initializable {
     private TextField categoryNameTextField;
 
     /**
+     * Status label
+     */
+    @FXML
+    private Label statusLabel;
+
+    /**
      * Initializes the UI
      * @param location location
      * @param resources resources
@@ -72,8 +85,19 @@ public class AddCategoryController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                String categoryName = categoryNameTextField.getText();
+
+                // Validate
+                if (categoryName.isEmpty()) {
+                    statusLabel.setText(resources.getString("dialog.category.empty_name"));
+                    return;
+                } else if (kartoteka.containsCategory(categoryName)) {
+                    statusLabel.setText(String.format(resources.getString("dialog.category.already_exists"), categoryName));
+                    return;
+                }
+
                 category = new Category();
-                category.setName(categoryNameTextField.getText());
+                category.setName(categoryName);
                 closeDialog();
             }
         });
@@ -91,9 +115,18 @@ public class AddCategoryController implements Initializable {
      * Sets the {@link AddCategoryController#category} and fill the input
      * @param category category to be updated
      */
-    public void updateSetUp(Category category) {
+    public void updateSetUp(Category category, KartotekaManager kartoteka) {
         this.category = category;
+        this.kartoteka = kartoteka;
         categoryNameTextField.setText(category.getName());
+    }
+
+    /**
+     * Setter for {@link AddCategoryController#kartoteka}
+     * @param kartoteka kartoteka manager
+     */
+    public void setKartoteka(KartotekaManager kartoteka) {
+        this.kartoteka = kartoteka;
     }
 
     /**

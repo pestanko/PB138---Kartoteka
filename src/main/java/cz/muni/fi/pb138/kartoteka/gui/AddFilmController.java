@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-06-06
  */
 public class AddFilmController implements Initializable {
 
@@ -77,6 +78,12 @@ public class AddFilmController implements Initializable {
     private TextField descriptionTextField;
 
     /**
+     * Status label
+     */
+    @FXML
+    private Label statusLabel;
+
+    /**
      * Initializes the UI
      * @param location location
      * @param resources resources
@@ -96,6 +103,17 @@ public class AddFilmController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                if(nameTextField.getText().isEmpty()) {
+                    statusLabel.setText(resources.getString("dialog.film.empty_name"));
+                    return;
+                }
+
+                if(!yearTextField.getText().matches("[0-9]+")) {
+                    statusLabel.setText(resources.getString("dialog.film.year_wrong"));
+                    return;
+                }
+
                 film = new Film();
                 film.setName(nameTextField.getText());
                 film.setYear(yearTextField.getText());

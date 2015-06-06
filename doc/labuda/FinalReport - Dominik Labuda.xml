@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <info>
+        <title>PB138 správa</title>
+        <author>
+            <personname>Dominik Labuda</personname>
+            <email>labuda@mail.muni.cz</email>
+        </author>
+    </info>
+
+    <sect1>
+        <title>Úvod a obsah</title>
+        <para>Obsahom dokumentu je záverečná správa o mojom podiele na riešení projektu.</para>
+        <para>
+            Jednotlivé úlohy:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="newUI">
+                            Vytvorenie nového UI
+                        </link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect1>
+
+    <sect1 xml:id="newUI">
+        <title>Vytvorenie nového UI</title>
+        <figure xml:id="fig1" pgwide="0">
+            <title>Nové UI</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/newUI.png" />
+                </imageobject>
+                <textobject>
+                    <phrase>Nové UI</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>
+        <para>
+            Po otestovaní funkcionality backendu s pôvodným užívateľským prostredím vznikla potreba
+            prehladnejšie a užívateľsky prívetivejšie zobrazovať dáta z kartotéky. Z tohoto dôvodu som
+            sa pri návrhu nového UI rozhodol čo najviac priblížiť dobre známemu vzhľadu, známeho najmä z
+            rôznych kancelárskych balíkov.
+        </para>
+    </sect1>
+
+</article>

@@ -14,12 +14,12 @@ import java.util.List;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-18
+ * @version 2015-06-06
  */
 public class KartotekaManagerImpl implements KartotekaManager {
 
     /**
-     * List of all categories in
+     * List of all categories
      */
     List<Category> categories = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class KartotekaManagerImpl implements KartotekaManager {
         category.setId(categories.size() + 1);
         categories.add(category);
 
-        logger.info("Added new category: "+ category);
+        logger.info("Added new category: " + category);
     }
 
     /**
@@ -136,5 +136,21 @@ public class KartotekaManagerImpl implements KartotekaManager {
     @Override
     public List<Category> getCategories() {
         return categories;
+    }
+
+    /**
+     * Checks whether category with given name already exists
+     * @param name name of category
+     * @return true if category exists, false otherwise
+     */
+    @Override
+    public boolean containsCategory(String name) {
+        name = name.toLowerCase();
+        for (Category category : categories) {
+            if(category.getName().toLowerCase().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
