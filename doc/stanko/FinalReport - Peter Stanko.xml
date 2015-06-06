@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+        "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>Záverečná správa</title>
+
+        <author>
+            <firstname>Peter</firstname>
+
+            <surname>Stanko</surname>
+
+            <affiliation>
+                <orgname>PB138, projekt "PB138 -- Kartoteka"</orgname>
+            </affiliation>
+        </author>
+    </articleinfo>
+
+    <section>
+        <title>Backend</title>
+
+        <para>Mojou úlohou pri spracovaní projektu bolo naprogramovanie backendu
+            aplikácie a správa wiki a stránky projektu.</para>
+
+        <para>Backend sa skladá z 3 logických celkov:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Entity - Film a Category - 2 Viacero filmov sa môže nachádzať v jednej kategórii
+                    </para>
+                </listitem>
+                <listitem >
+                    <para>
+                        Loader - Staral sa o načítavanie a ukladanie ods dokumentu do databázi v pämati
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        KartotekaManager - Staral sa o pridávanie odstranovanie a premenovanie kategorii.
+                    </para>
+                </listitem>
+            </itemizedlist>
+
+            Sucastou backendu sú taktiež univerzálne výnimky, ktoré obaľujú všetky ostatné kontrolované výnimky.
+
+        </para>
+
+        <para>
+            Pre načítavanie údajov z databázi som použil knižnicu od poločnosti Apache - ODFToolkit.
+            Vďaka tejto knižnici, ktorá bola navrhnutá na prácu s dokumentami ODF a bola odtestovaná a vyladená v praxi,
+            sme boli schopný pohodlne riešiť problem spracovávania ODS dokumentu s filmami.
+        </para>
+
+
+        <para>V celom backende sa v značnej miere využíva logovanie, k nemu som pouzil kniznicu SLF4j. Logujú sa nielen
+            chyby a výnimky pri spracovávaní, ale aj samotný beh programu, vďaka čomu vieme, aké akcie boli vykonané pred
+            tým, ako nastala chyba.
+        </para>
+
+        <para>Na wiki stánkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky, návod na použitie spolu s príslušnými
+            screenshotmi behu aplikácie.
+            Stránka obsahuje zvačsa linky do jednotlivých sekcii wiki stránky a funkčtné požiadavky projektu.
+        </para>
+
+    </section>
+</article>
