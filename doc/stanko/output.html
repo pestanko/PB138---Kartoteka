@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Záverečná správa</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /></head><body><div class="article"><div class="titlepage"><div><div><h2 class="title"><a id="idm140576665826832"></a>Záverečná správa</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Peter</span> <span class="surname">Stanko</span></h3><div class="affiliation"><span class="orgname">PB138, projekt "PB138 -- Kartoteka"<br /></span></div></div></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="section"><a href="#idm140576638496848">Backend</a></span></dt></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idm140576638496848"></a>Backend</h2></div></div></div><p>Mojou úlohou pri spracovaní projektu bolo naprogramovanie backendu
+            aplikácie a správa wiki a stránky projektu.</p><p>Backend sa skladá z 3 logických celkov:
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                        Entity - Film a Category - 2 Viacero filmov sa môže nachádzať v jednej kategórii
+                    </p></li><li class="listitem"><p>
+                        Loader - Staral sa o načítavanie a ukladanie ods dokumentu do databázi v pämati
+                    </p></li><li class="listitem"><p>
+                        KartotekaManager - Staral sa o pridávanie odstranovanie a premenovanie kategorii.
+                    </p></li></ul></div><p>
+
+            Sucastou backendu sú taktiež univerzálne výnimky, ktoré obaľujú všetky ostatné kontrolované výnimky.
+
+        </p><p>
+            Pre načítavanie údajov z databázi som použil knižnicu od poločnosti Apache - ODFToolkit.
+            Vďaka tejto knižnici, ktorá bola navrhnutá na prácu s dokumentami ODF a bola odtestovaná a vyladená v praxi,
+            sme boli schopný pohodlne riešiť problem spracovávania ODS dokumentu s filmami.
+        </p><p>V celom backende sa v značnej miere využíva logovanie, k nemu som pouzil kniznicu SLF4j. Logujú sa nielen
+            chyby a výnimky pri spracovávaní, ale aj samotný beh programu, vďaka čomu vieme, aké akcie boli vykonané pred
+            tým, ako nastala chyba.
+        </p><p>Na wiki stánkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky, návod na použitie spolu s príslušnými
+            screenshotmi behu aplikácie.
+            Stránka obsahuje zvačsa linky do jednotlivých sekcii wiki stránky a funkčtné požiadavky projektu.
+        </p></div></div></body></html>
