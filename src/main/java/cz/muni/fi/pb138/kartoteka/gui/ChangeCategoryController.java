@@ -45,6 +45,11 @@ public class ChangeCategoryController implements Initializable {
     private Film currentFilm;
 
     /**
+     *  True if dialog OK has been pressed
+     */
+    private boolean okPressed = false;
+
+    /**
      * Main panel
      */
     @FXML
@@ -98,6 +103,7 @@ public class ChangeCategoryController implements Initializable {
                     currentCategory.deleteFilm(currentFilm.getId());
                     Category newCategory = kartoteka.getCategory((String)categoryComboBox.getSelectionModel().getSelectedItem());
                     newCategory.addFilm(currentFilm);
+                    okPressed = true;
                 } catch (FilmException e) {
                     e.printStackTrace();
                 }
@@ -122,6 +128,10 @@ public class ChangeCategoryController implements Initializable {
 
         currentCategoryLabel.setText(currentCategory.getName());
         categoryComboBox.setItems(categoryNames);
+    }
+
+    public boolean isOkPressed() {
+        return okPressed;
     }
 
     /**

@@ -245,11 +245,10 @@ public class Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCategoryDialog.fxml"), texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
-        newStage.setTitle("Add Category");
-        newStage.setScene(new Scene(root, 250, 125));
+        newStage.setTitle(texts.getString("add_category"));
+        newStage.setScene(new Scene(root));
         newStage.initModality(Modality.WINDOW_MODAL);
         newStage.initStyle(StageStyle.UTILITY);
-        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         newStage.showAndWait();
 
@@ -294,10 +293,9 @@ public class Controller implements Initializable {
             Parent root = loader.load();
             Stage newStage = new Stage();
             newStage.setTitle("Update Category");
-            newStage.setScene(new Scene(root, 250, 125));
+            newStage.setScene(new Scene(root));
             newStage.initModality(Modality.WINDOW_MODAL);
             newStage.initStyle(StageStyle.UTILITY);
-            newStage.setResizable(false);
             newStage.initOwner(this.root.getScene().getWindow());
 
             AddCategoryController controller = loader.getController();
@@ -362,10 +360,9 @@ public class Controller implements Initializable {
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Add Movie");
-        newStage.setScene(new Scene(root, 640, 225));
+        newStage.setScene(new Scene(root));
         newStage.initModality(Modality.WINDOW_MODAL);
         newStage.initStyle(StageStyle.UTILITY);
-        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         newStage.showAndWait();
 
@@ -418,10 +415,9 @@ public class Controller implements Initializable {
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Update Movie");
-        newStage.setScene(new Scene(root, 640, 225));
+        newStage.setScene(new Scene(root));
         newStage.initModality(Modality.WINDOW_MODAL);
         newStage.initStyle(StageStyle.UTILITY);
-        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
 
         ChangeCategoryController controller = loader.getController();
@@ -430,8 +426,11 @@ public class Controller implements Initializable {
         int selectedTabIndex = tabPane.getSelectionModel().getSelectedIndex();
 
         newStage.showAndWait();
-        refreshTableData();
-        tabPane.getSelectionModel().select(selectedTabIndex);
+        if (controller.isOkPressed()) {
+            docSaved = false;
+            refreshTableData();
+            tabPane.getSelectionModel().select(selectedTabIndex);
+        }
     }
 
     /**
@@ -457,10 +456,9 @@ public class Controller implements Initializable {
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle("Update Movie");
-        newStage.setScene(new Scene(root, 640, 225));
+        newStage.setScene(new Scene(root));
         newStage.initModality(Modality.WINDOW_MODAL);
         newStage.initStyle(StageStyle.UTILITY);
-        newStage.setResizable(false);
         newStage.initOwner(this.root.getScene().getWindow());
         try {
             AddFilmController controller = loader.getController();
@@ -686,29 +684,35 @@ public class Controller implements Initializable {
 
             @Override
             public void invalidated(Observable o) {
-                Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-                List<Film> films = kart.getCategory(selectedTab.getText()).getFilms();
-                TableView tableView = ((TableView) selectedTab.getContent());
+                String filter = filterTextField.textProperty().get();
+                for (Tab tab : tabPane.getTabs()) {
+                    List<Film> films = kart.getCategory(tab.getText()).getFilms();
+                    TableView tableView = ((TableView) tab.getContent());
 
-                if(filterTextField.textProperty().get().isEmpty()) {
-                    tableView.setItems(FXCollections.observableArrayList(films));
-                    return;
-                }
-                kart.getCategory(selectedTab.getText()).getFilms();
-                ObservableList<Film> tableItems = FXCollections.observableArrayList();
-                ObservableList<TableColumn<Film, ?>> cols =((TableView) selectedTab.getContent()).getColumns();
-                for(int i=0; i<films.size(); i++) {
-                    for(int j=0; j<cols.size(); j++) {
-                        TableColumn col = cols.get(j);
-                        String cellValue = col.getCellData(films.get(i)).toString();
-                        cellValue = cellValue.toLowerCase();
-                        if(cellValue.contains(filterTextField.textProperty().get().toLowerCase())) {
+                    if (filter.isEmpty()) {
+                        tableView.setItems(FXCollections.observableArrayList(films));
+                        return;
+                    }
+                    kart.getCategory(tab.getText()).getFilms();
+                    ObservableList<Film> tableItems = FXCollections.observableArrayList();
+                    ObservableList<TableColumn<Film, ?>> cols = ((TableView) tab.getContent()).getColumns();
+                    for (int i = 0; i < films.size(); i++) {
+                        TableColumn col = null;
+
+                        // Find movie column
+                        for (TableColumn c : cols) {
+                            if (c.getText().equals(texts.getString("movie_name"))) {
+                                col = c;
+                                break;
+                            }
+                        }
+                        String cellValue = col.getCellData(films.get(i)).toString().toLowerCase();
+                        if (cellValue.contains(filter.toLowerCase())) {
                             tableItems.add(films.get(i));
-                            break;
                         }
                     }
+                    tableView.setItems(tableItems);
                 }
-                tableView.setItems(tableItems);
             }
         });
     }
