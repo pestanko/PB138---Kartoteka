@@ -1,52 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-        "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<article>
-    <articleinfo>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
         <title>Záverečná správa</title>
 
         <author>
-            <firstname>Peter</firstname>
-
-            <surname>Stanko</surname>
+            <personname>Peter Stanko</personname>
+            <email>stanko@mail.muni.cz</email>
 
             <affiliation>
                 <orgname>PB138, projekt "PB138 -- Kartoteka"</orgname>
             </affiliation>
         </author>
-    </articleinfo>
+    </info>
 
-    <section>
-        <title>Backend</title>
+    <sect1>
+        <title>Úvod a obsah</title>
 
-        <para>Mojou úlohou pri spracovaní projektu bolo naprogramovanie backendu
-            aplikácie a správa wiki a stránky projektu.</para>
+        <para>Obsahom dokumentu je záverečná správa o rozsahu môjho podielu na riešení
+            projektu.</para>
 
-        <para>Backend sa skladá z 3 logických celkov:
+        <para>Jednotlivé úlohy:<itemizedlist>
+            <listitem>
+                <para><link linkend="section2">Vytvorenie návrhu projektu</link></para>
+            </listitem>
+            <listitem>
+                <para><link linkend="section3">Implementácia backendu na základe návrhu</link></para>
+            </listitem>
+            <listitem>
+                <para><link linkend="section4">Správa Wiki a stranky projektu</link></para>
+            </listitem>
+        </itemizedlist></para>
+    </sect1>
+    <sect1 xml:id="section2">
+        <title>
+            Návrh projektu
+        </title>
+        <para>
+            Na úvod práce sme si s kolegami na základe zadania projektu spísali funkctné a nefunkčtné
+            požiadavky, na základe ktorých som vytvoril základný návrh a kostru projektu.
+        </para>
+    </sect1>
+    <sect1 xml:id="section3">
+        <title>Implementácia backendu</title>
+        <para>
+            Backend pozostáva 3 základných častí:
             <itemizedlist>
                 <listitem>
-                    <para>
-                        Entity - Film a Category - 2 Viacero filmov sa môže nachádzať v jednej kategórii
-                    </para>
-                </listitem>
-                <listitem >
-                    <para>
-                        Loader - Staral sa o načítavanie a ukladanie ods dokumentu do databázi v pämati
+                    <para> Základné entity reprezentujúce Film a Kategóriu filmu.
+                        Kategória v sebe obsahuje metódy na pridanie a odstránenie filmu.
                     </para>
                 </listitem>
                 <listitem>
-                    <para>
-                        KartotekaManager - Staral sa o pridávanie odstranovanie a premenovanie kategorii.
-                    </para>
+                    <para>Načítavač a ukladač ODS súborov.</para>
+                </listitem>
+                <listitem>
+                    <para>Správca celej kartotéky, ktorý má nastarosti vytváranie, premenovávanie a
+                    ostraňovanie jednotlivých kategórií</para>
                 </listitem>
             </itemizedlist>
-
-            Sucastou backendu sú taktiež univerzálne výnimky, ktoré obaľujú všetky ostatné kontrolované výnimky.
-
         </para>
 
         <para>
-            Pre načítavanie údajov z databázi som použil knižnicu od poločnosti Apache - ODFToolkit.
+            Pri načítavaní údajov z databázi som použil knižnicu od poločnosti Apache - ODFToolkit.
             Vďaka tejto knižnici, ktorá bola navrhnutá na prácu s dokumentami ODF a bola odtestovaná a vyladená v praxi,
             sme boli schopný pohodlne riešiť problem spracovávania ODS dokumentu s filmami.
         </para>
@@ -57,10 +75,13 @@
             tým, ako nastala chyba.
         </para>
 
+    </sect1>
+    <sect1 xml:id="section4">
+        <title>Wiki a stránka projektu</title>
         <para>Na wiki stánkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky, návod na použitie spolu s príslušnými
             screenshotmi behu aplikácie.
             Stránka obsahuje zvačsa linky do jednotlivých sekcii wiki stránky a funkčtné požiadavky projektu.
         </para>
 
-    </section>
+    </sect1>
 </article>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PB138 Project DocBook</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1" /></head><body><div class="article"><div class="titlepage"><div><div><h2 class="title"><a id="idm140300998510960"></a>PB138 Project DocBook</h2></div><div><div class="author"><h3 class="author">Peter Zaoral</h3><code class="email">&lt;<a class="email" href="mailto:peter.zaoral@mail.muni.cz">peter.zaoral@mail.muni.cz</a>&gt;</code></div></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl class="toc"><dt><span class="sect1"><a href="#idm140300998508384">Úvod a obsah</a></span></dt><dt><span class="sect1"><a href="#section2">Vytvorenie prvotného GUI</a></span></dt><dt><span class="sect1"><a href="#section3">Vytvorenie vyhľadávania</a></span></dt><dt><span class="sect1"><a href="#idm140300998487824">Vytvorenie ovládacích prvkov a validačných dialógov</a></span></dt><dt><span class="sect1"><a href="#idm140300998479888">Lokalizácia</a></span></dt></dl></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idm140300998508384"></a>Úvod a obsah</h2></div></div></div><p>Obsahom dokumentu je záverečná správa o rozsahu môjho podielu na riešení
+            projektu.</p><p>Jednotlivé úlohy:</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a class="link" href="#section2" title="Vytvorenie prvotného GUI">Vytvorenie prvotného GUI</a></p></li><li class="listitem"><p><a class="link" href="#section3" title="Vytvorenie vyhľadávania">Vytvorenie vyhľadávania</a></p></li><li class="listitem"><p>Vytvorenie ovladacích prvkov a validačných dialógov</p></li><li class="listitem"><p>Lokalizácia</p></li></ul></div></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="section2"></a>Vytvorenie prvotného GUI</h2></div></div></div><div class="figure"><a id="idm140300998497312"></a><p class="title"><strong>Figure 1. OldUI.png</strong></p><div class="figure-contents"><div class="mediaobject"><img src="images/OldUI.png" alt="OldUI.png" /></div></div></div><br class="figure-break" /><p>V úvode prác som vytvoril prvotné užívateľské rozhranie, ktoré testovalo vtedajší
+            návrh backendu. Popri tom som opravoval rôzne menšie chyby, ktoré sa počas testovania
+            objavili a doplnil som aj pár základných metód. UI sa neskôr zmenilo ale na úvod a
+            testovanie, myslím, poslúžilo dobre. Niektoré prvky z neho sa zachovali aj vo finálnej
+            verzii.</p><p><span class="italic">Zaujímavosť: Popri implementácii som narazil na problém s fxml
+            súbormi v resources. Ak sa súbory nachádzajú v inom priečinku ako src/main/java
+            SceneBuilder ako vo verzii 1.1, tak aj 2.0 nevidí prvky v controlleri, napriek tomu,
+            že je s danou triedou zviazaný správne. Ak sa teda napríklad pokúsim naviazať na
+            nejaký UI prvok handler, nenašepká mi dostupné, implementované metódy a po potvrdení
+            a uložení hlási chybu. Samotný program však funguje správne. Riešenie problému som
+            nenašiel, pár názorov tvrdilo, že to proste nejde. Odvtedy nepoužívam SceneBuilder
+            :)</span>
+        </p></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="section3"></a>Vytvorenie vyhľadávania</h2></div></div></div><p>Ďalšou úlohou na našom zozname TODO bolo vyhľadávanie. Pokúsil som sa napodobniť
+            dynamické vyhľadávanie tak, ako ho poznáme z populárnych internetových vyhľadávačov.
+            Výsledky v tabuľke sa teda menia v závislosti od zadaného textu.</p><p><span class="italic">Zaujímavosť: Pri tejto úlohe som prvý krát narazil na
+            zaujímavú knižnicu <a class="ulink" href="http://fxexperience.com/controlsfx/" target="_top">ControlsFX</a>, ktorá ponúka rôzne vylepšené UI prvky, ako napríklad
+            AutoComplete TextField alebo Password Field. V našom projekte som použil
+            SearchTextField, ktorý oproti bežnej verzii pridáva "krížik" slúžiaci na zmazanie
+            vyhľadávaného textu. Pre správne fungovanie je však nutné obísť inicializáciu vo
+            fxml súbore a daný prvok treba inicializovať priamo v príslušnom
+            controlleri.</span></p></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idm140300998487824"></a>Vytvorenie ovládacích prvkov a validačných dialógov</h2></div></div></div><p>Ďalšou úlohou bolo vytvoriť prvky na jednoduché ovládanie funkcionality projektu.
+            Takisto som vytvoril triedu AlertBox obalujúcu dialógy, ktoré upozorňujú užívateľa na
+            nesprávnu činnosti (Warning, Error, Confirmation dialogs)</p><p><span class="italic">Zaujímavosť: Pôvodne sme v projekte používali dialógy zo
+            Swingu. Pri hľadaní JavaFX ekvivalentu som druhý krát narazil na knižnicu <a class="ulink" href="http://fxexperience.com/controlsfx/features/dialogs/" target="_top">ContolsFX</a>. Zistil som, že okrem vyššie uvedeného, sa používala aj na
+            tvorbu dialógov.  Táto vymoženosť bola natoľko obľúbená, až sa v skoro na vlas
+            rovnakej podobe dostala do JDK, ktoré od vydania 8u40 (marec 2015) nimi disponuje.
+            Pre porovnanie:</span></p><p>
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a class="ulink" href="http://code.makery.ch/blog/javafx-8-dialogs/" target="_top">ControlsFX
+                        dialogs samples</a></p></li><li class="listitem"><p><a class="ulink" href="http://code.makery.ch/blog/javafx-dialogs-official/" target="_top">Official dialogs samples</a></p></li></ul></div><p>
+        </p></div><div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idm140300998479888"></a>Lokalizácia</h2></div></div></div><p>Do projektu som zapracoval aj lokalizáciu. Pôvodne anglický text je preložený do
+            slovenčiny. Reťazce sa načítavajú z resource bundle a jazyk je volený automaticky podľa
+            prostredia. </p></div></div></body></html>
