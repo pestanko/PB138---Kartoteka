@@ -33,6 +33,7 @@
                                 <Menu mnemonicParsing="false" text="%movie">
                                     <items>
                                         <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
+                                        <MenuItem fx:id="findMovieCmd" mnemonicParsing="false" onAction="#findFilmAction" text="%find_movie" />
                                         <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="%change_category" />
                                         <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
                                         <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />

@@ -114,6 +114,7 @@ public class AddCategoryController implements Initializable {
     /**
      * Sets the {@link AddCategoryController#category} and fill the input
      * @param category category to be updated
+     * @param kartoteka movie database
      */
     public void updateSetUp(Category category, KartotekaManager kartoteka) {
         this.category = category;

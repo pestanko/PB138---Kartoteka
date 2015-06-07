@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefWidth="350.0" prefHeight="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.FindFilmController">
+    <children>
+        <VBox AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.bottomAnchor="10.0">
+            <children>
+                <HBox fx:id="filterHBox">
+                    <children>
+                        <Label text="%filter">
+                            <padding>
+                                <Insets left="5.0" right="5.0" top="2.5" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <TableView fx:id="tableView" VBox.vgrow="ALWAYS" />
+                <Label fx:id="statusLabel" textFill="red">
+                    <padding>
+                        <Insets bottom="2.5" top="2.5" />
+                    </padding>
+                </Label>
+            </children>
+        </VBox>
+        <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >
+            <children>
+                <Button fx:id="okButton" mnemonicParsing="false" text="%ok">
+                    <HBox.margin>
+                        <Insets right="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="cancelButton"  mnemonicParsing="false" text="%cancel" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

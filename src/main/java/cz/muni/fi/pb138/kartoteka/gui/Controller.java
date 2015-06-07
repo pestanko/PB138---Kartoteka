@@ -4,6 +4,7 @@ import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.exceptions.CategoryException;
 import cz.muni.fi.pb138.kartoteka.exceptions.FilmException;
+import cz.muni.fi.pb138.kartoteka.helpers.Tuple;
 import cz.muni.fi.pb138.kartoteka.loaders.FileManager;
 import cz.muni.fi.pb138.kartoteka.loaders.FileManagerImpl;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
@@ -46,7 +47,7 @@ import java.util.ResourceBundle;
  * @author Peter Stanko
  * @author Dominik Labuda
  * @author Peter Zaoral
- * @version 2015-05-26
+ * @version 2015-06-07
  */
 public class Controller implements Initializable {
     /**
@@ -164,10 +165,17 @@ public class Controller implements Initializable {
     private MenuItem deleteMovieCmd;
 
     /**
+     * Find movie menu item
+     */
+    @FXML
+    private MenuItem findMovieCmd;
+
+    /**
      * Filter text field item from ControlsFX library
      */
     @FXML
     private TextField filterTextField = TextFields.createSearchField();
+
     /**
      * NewUI HBox
      */
@@ -198,6 +206,7 @@ public class Controller implements Initializable {
         addMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F4, KeyCombination.CONTROL_DOWN));
         updateMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F5, KeyCombination.CONTROL_DOWN));
         deleteMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F6, KeyCombination.CONTROL_DOWN));
+        findMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN));
     }
 
     /**
@@ -460,7 +469,7 @@ public class Controller implements Initializable {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"),texts);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addFilmDialog.fxml"), texts);
         Parent root = loader.load();
         Stage newStage = new Stage();
         newStage.setTitle(texts.getString("update_movie"));
@@ -530,6 +539,50 @@ public class Controller implements Initializable {
                 logger.error("KartotekaManager or tab that was selected is null", e);
                 AlertBox.displayError(texts.getString("error.oops_error"), texts.getString("error.message.film_error2"));
                 statusLabel.setText(texts.getString("label.status13"));
+            }
+        }
+    }
+
+    /**
+     * Finds film in whole database
+     * @param event action event
+     * @throws IOException when FXML is not available
+     */
+    @FXML
+    public void findFilmAction(ActionEvent event) throws IOException {
+        if (openedFilePath == null) {
+            AlertBox.displayError(texts.getString("error.film"), texts.getString("error.message.no_spreadsheet"));
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/findFilmDialog.fxml"), texts);
+        Parent root = loader.load();
+        Stage newStage = new Stage();
+        newStage.setTitle(texts.getString("find_movie"));
+        newStage.setScene(new Scene(root));
+        newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initStyle(StageStyle.UTILITY);
+        newStage.initOwner(this.root.getScene().getWindow());
+
+        FindFilmController controller = loader.getController();
+        controller.setKartoteka(kart);
+
+        newStage.showAndWait();
+
+        Tuple<Long, Long> result = controller.getResult();
+
+        if (result != null) {
+            filterTextField.setText("");
+
+            Category selectedCategory = kart.getCategory(result.getFirst());
+            Film selectedFilm = selectedCategory.getFilm(result.getSecond());
+
+            for (Tab tab : tabPane.getTabs()) {
+                if (tab.getText().equals(selectedCategory.getName())) {
+                    tabPane.getSelectionModel().select(tab);
+                    ((TableView) tab.getContent()).getSelectionModel().select(selectedFilm);
+                    break;
+                }
             }
         }
     }
@@ -653,7 +706,7 @@ public class Controller implements Initializable {
     private void addTab(String name) {
         Tab tab = new Tab(name);
         TableView<Film> tableView = new TableView<>();
-        tableView.setColumnResizePolicy(param -> true);
+        tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         tableView.setPlaceholder(new Text(texts.getString("empty_tableview")));
 
         TableColumn<Film, String> nameCol = new TableColumn<>(texts.getString("movie_name"));
@@ -671,11 +724,7 @@ public class Controller implements Initializable {
         TableColumn<Film, String> descriptonCol = new TableColumn<>(texts.getString("description"));
         descriptonCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        tableView.getColumns().add(nameCol);
-        tableView.getColumns().add(yearCol);
-        tableView.getColumns().add(ratingCol);
-        tableView.getColumns().add(directorCol);
-        tableView.getColumns().add(descriptonCol);
+        tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptonCol);
 
         tableView.setItems(FXCollections.observableArrayList(kart.getCategory(name).getFilms()));
 
@@ -712,7 +761,7 @@ public class Controller implements Initializable {
                         tableView.setItems(FXCollections.observableArrayList(films));
                         return;
                     }
-                    kart.getCategory(tab.getText()).getFilms();
+
                     ObservableList<Film> tableItems = FXCollections.observableArrayList();
                     ObservableList<TableColumn<Film, ?>> cols = ((TableView) tab.getContent()).getColumns();
                     for (int i = 0; i < films.size(); i++) {
