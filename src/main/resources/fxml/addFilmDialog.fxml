@@ -4,55 +4,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefWidth="350.0" prefHeight="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.AddFilmController">
-    <children>
-        <VBox AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0">
-            <children>
-                <Label text="%label.movie_name">
-                    <padding>
-                        <Insets bottom="2.5" />
-                    </padding>
-                </Label>
-                <TextField fx:id="nameTextField" promptText="%prompt.movie_name" />
-                <Label text="%label.year">
-                    <padding>
-                        <Insets top="2.5" bottom="2.5" />
-                    </padding>
-                </Label>
-                <TextField fx:id="yearTextField" promptText="%prompt.year" />
-                <Label text="%label.rating">
-                    <padding>
-                        <Insets top="2.5" bottom="2.5" />
-                    </padding>
-                </Label>
-                <TextField fx:id="ratingTextField" promptText="%prompt.rating" />
-                <Label text="%label.director">
-                    <padding>
-                        <Insets top="2.5" bottom="2.5" />
-                    </padding>
-                </Label>
-                <TextField fx:id="directorTextField" promptText="%prompt.director" />
-                <Label text="%label.description">
-                    <padding>
-                        <Insets top="2.5" bottom="2.5" />
-                    </padding>
-                </Label>
-                <TextField fx:id="descriptionTextField" promptText="%prompt.description" />
-                <Label fx:id="statusLabel" textFill="red">
-                    <padding>
-                        <Insets bottom="2.5" top="2.5" />
-                    </padding>
-                </Label>
-            </children>
-        </VBox>
-        <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >
-            <children>
-                <Button fx:id="okButton" mnemonicParsing="false" text="%ok">
-                    <HBox.margin>
-                        <Insets right="5.0" />
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="cancelButton"  mnemonicParsing="false" text="%cancel" />
-            </children>
-        </HBox>
-    </children>
+    <VBox AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0">
+        <Label text="%label.movie_name">
+            <padding>
+                <Insets bottom="2.5" />
+            </padding>
+        </Label>
+        <TextField fx:id="nameTextField" promptText="%prompt.movie_name" />
+        <Label text="%label.year">
+            <padding>
+                <Insets top="2.5" bottom="2.5" />
+            </padding>
+        </Label>
+        <TextField fx:id="yearTextField" promptText="%prompt.year" />
+        <Label text="%label.rating">
+            <padding>
+                <Insets top="2.5" bottom="2.5" />
+            </padding>
+        </Label>
+        <TextField fx:id="ratingTextField" promptText="%prompt.rating" />
+        <Label text="%label.director">
+            <padding>
+                <Insets top="2.5" bottom="2.5" />
+            </padding>
+        </Label>
+        <TextField fx:id="directorTextField" promptText="%prompt.director" />
+        <Label text="%label.description">
+            <padding>
+                <Insets top="2.5" bottom="2.5" />
+            </padding>
+        </Label>
+        <TextField fx:id="descriptionTextField" promptText="%prompt.description" />
+        <Label fx:id="statusLabel" textFill="red">
+            <padding>
+                <Insets bottom="2.5" top="2.5" />
+            </padding>
+        </Label>
+    </VBox>
+    <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >
+        <Button fx:id="okButton" mnemonicParsing="false" text="%ok">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="cancelButton"  mnemonicParsing="false" text="%cancel" />
+    </HBox>
 </AnchorPane>

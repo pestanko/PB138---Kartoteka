@@ -47,11 +47,6 @@ public class FindFilmController implements Initializable {
     private List<Tuple<Long, Long>> ids;
 
     /**
-     * Resource bundle
-     */
-    private ResourceBundle texts;
-
-    /**
      * Movie database
      */
     private KartotekaManager kartoteka;
@@ -105,29 +100,27 @@ public class FindFilmController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.texts = resources;
-
         // Filter HBox initialization
         filterTextField.setPromptText(resources.getString("prompt.start_typing"));
         filterHBox.setHgrow(filterTextField, Priority.ALWAYS);
         filterHBox.getChildren().add(filterTextField);
 
         tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
-        tableView.setPlaceholder(new Text(texts.getString("empty_tableview")));
+        tableView.setPlaceholder(new Text(resources.getString("empty_tableview")));
 
-        TableColumn<Film, String> nameCol = new TableColumn<>(texts.getString("movie_name"));
+        TableColumn<Film, String> nameCol = new TableColumn<>(resources.getString("movie_name"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<Film, String> yearCol = new TableColumn<>(texts.getString("year"));
+        TableColumn<Film, String> yearCol = new TableColumn<>(resources.getString("year"));
         yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        TableColumn<Film, String> ratingCol = new TableColumn<>(texts.getString("rating"));
+        TableColumn<Film, String> ratingCol = new TableColumn<>(resources.getString("rating"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
-        TableColumn<Film, String> directorCol = new TableColumn<>(texts.getString("director"));
+        TableColumn<Film, String> directorCol = new TableColumn<>(resources.getString("director"));
         directorCol.setCellValueFactory(new PropertyValueFactory<>("director"));
 
-        TableColumn<Film, String> descriptonCol = new TableColumn<>(texts.getString("description"));
+        TableColumn<Film, String> descriptonCol = new TableColumn<>(resources.getString("description"));
         descriptonCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptonCol);
@@ -172,7 +165,7 @@ public class FindFilmController implements Initializable {
             public void handle(ActionEvent event) {
 
                 if (tableView.getSelectionModel().getSelectedItem() == null) {
-                    statusLabel.setText(texts.getString("error.message.no_movie_selected"));
+                    statusLabel.setText(resources.getString("error.message.no_movie_selected"));
                     return;
                 }
 

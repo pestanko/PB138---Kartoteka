@@ -80,6 +80,12 @@ public class ChangeCategoryController implements Initializable {
     private ComboBox categoryComboBox;
 
     /**
+     * Status label
+     */
+    @FXML
+    private Label statusLabel;
+
+    /**
      * Initializes the UI
      * @param location location
      * @param resources resources
@@ -99,6 +105,12 @@ public class ChangeCategoryController implements Initializable {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                if (categoryComboBox.getSelectionModel().getSelectedItem() == null) {
+                    statusLabel.setText(resources.getString("error.message.no_category_chosen"));
+                    return;
+                }
+
                 try {
                     currentCategory.deleteFilm(currentFilm.getId());
                     Category newCategory = kartoteka.getCategory((String)categoryComboBox.getSelectionModel().getSelectedItem());

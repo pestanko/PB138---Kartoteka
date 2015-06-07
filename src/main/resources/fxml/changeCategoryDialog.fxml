@@ -5,36 +5,35 @@
 <?import javafx.geometry.Insets?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.ChangeCategoryController">
-    <children>
-        <VBox AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0">
-            <children>
-                <Label text="%label.current_category">
-                    <padding>
-                        <Insets bottom="2.5" />
-                    </padding>
-                </Label>
-                <Label fx:id="currentCategoryLabel">
-                    <padding>
-                        <Insets bottom="2.5" />
-                    </padding>
-                </Label>
-                <Label text="%new_category">
-                    <padding>
-                        <Insets bottom="2.5" />
-                    </padding>
-                </Label>
-                <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
-            </children>
-        </VBox>
-        <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >
-            <children>
-                <Button fx:id="okButton" mnemonicParsing="false" text="%ok">
-                    <HBox.margin>
-                        <Insets right="5.0" />
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="cancelButton"  mnemonicParsing="false" text="%cancel" />
-            </children>
-        </HBox>
-    </children>
+    <VBox AnchorPane.topAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0">
+        <Label text="%label.current_category">
+            <padding>
+                <Insets bottom="2.5" />
+            </padding>
+        </Label>
+        <Label fx:id="currentCategoryLabel">
+            <padding>
+                <Insets bottom="2.5" />
+            </padding>
+        </Label>
+        <Label text="%new_category">
+            <padding>
+                <Insets bottom="2.5" />
+            </padding>
+        </Label>
+        <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
+        <Label fx:id="statusLabel" textFill="red">
+            <padding>
+                <Insets bottom="2.5" top="2.5" />
+            </padding>
+        </Label>
+    </VBox>
+    <HBox AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="5.0" alignment="CENTER_RIGHT" >
+        <Button fx:id="okButton" mnemonicParsing="false" text="%ok">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="cancelButton"  mnemonicParsing="false" text="%cancel" />
+    </HBox>
 </AnchorPane>

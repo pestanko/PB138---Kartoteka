@@ -5,81 +5,61 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.muni.fi.pb138.kartoteka.gui.Controller">
-    <children>
-        <VBox AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <MenuBar>
-                    <menus>
-                        <Menu mnemonicParsing="false" text="%file">
-                            <items>
-                                <MenuItem fx:id="newDocumentCmd" mnemonicParsing="false" onAction="#newDocumentAction" text="%new_document" />
-                                <MenuItem fx:id="openCmd" mnemonicParsing="false" onAction="#openFileAction" text="%open_file" />
-                                <MenuItem fx:id="saveCmd" mnemonicParsing="false" onAction="#saveChangesAction" text="%save" />
-                                <MenuItem fx:id="saveAsCmd" mnemonicParsing="false" onAction="#saveAsAction" text="%save_as" />
-                                <MenuItem fx:id="closeCmd" mnemonicParsing="false" onAction="#closeAppAction" text="%close" />
-                            </items>
-                        </Menu>
+    <VBox AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar>
+            <Menu mnemonicParsing="false" text="%file">
+                <MenuItem fx:id="newDocumentCmd" mnemonicParsing="false" onAction="#newDocumentAction" text="%new_document" />
+                <MenuItem fx:id="openCmd" mnemonicParsing="false" onAction="#openFileAction" text="%open_file" />
+                <MenuItem fx:id="saveCmd" mnemonicParsing="false" onAction="#saveChangesAction" text="%save" />
+                <MenuItem fx:id="saveAsCmd" mnemonicParsing="false" onAction="#saveAsAction" text="%save_as" />
+                <MenuItem fx:id="closeCmd" mnemonicParsing="false" onAction="#closeAppAction" text="%close" />
+            </Menu>
 
-                        <Menu mnemonicParsing="false" text="%edit">
-                            <items>
-                                <Menu mnemonicParsing="false" text="%category">
-                                    <items>
-                                        <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
-                                        <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="%update_category" />
-                                        <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="%delete_category" />
-                                    </items>
-                                </Menu>
+            <Menu mnemonicParsing="false" text="%edit">
+                <Menu mnemonicParsing="false" text="%category">
+                    <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
+                    <MenuItem fx:id="updateCategoryCmd" mnemonicParsing="false" onAction="#updateCategoryAction" text="%update_category" />
+                    <MenuItem fx:id="deleteCategoryCmd" mnemonicParsing="false" onAction="#deleteCategoryAction" text="%delete_category" />
+                </Menu>
 
-                                <Menu mnemonicParsing="false" text="%movie">
-                                    <items>
-                                        <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
-                                        <MenuItem fx:id="findMovieCmd" mnemonicParsing="false" onAction="#findFilmAction" text="%find_movie" />
-                                        <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="%change_category" />
-                                        <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
-                                        <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />
-                                    </items>
-                                </Menu>
-                            </items>
-                        </Menu>
+                <Menu mnemonicParsing="false" text="%movie">
+                    <MenuItem fx:id="addMovieCmd" mnemonicParsing="false" onAction="#addFilmAction" text="%add_movie" />
+                    <MenuItem fx:id="findMovieCmd" mnemonicParsing="false" onAction="#findFilmAction" text="%find_movie" />
+                    <MenuItem mnemonicParsing="false" onAction="#changeFilmCategory" text="%change_category" />
+                    <MenuItem fx:id="updateMovieCmd" mnemonicParsing="false" onAction="#updateFilmAction" text="%update_movie" />
+                    <MenuItem fx:id="deleteMovieCmd" mnemonicParsing="false" onAction="#deleteFilmAction" text="%delete_movie" />
+                </Menu>
+            </Menu>
 
-                        <Menu mnemonicParsing="false" text="%help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="%about" />
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
+            <Menu mnemonicParsing="false" text="%help">
+                <MenuItem mnemonicParsing="false" text="%about" />
+            </Menu>
+        </MenuBar>
 
-                <HBox fx:id="filterHBox">
-                    <children>
-                        <Label text="%filter">
-                            <padding>
-                                <Insets left="5.0" right="5.0" top="2.5" />
-                            </padding>
-                        </Label>
-                    </children>
-                </HBox>
+        <HBox fx:id="filterHBox">
+            <Label text="%filter">
+                <padding>
+                    <Insets left="5.0" right="5.0" top="2.5" />
+                </padding>
+            </Label>
+        </HBox>
 
-                <HBox>
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#addCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%add_category" />
-                        <Button mnemonicParsing="false" onAction="#updateCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%update_category" />
-                        <Button mnemonicParsing="false" onAction="#deleteCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%delete_category" />
-                        <Button mnemonicParsing="false" onAction="#addFilmAction" prefHeight="25.0" prefWidth="162.0" text="%add_movie" />
-                        <Button mnemonicParsing="false" onAction="#updateFilmAction" prefHeight="25.0" prefWidth="162.0" text="%update_movie" />
-                        <Button mnemonicParsing="false" onAction="#changeFilmCategory" prefHeight="25.0" prefWidth="162.0" text="%change_category" />
-                        <Button mnemonicParsing="false" onAction="#deleteFilmAction" prefHeight="25.0" prefWidth="162.0" text="%delete_movie" />
-                    </children>
-                </HBox>
+        <HBox>
+            <Button mnemonicParsing="false" onAction="#addCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%add_category" />
+            <Button mnemonicParsing="false" onAction="#updateCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%update_category" />
+            <Button mnemonicParsing="false" onAction="#deleteCategoryAction" prefHeight="25.0" prefWidth="162.0" text="%delete_category" />
+            <Button mnemonicParsing="false" onAction="#addFilmAction" prefHeight="25.0" prefWidth="162.0" text="%add_movie" />
+            <Button mnemonicParsing="false" onAction="#updateFilmAction" prefHeight="25.0" prefWidth="162.0" text="%update_movie" />
+            <Button mnemonicParsing="false" onAction="#changeFilmCategory" prefHeight="25.0" prefWidth="162.0" text="%change_category" />
+            <Button mnemonicParsing="false" onAction="#deleteFilmAction" prefHeight="25.0" prefWidth="162.0" text="%delete_movie" />
+        </HBox>
 
-                <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" />
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" />
 
-                <Label fx:id="statusLabel">
-                    <padding>
-                        <Insets left="5.0" />
-                    </padding>
-                </Label>
-            </children>
-        </VBox>
-    </children>
+        <Label fx:id="statusLabel">
+            <padding>
+                <Insets left="5.0" />
+            </padding>
+        </Label>
+    </VBox>
 </AnchorPane>
