@@ -12,6 +12,8 @@ import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +34,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import org.controlsfx.control.TextFields;
 
 import java.io.File;
@@ -738,7 +741,13 @@ public class Controller implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Film, String> yearCol = new TableColumn<>(texts.getString("year"));
-        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        //yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        yearCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Film, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Film, String> param) {
+                return new ReadOnlyObjectWrapper<String>(param.getValue().getYear());
+            }
+        });
 
         TableColumn<Film, String> ratingCol = new TableColumn<>(texts.getString("rating"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));

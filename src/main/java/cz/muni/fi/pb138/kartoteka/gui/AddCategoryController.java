@@ -36,11 +36,6 @@ public class AddCategoryController implements Initializable {
     private KartotekaManager kartoteka;
 
     /**
-     * Update flag
-     */
-    private boolean isUpdate = false;
-
-    /**
      * Main panel
      */
     @FXML
@@ -101,7 +96,7 @@ public class AddCategoryController implements Initializable {
                     return;
                 }
 
-                if (!isUpdate) {
+                if (category == null) {
                     category = new Category();
                 }
                 category.setName(categoryName);
@@ -126,7 +121,6 @@ public class AddCategoryController implements Initializable {
     public void updateSetUp(Category category, KartotekaManager kartoteka) {
         this.category = category;
         this.kartoteka = kartoteka;
-        this.isUpdate = true;
         categoryNameTextField.setText(category.getName());
     }
 

@@ -30,11 +30,6 @@ public class AddFilmController implements Initializable {
     private Film film;
 
     /**
-     * Update flag
-     */
-    private boolean isUpdate = false;
-
-    /**
      * Main panel
      */
     @FXML
@@ -119,7 +114,7 @@ public class AddFilmController implements Initializable {
                     return;
                 }
 
-                if (!isUpdate) {
+                if (film == null) {
                     film = new Film();
                 }
                 film.setName(nameTextField.getText());
@@ -146,7 +141,6 @@ public class AddFilmController implements Initializable {
      */
     public void updateSetUp(Film film) {
         this.film = film;
-        this.isUpdate = true;
         nameTextField.setText(film.getName());
         yearTextField.setText(film.getYear());
         ratingTextField.setText(film.getRating());

@@ -91,16 +91,16 @@ public class FileManagerImpl implements FileManager {
                 if (name == null || name.length() == 0) continue;
                 film.setName(name);
 
-                String year = getYearCell(table, i).getDisplayText();
+                String year = getYearCell(table, i).getStringValue().replace(",","");
                 film.setYear(year);
 
-                String rating = getRatingCell(table, i).getDisplayText();
+                String rating = getRatingCell(table, i).getStringValue();
                 film.setRating(rating);
 
-                String description = getDescriptionCell(table, i).getDisplayText();
+                String description = getDescriptionCell(table, i).getStringValue();
                 film.setDescription(description);
 
-                String author = getDirectorCell(table, i).getDisplayText();
+                String author = getDirectorCell(table, i).getStringValue();
                 film.setDirector(author);
 
                 cat.addFilm(film);
@@ -147,12 +147,12 @@ public class FileManagerImpl implements FileManager {
         int row = 1;
 
         for(Film film : films) {
-            getIdCell(actualTable, row).setDisplayText("" + film.getId());
-            getNameCell(actualTable, row).setDisplayText(film.getName());
-            getYearCell(actualTable, row).setDisplayText("" + film.getYear());
-            getRatingCell(actualTable, row).setDisplayText("" + film.getRating());
-            getDirectorCell(actualTable, row).setDisplayText(film.getDirector());
-            getDescriptionCell(actualTable, row).setDisplayText(film.getDescription());
+            getIdCell(actualTable, row).setStringValue(Long.toString(film.getId()));
+            getNameCell(actualTable, row).setStringValue(film.getName());
+            getYearCell(actualTable, row).setStringValue(film.getYear());
+            getRatingCell(actualTable, row).setStringValue(film.getRating());
+            getDirectorCell(actualTable, row).setStringValue(film.getDirector());
+            getDescriptionCell(actualTable, row).setStringValue(film.getDescription());
 
             row++;
 
