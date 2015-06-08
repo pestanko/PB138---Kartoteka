@@ -171,6 +171,12 @@ public class Controller implements Initializable {
     private MenuItem findMovieCmd;
 
     /**
+     * Refresh menu item
+     */
+    @FXML
+    private MenuItem refreshCmd;
+
+    /**
      * Filter text field item from ControlsFX library
      */
     @FXML
@@ -207,6 +213,7 @@ public class Controller implements Initializable {
         updateMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F5, KeyCombination.CONTROL_DOWN));
         deleteMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F6, KeyCombination.CONTROL_DOWN));
         findMovieCmd.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN));
+        refreshCmd.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
     }
 
     /**
@@ -311,15 +318,13 @@ public class Controller implements Initializable {
             newStage.initOwner(this.root.getScene().getWindow());
 
             AddCategoryController controller = loader.getController();
-            Category category = kart.getCategory(selectedTab.getText());
-            controller.updateSetUp(category, kart);
+            controller.updateSetUp(kart.getCategory(selectedTab.getText()), kart);
             newStage.showAndWait();
 
             if (controller.getCategory() != null) {
                 selectedTab.setText(controller.getCategory().getName());
                 docSaved = false;
                 statusLabel.setText(texts.getString("label.status5") + selectedTab.getText());
-                category.setName(controller.getCategory().getName());
             } else {
                 statusLabel.setText(texts.getString("label.status6"));
             }
@@ -447,7 +452,7 @@ public class Controller implements Initializable {
         newStage.showAndWait();
         if (controller.isOkPressed()) {
             docSaved = false;
-            refreshTableData();
+            refreshTableData(null);
             tabPane.getSelectionModel().select(selectedTabIndex);
         }
     }
@@ -504,8 +509,6 @@ public class Controller implements Initializable {
             AlertBox.displayError(texts.getString("error.oops_error"), texts.getString("error.message.film_error2"));
             statusLabel.setText(texts.getString("label.status12"));
         }
-
-        refreshTableData();
 
     }
 
@@ -644,6 +647,24 @@ public class Controller implements Initializable {
     }
 
     /**
+     * Refreshes the {@link Controller#tabPane}
+     * @param event action event
+     */
+    @FXML
+    public void refreshTableData(ActionEvent event) {
+        if (kart == null) {
+            AlertBox.displayError(texts.getString("error.refresh"), texts.getString("error.message.refresh"));
+            return;
+        }
+
+        filterTextField.setText("");
+        tabPane.getTabs().clear();
+        for(Category category : kart.getCategories()) {
+            addTab(category.getName());
+        }
+    }
+
+    /**
      * Closes application
      * @param event action event
      */
@@ -685,7 +706,7 @@ public class Controller implements Initializable {
             statusLabel.setText(texts.getString("label.status15"));
         }
 
-        refreshTableData();
+        refreshTableData(null);
     }
 
     /**
@@ -734,18 +755,6 @@ public class Controller implements Initializable {
 
         tab.setContent(tableView);
         tabPane.getTabs().add(tab);
-    }
-
-    /**
-     * Refreshes the {@link Controller#tabPane}
-     */
-    private void refreshTableData() {
-        tabPane.getTabs().clear();
-        if (kart != null) {
-            for(Category category : kart.getCategories()) {
-                addTab(category.getName());
-            }
-        }
     }
 
     /**

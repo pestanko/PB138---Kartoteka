@@ -15,6 +15,10 @@
                 <MenuItem fx:id="closeCmd" mnemonicParsing="false" onAction="#closeAppAction" text="%close" />
             </Menu>
 
+            <Menu mnemonicParsing="false" text="%view">
+                <MenuItem fx:id="refreshCmd" mnemonicParsing="false" onAction="#refreshTableData" text="%refresh" />
+            </Menu>
+
             <Menu mnemonicParsing="false" text="%edit">
                 <Menu mnemonicParsing="false" text="%category">
                     <MenuItem fx:id="addCategoryCmd" mnemonicParsing="false" onAction="#addCategoryAction" text="%add_category" />
