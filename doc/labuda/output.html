@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><title>PB138 správa</title><link rel="stylesheet" type="text/css" href="docbook.css"/><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"/></head><body><section class="article" id="idp52981984"><div class="titlepage"><div><div><h2 class="title">PB138 správa</h2></div><div><div class="author"><h3 class="author">Dominik Labuda</h3><code class="email">&lt;<a class="email" href="mailto:labuda@mail.muni.cz">labuda@mail.muni.cz</a>&gt;</code></div></div></div><hr/></div><div class="toc"><div class="toc-title">Table of Contents</div><ul class="toc"><li><span class="sect1"><a href="#idp52988704">Úvod a obsah</a></span></li><li><span class="sect1"><a href="#newUI">Vytvorenie nového UI</a></span></li><li><span class="sect1"><a href="#implementation">Implementácia dialógov a akcií</a></span></li><li><span class="sect1"><a href="#validation">Validácia vstupov a kontrola akcií</a></span></li><li><span class="sect1"><a href="#javadoc">Javadoc</a></span></li></ul></div>
+
+    
+
+    <section class="sect1" id="idp52988704"><div class="titlepage"><div><div><h2 class="title" style="clear: both">Úvod a obsah</h2></div></div></div>
+        
+        <p>Obsahom dokumentu je záverečná správa o mojom podiele na riešení projektu.</p>
+        <p>
+            Jednotlivé úlohy:
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+                    <p>
+                        <a class="link" href="#newUI" title="Vytvorenie nového UI">
+                            Vytvorenie nového UI
+                        </a>
+                    </p>
+                </li><li class="listitem">
+                    <p>
+                        <a class="link" href="#implementation" title="Implementácia dialógov a akcií">
+                            Implementácia dialógov a akcií
+                        </a>
+                    </p>
+                </li><li class="listitem">
+                    <p>
+                        <a class="link" href="#validation" title="Validácia vstupov a kontrola akcií">
+                            Validácia vstupov a kontrola akcií
+                        </a>
+                    </p>
+                </li><li class="listitem">
+                    <p>
+                        <a class="link" href="#javadoc" title="Javadoc">
+                            Javadoc
+                        </a>
+                    </p>
+                </li></ul></div><p>
+        </p>
+    </section>
+
+    <section class="sect1" id="newUI"><div class="titlepage"><div><div><h2 class="title" style="clear: both">Vytvorenie nového UI</h2></div></div></div>
+        
+        <div class="figure" id="fig1"><div class="figure-title">Figure 1. Nové UI</div><div class="figure-contents">
+            
+            <div class="mediaobject"><img src="img/newUI.png" alt="Nové UI"/></div>
+        </div></div><br class="figure-break"/>
+        <p>
+            Po otestovaní funkcionality backendu s pôvodným užívateľským prostredím vznikla potreba
+            prehladnejšie a užívateľsky prívetivejšie zobrazovať dáta z kartotéky. Z tohoto dôvodu som
+            sa pri návrhu nového UI rozhodol čo najviac priblížiť dobre známemu vzhľadu, známeho najmä z
+            rôznych kancelárskych balíkov. UI bolo dodatočne ešte v neskoršej fázi vývoja upravené tak, aby sa
+            správalo responzívne.
+        </p>
+    </section>
+
+    <section class="sect1" id="implementation"><div class="titlepage"><div><div><h2 class="title" style="clear: both">Implementácia dialógov a akcií</h2></div></div></div>
+        
+        <p>
+            Mojou úlohou bolo naimplementovať dialógy a akcie spojené s úpravou dokumentu pomocou UI.
+        </p>
+        <div class="figure" id="fig2"><div class="figure-title">Figure 2. FileChooser Windows 7</div><div class="figure-contents">
+            
+            <div class="mediaobject"><img src="img/filechooser_win.png" alt="FileChooser Windows 7"/></div>
+        </div></div><br class="figure-break"/>
+        <div class="figure" id="fig3"><div class="figure-title">Figure 3. FileChooser Ubuntu</div><div class="figure-contents">
+            
+            <div class="mediaobject"><img src="img/filechooser_ubu.png" alt="FileChooser Ubuntu"/></div>
+        </div></div><br class="figure-break"/>
+        <p>
+            Pre potrebu načítania a ukladania súboru som použil štandardné dialógy poskytované v JavaFX API -
+            <a class="ulink" href="https://docs.oracle.com/javase/8/javafx/api/javafx/stage/FileChooser.html" target="_top">FileChooser (JavaFX 8)</a>
+        </p>
+        <div class="figure" id="fig4"><div class="figure-title">Figure 4. Ukážka dialógu pre nový film</div><div class="figure-contents">
+            
+            <div class="mediaobject"><img src="img/dialog_newFilm.png" alt="Ukážka dialógu pre nový film"/></div>
+        </div></div><br class="figure-break"/>
+        <p>
+            Dialógy pre zvyšné akcie som navrhol osve tak, aby každý dialóg vyhovoval požadovanej funkcionalite a
+            neobsahoval/nevykonával nič viac, ako je potreba.
+        </p>
+    </section>
+
+    <section class="sect1" id="validation"><div class="titlepage"><div><div><h2 class="title" style="clear: both">Validácia vstupov a kontrola akcií</h2></div></div></div>
+        
+        <p>
+            Na princípoch defenzívneho programovania som overil platnosť požadovaných vstupov v dialógových oknách.
+        </p>
+        <p>
+            Takisto som vhodnými podmienkami zabránil spusteniu nežiadaných akcií od užívateľa (napr.
+            vytvorenie kategórie, pokiaľ užívateľ nemá otvorený žiaden zošit).
+        </p>
+    </section>
+
+    <section class="sect1" id="javadoc"><div class="titlepage"><div><div><h2 class="title" style="clear: both">Javadoc</h2></div></div></div>
+        
+        <p>
+            Pôvodne nebola implementácia nášho projektu vôbec zdokumentovaná. Rozhodol som sa dodatočne zdokumentovať
+            projekt a po významnejších zmenách zverejňovať dokumentáciu na
+            <a class="ulink" href="https://github.com/wermington/PB138---Kartoteka/wiki/Javadoc" target="_top">wiki stránke projektu.</a>
+        </p>
+    </section>
+
+</section></body></html>

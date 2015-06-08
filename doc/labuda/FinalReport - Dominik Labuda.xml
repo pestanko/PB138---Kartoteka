@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <info>
+        <title>PB138 správa</title>
+        <author>
+            <personname>Dominik Labuda</personname>
+            <email>labuda@mail.muni.cz</email>
+        </author>
+    </info>
+
+    <sect1>
+        <title>Úvod a obsah</title>
+        <para>Obsahom dokumentu je záverečná správa o mojom podiele na riešení projektu.</para>
+        <para>
+            Jednotlivé úlohy:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="newUI">
+                            Vytvorenie nového UI
+                        </link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="implementation">
+                            Implementácia dialógov a akcií
+                        </link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="validation">
+                            Validácia vstupov a kontrola akcií
+                        </link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="javadoc">
+                            Javadoc
+                        </link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect1>
+
+    <sect1 xml:id="newUI">
+        <title>Vytvorenie nového UI</title>
+        <figure xml:id="fig1" pgwide="0">
+            <title>Nové UI</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/newUI.png" />
+                </imageobject>
+                <textobject>
+                    <phrase>Nové UI</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>
+        <para>
+            Po otestovaní funkcionality backendu s pôvodným užívateľským prostredím vznikla potreba
+            prehladnejšie a užívateľsky prívetivejšie zobrazovať dáta z kartotéky. Z tohoto dôvodu som
+            sa pri návrhu nového UI rozhodol čo najviac priblížiť dobre známemu vzhľadu, známeho najmä z
+            rôznych kancelárskych balíkov. UI bolo dodatočne ešte v neskoršej fázi vývoja upravené tak, aby sa
+            správalo responzívne.
+        </para>
+    </sect1>
+
+    <sect1 xml:id="implementation">
+        <title>Implementácia dialógov a akcií</title>
+        <para>
+            Mojou úlohou bolo naimplementovať dialógy a akcie spojené s úpravou dokumentu pomocou UI.
+        </para>
+        <figure xml:id="fig2" pgwide="0">
+            <title>FileChooser Windows 7</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/filechooser_win.png" />
+                </imageobject>
+                <textobject>
+                    <phrase>FileChooser Windows 7</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>
+        <figure xml:id="fig3" pgwide="0">
+            <title>FileChooser Ubuntu</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/filechooser_ubu.png" />
+                </imageobject>
+                <textobject>
+                    <phrase>FileChooser Ubuntu</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>
+        <para>
+            Pre potrebu načítania a ukladania súboru som použil štandardné dialógy poskytované v JavaFX API -
+            <link xlink:href="https://docs.oracle.com/javase/8/javafx/api/javafx/stage/FileChooser.html">FileChooser (JavaFX 8)</link>
+        </para>
+        <figure xml:id="fig4" pgwide="0">
+            <title>Ukážka dialógu pre nový film</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/dialog_newFilm.png" />
+                </imageobject>
+                <textobject>
+                    <phrase>Ukážka dialógu pre nový film</phrase>
+                </textobject>
+            </mediaobject>
+        </figure>
+        <para>
+            Dialógy pre zvyšné akcie som navrhol osve tak, aby každý dialóg vyhovoval požadovanej funkcionalite a
+            neobsahoval/nevykonával nič viac, ako je potreba.
+        </para>
+    </sect1>
+
+    <sect1 xml:id="validation">
+        <title>Validácia vstupov a kontrola akcií</title>
+        <para>
+            Na princípoch defenzívneho programovania som overil platnosť požadovaných vstupov v dialógových oknách.
+        </para>
+        <para>
+            Takisto som vhodnými podmienkami zabránil spusteniu nežiadaných akcií od užívateľa (napr.
+            vytvorenie kategórie, pokiaľ užívateľ nemá otvorený žiaden zošit).
+        </para>
+    </sect1>
+
+    <sect1 xml:id="javadoc">
+        <title>Javadoc</title>
+        <para>
+            Pôvodne nebola implementácia nášho projektu vôbec zdokumentovaná. Rozhodol som sa dodatočne zdokumentovať
+            projekt a po významnejších zmenách zverejňovať dokumentáciu na
+            <link xlink:href="https://github.com/wermington/PB138---Kartoteka/wiki/Javadoc">wiki stránke projektu.</link>
+        </para>
+    </sect1>
+
+</article>
