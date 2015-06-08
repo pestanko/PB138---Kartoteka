@@ -39,7 +39,7 @@
             Návrh projektu
         </title>
         <para>
-            Na úvod práce sme si s kolegami na základe zadania projektu spísali funkčtné a nefunkčtné požiadavky, na základe ktorých som vytvoril prvotný návrh a kostru projektu.
+            Na úvod práce sme si s kolegami na základe zadania projektu spísali funkčné a nefunkčné požiadavky, na základe ktorých som vytvoril prvotný návrh a kostru projektu.
         </para>
     </sect1>
     <sect1 xml:id="section3">
@@ -69,15 +69,15 @@
         </para>
 
 
-        <para>V celom backende sa v značnej miere využíva logovanie, k nemu som použil knižnicu SLF4j. Logujú sa nielen
+        <para>V celom backende sa v značnej miere využíva logovanie, ku ktorému som použil knižnicu SLF4j. Logujú sa nielen
             chyby a výnimky pri spracovávaní, ale aj samotný beh programu, vďaka čomu vieme, aké akcie boli vykonané pred tým, ako nastala chyba.
         </para>
 
     </sect1>
     <sect1 xml:id="section4">
         <title>Wiki a stránka projektu</title>
-        <para>Na wiki stránkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky a dokumentáciu. Dokumentácia je vo forme prezentácie, záverečných správ a Javadocu.
-            Stránka obsahuje zvačsa linky do jednotlivých sekcii wiki stránky a funkčtné požiadavky projektu.
+        <para>Na wiki stránkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčné požiadavky a dokumentáciu. Dokumentácia je vo forme prezentácie, záverečných správ a Javadocu.
+            Stránka obsahuje zvačsa linky na jednotlivé sekcie wiki stránky a funkčné požiadavky projektu.
         </para>
 
     </sect1>
