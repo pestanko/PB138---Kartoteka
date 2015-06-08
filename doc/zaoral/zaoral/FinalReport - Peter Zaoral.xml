@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>PB138 Project DocBook</title>
+        <author>
+            <personname>Peter Zaoral</personname>
+            <email>peter.zaoral@mail.muni.cz</email>
+        </author>
+    </info>
+    <sect1>
+        <title>Úvod a obsah</title>
+        <para>Obsahom dokumentu je záverečná správa o rozsahu môjho podielu na riešení
+            projektu.</para>
+        <para>Jednotlivé úlohy:<itemizedlist>
+            <listitem>
+                <para><link linkend="section2">Vytvorenie prvotného GUI</link></para>
+            </listitem>
+            <listitem>
+                <para><link linkend="section3">Vytvorenie vyhľadávania</link></para>
+            </listitem>
+            <listitem>
+                <para>Vytvorenie ovladacích prvkov a validačných dialógov</para>
+            </listitem>
+            <listitem>
+                <para>Lokalizácia</para>
+            </listitem>
+        </itemizedlist></para>
+    </sect1>
+    <sect1 xml:id="section2">
+        <title>Vytvorenie prvotného GUI</title>
+        <figure>
+            <title>OldUI.png</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata
+                            fileref="images/OldUI.png"
+                            />
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>V úvode prác som vytvoril prvotné užívateľské rozhranie, ktoré testovalo vtedajší
+            návrh backendu. Popri tom som opravoval rôzne menšie chyby, ktoré sa počas testovania
+            objavili a doplnil som aj pár základných metód. UI sa neskôr zmenilo ale na úvod a
+            testovanie, myslím, poslúžilo dobre. Niektoré prvky z neho sa zachovali aj vo finálnej
+            verzii.</para>
+        <para><emphasis role="italic">Zaujímavosť: Popri implementácii som narazil na problém s fxml
+            súbormi v resources. Ak sa súbory nachádzajú v inom priečinku ako src/main/java
+            SceneBuilder ako vo verzii 1.1, tak aj 2.0 nevidí prvky v controlleri, napriek tomu,
+            že je s danou triedou zviazaný správne. Ak sa teda napríklad pokúsim naviazať na
+            nejaký UI prvok handler, nenašepká mi dostupné, implementované metódy a po potvrdení
+            a uložení hlási chybu. Samotný program však funguje správne. Riešenie problému som
+            nenašiel, pár názorov tvrdilo, že to proste nejde. Odvtedy nepoužívam SceneBuilder
+            :)</emphasis>
+        </para>
+    </sect1>
+    <sect1 xml:id="section3">
+        <title>Vytvorenie vyhľadávania</title>
+        <para>Ďalšou úlohou na našom zozname TODO bolo vyhľadávanie. Pokúsil som sa napodobniť
+            dynamické vyhľadávanie tak, ako ho poznáme z populárnych internetových vyhľadávačov.
+            Výsledky v tabuľke sa teda menia v závislosti od zadaného textu.</para>
+        <para><emphasis role="italic">Zaujímavosť: Pri tejto úlohe som prvý krát narazil na
+            zaujímavú knižnicu <link xlink:href="http://fxexperience.com/controlsfx/"
+                    >ControlsFX</link>, ktorá ponúka rôzne vylepšené UI prvky, ako napríklad
+            AutoComplete TextField alebo Password Field. V našom projekte som použil
+            SearchTextField, ktorý oproti bežnej verzii pridáva "krížik" slúžiaci na zmazanie
+            vyhľadávaného textu. Pre správne fungovanie je však nutné obísť inicializáciu vo
+            fxml súbore a daný prvok treba inicializovať priamo v príslušnom
+            controlleri.</emphasis></para>
+    </sect1>
+    <sect1>
+        <title>Vytvorenie ovládacích prvkov a validačných dialógov</title>
+        <para>Ďalšou úlohou bolo vytvoriť prvky na jednoduché ovládanie funkcionality projektu.
+            Takisto som vytvoril triedu AlertBox obalujúcu dialógy, ktoré upozorňujú užívateľa na
+            nesprávnu činnosti (Warning, Error, Confirmation dialogs)</para>
+        <para><emphasis role="italic">Zaujímavosť: Pôvodne sme v projekte používali dialógy zo
+            Swingu. Pri hľadaní JavaFX ekvivalentu som druhý krát narazil na knižnicu <link
+                    xlink:href="http://fxexperience.com/controlsfx/features/dialogs/"
+                    >ContolsFX</link>. Zistil som, že okrem vyššie uvedeného, sa používala aj na
+            tvorbu dialógov.  Táto vymoženosť bola natoľko obľúbená, až sa v skoro na vlas
+            rovnakej podobe dostala do JDK, ktoré od vydania 8u40 (marec 2015) nimi disponuje.
+            Pre porovnanie:</emphasis></para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para><link xlink:href="http://code.makery.ch/blog/javafx-8-dialogs/">ControlsFX
+                        dialogs samples</link></para>
+                </listitem>
+                <listitem>
+                    <para><link xlink:href="http://code.makery.ch/blog/javafx-dialogs-official/"
+                            >Official dialogs samples</link></para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </sect1>
+    <sect1>
+        <title>Lokalizácia</title>
+        <para>Do projektu som zapracoval aj lokalizáciu. Pôvodne anglický text je preložený do
+            slovenčiny. Reťazce sa načítavajú z resource bundle a jazyk je volený automaticky podľa
+            prostredia. </para>
+    </sect1>
+
+</article>
