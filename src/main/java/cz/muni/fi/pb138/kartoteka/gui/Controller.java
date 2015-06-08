@@ -311,13 +311,15 @@ public class Controller implements Initializable {
             newStage.initOwner(this.root.getScene().getWindow());
 
             AddCategoryController controller = loader.getController();
-            controller.updateSetUp(kart.getCategory(selectedTab.getText()), kart);
+            Category category = kart.getCategory(selectedTab.getText());
+            controller.updateSetUp(category, kart);
             newStage.showAndWait();
 
             if (controller.getCategory() != null) {
                 selectedTab.setText(controller.getCategory().getName());
                 docSaved = false;
                 statusLabel.setText(texts.getString("label.status5") + selectedTab.getText());
+                category.setName(controller.getCategory().getName());
             } else {
                 statusLabel.setText(texts.getString("label.status6"));
             }
@@ -502,6 +504,8 @@ public class Controller implements Initializable {
             AlertBox.displayError(texts.getString("error.oops_error"), texts.getString("error.message.film_error2"));
             statusLabel.setText(texts.getString("label.status12"));
         }
+
+        refreshTableData();
 
     }
 
