@@ -30,7 +30,7 @@
                 <para><link linkend="section3">Implementácia backendu na základe návrhu</link></para>
             </listitem>
             <listitem>
-                <para><link linkend="section4">Správa Wiki a stranky projektu</link></para>
+                <para><link linkend="section4">Správa Wiki a stránky projektu</link></para>
             </listitem>
         </itemizedlist></para>
     </sect1>
@@ -39,8 +39,7 @@
             Návrh projektu
         </title>
         <para>
-            Na úvod práce sme si s kolegami na základe zadania projektu spísali funkctné a nefunkčtné
-            požiadavky, na základe ktorých som vytvoril základný návrh a kostru projektu.
+            Na úvod práce sme si s kolegami na základe zadania projektu spísali funkčtné a nefunkčtné požiadavky, na základe ktorých som vytvoril prvotný návrh a kostru projektu.
         </para>
     </sect1>
     <sect1 xml:id="section3">
@@ -50,36 +49,34 @@
             <itemizedlist>
                 <listitem>
                     <para> Základné entity reprezentujúce Film a Kategóriu filmu.
-                        Kategória v sebe obsahuje metódy na pridanie a odstránenie filmu.
+                        Kategória v sebe obsahuje metódy na pridanie, odstránenie filmu a editáciu filmu.
                     </para>
                 </listitem>
                 <listitem>
                     <para>Načítavač a ukladač ODS súborov.</para>
                 </listitem>
                 <listitem>
-                    <para>Správca celej kartotéky, ktorý má nastarosti vytváranie, premenovávanie a
-                    ostraňovanie jednotlivých kategórií</para>
+                    <para>Správca celej kartotéky, ktorý sa stará o vytváranie, premenovávanie a
+                    ostraňovanie jednotlivých kategórií.</para>
                 </listitem>
             </itemizedlist>
         </para>
 
         <para>
-            Pri načítavaní údajov z databázi som použil knižnicu od poločnosti Apache - ODFToolkit.
+            Pri načítavaní údajov z databázi som použil knižnicu od poločnosti <link xlink:href="https://incubator.apache.org/odftoolkit/">Apache - ODFToolkit</link>.
             Vďaka tejto knižnici, ktorá bola navrhnutá na prácu s dokumentami ODF a bola odtestovaná a vyladená v praxi,
-            sme boli schopný pohodlne riešiť problem spracovávania ODS dokumentu s filmami.
+            sme boli schopní pohodlne riešiť problém spracovávania ODS dokumentu s filmami.
         </para>
 
 
-        <para>V celom backende sa v značnej miere využíva logovanie, k nemu som pouzil kniznicu SLF4j. Logujú sa nielen
-            chyby a výnimky pri spracovávaní, ale aj samotný beh programu, vďaka čomu vieme, aké akcie boli vykonané pred
-            tým, ako nastala chyba.
+        <para>V celom backende sa v značnej miere využíva logovanie, k nemu som použil knižnicu SLF4j. Logujú sa nielen
+            chyby a výnimky pri spracovávaní, ale aj samotný beh programu, vďaka čomu vieme, aké akcie boli vykonané pred tým, ako nastala chyba.
         </para>
 
     </sect1>
     <sect1 xml:id="section4">
         <title>Wiki a stránka projektu</title>
-        <para>Na wiki stánkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky, návod na použitie spolu s príslušnými
-            screenshotmi behu aplikácie.
+        <para>Na wiki stránkach projektu som zverejnil jeho návrh, originálne zadanie aj funkčtné požiadavky a dokumentáciu. Dokumentácia je vo forme prezentácie, záverečných správ a Javadocu.
             Stránka obsahuje zvačsa linky do jednotlivých sekcii wiki stránky a funkčtné požiadavky projektu.
         </para>
 
