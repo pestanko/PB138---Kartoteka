@@ -14,10 +14,11 @@ import org.slf4j.LoggerFactory;
  *
  * @author Peter Stanko
  */
+@SuppressWarnings("deprecation")
 @Deprecated
 public class TestMain {
 
-    final static Logger logger = LoggerFactory.getLogger(TestMain.class);
+    private final static Logger logger = LoggerFactory.getLogger(TestMain.class);
 
     public static void main(String[] args) {
         KartotekaManager manager = new KartotekaManagerImpl();
@@ -28,9 +29,9 @@ public class TestMain {
             manager.addCategory(new Category("Super filmy"));
 
             FileManager fm = new FileManagerImpl();
-            fm.save("dokument.ods", manager);
+            fm.save("document.ods", manager);
 
-            KartotekaManager kart = fm.load("dokument.ods");
+            KartotekaManager kart = fm.load("document.ods");
 
         } catch (CategoryException e) {
             logger.error("Category exception.",e);

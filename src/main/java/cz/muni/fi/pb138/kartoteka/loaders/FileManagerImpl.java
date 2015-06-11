@@ -35,7 +35,7 @@ public class FileManagerImpl implements FileManager {
     /**
      * Class logger
      */
-    final static Logger logger = LoggerFactory.getLogger(FileManagerImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(FileManagerImpl.class);
 
     /**
      * Loads the document from file into {@link KartotekaManager}

@@ -4,12 +4,8 @@ import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.entities.Film;
 import cz.muni.fi.pb138.kartoteka.helpers.Tuple;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -85,7 +81,7 @@ public class FindFilmController implements Initializable {
      * Filter text field item from ControlsFX library
      */
     @FXML
-    private TextField filterTextField = TextFields.createSearchField();
+    private final TextField filterTextField = TextFields.createSearchField();
 
     /**
      * NewUI HBox
@@ -102,7 +98,7 @@ public class FindFilmController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Filter HBox initialization
         filterTextField.setPromptText(resources.getString("prompt.start_typing"));
-        filterHBox.setHgrow(filterTextField, Priority.ALWAYS);
+        HBox.setHgrow(filterTextField, Priority.ALWAYS);
         filterHBox.getChildren().add(filterTextField);
 
         tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
@@ -120,14 +116,12 @@ public class FindFilmController implements Initializable {
         TableColumn<Film, String> directorCol = new TableColumn<>(resources.getString("director"));
         directorCol.setCellValueFactory(new PropertyValueFactory<>("director"));
 
-        TableColumn<Film, String> descriptonCol = new TableColumn<>(resources.getString("description"));
-        descriptonCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        TableColumn<Film, String> descriptionCol = new TableColumn<>(resources.getString("description"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptonCol);
+        tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptionCol);
 
-        filterTextField.textProperty().addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
+        filterTextField.textProperty().addListener(observable ->  {
                 String filter = filterTextField.textProperty().get();
 
                 if (filter.isEmpty()) {
@@ -149,21 +143,13 @@ public class FindFilmController implements Initializable {
 
                 tableView.setItems(tableItems);
             }
-        });
+        );
 
         cancelButton.setCancelButton(true);
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                closeDialog();
-            }
-        });
+        cancelButton.setOnAction(event -> closeDialog());
 
         okButton.setDefaultButton(true);
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
+        okButton.setOnAction(event -> {
                 if (tableView.getSelectionModel().getSelectedItem() == null) {
                     statusLabel.setText(resources.getString("error.message.no_movie_selected"));
                     return;
@@ -172,7 +158,7 @@ public class FindFilmController implements Initializable {
                 result = ids.get(tableView.getSelectionModel().getSelectedIndex());
                 closeDialog();
             }
-        });
+        );
     }
 
     /**

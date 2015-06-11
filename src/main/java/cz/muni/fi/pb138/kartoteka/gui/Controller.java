@@ -10,13 +10,8 @@ import cz.muni.fi.pb138.kartoteka.loaders.FileManagerImpl;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManagerImpl;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +29,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import org.controlsfx.control.TextFields;
 
 import java.io.File;
@@ -56,12 +50,12 @@ public class Controller implements Initializable {
     /**
      * Application file manager
      */
-    private FileManager fm = new FileManagerImpl();
+    private final FileManager fm = new FileManagerImpl();
 
     /**
      * Class logger
      */
-    final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
+    private final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Controller.class);
 
     /**
      * Kartoteka manager
@@ -81,7 +75,7 @@ public class Controller implements Initializable {
     /**
      * Resource bundle of text serving to internationalization
      */
-    private ResourceBundle texts = ResourceBundle.getBundle("texts");
+    private final ResourceBundle texts = ResourceBundle.getBundle("texts");
 
     /**
      * Main panel
@@ -183,7 +177,7 @@ public class Controller implements Initializable {
      * Filter text field item from ControlsFX library
      */
     @FXML
-    private TextField filterTextField = TextFields.createSearchField();
+    private final TextField filterTextField = TextFields.createSearchField();
 
     /**
      * NewUI HBox
@@ -201,7 +195,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Filter HBox initialization
         filterTextField.setPromptText(texts.getString("prompt.start_typing"));
-        filterHBox.setHgrow(filterTextField, Priority.ALWAYS);
+        HBox.setHgrow(filterTextField, Priority.ALWAYS);
         filterHBox.getChildren().addAll(filterTextField);
         // Menu shortcuts initialization
         closeCmd.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
@@ -221,10 +215,9 @@ public class Controller implements Initializable {
 
     /**
      * Creates, saves and opens new {@link org.odftoolkit.simple.Document}
-     * @param event action event
      */
     @FXML
-    public void newDocumentAction(ActionEvent event) {
+    public void newDocumentAction() {
         KartotekaManager manager = new KartotekaManagerImpl();
 
         try {
@@ -252,11 +245,10 @@ public class Controller implements Initializable {
 
     /**
      * Adds new {@link Category}
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void addCategoryAction(ActionEvent event) throws IOException {
+    public void addCategoryAction() throws IOException {
         if (openedFilePath == null) {
             AlertBox.displayError(texts.getString("error.category"), texts.getString("error.message.no_spreadsheet"));
             return;
@@ -298,11 +290,10 @@ public class Controller implements Initializable {
 
     /**
      * Updates existing {@link Category}
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void updateCategoryAction(ActionEvent event) throws IOException {
+    public void updateCategoryAction() throws IOException {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
 
         if (selectedTab == null) {
@@ -341,10 +332,9 @@ public class Controller implements Initializable {
 
     /**
      * Deletes currently opened {@link Category}
-     * @param event action event
      */
     @FXML
-    public void deleteCategoryAction(ActionEvent event) {
+    public void deleteCategoryAction() {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
 
         if (selectedTab == null) {
@@ -373,11 +363,10 @@ public class Controller implements Initializable {
 
     /**
      * Adds new {@link Film}
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void addFilmAction(ActionEvent event) throws IOException {
+    public void addFilmAction() throws IOException {
         if (openedFilePath == null) {
             AlertBox.displayError(texts.getString("error.film"), texts.getString("error.message.no_spreadsheet"));
             return;
@@ -421,11 +410,10 @@ public class Controller implements Initializable {
 
     /**
      * Changes {@link Film} category
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void changeFilmCategory(ActionEvent event) throws IOException {
+    public void changeFilmCategory() throws IOException {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         if (selectedTab == null) {
             AlertBox.displayError(texts.getString("error.category"), texts.getString("error.message.no_cat_no_spread"));
@@ -455,18 +443,17 @@ public class Controller implements Initializable {
         newStage.showAndWait();
         if (controller.isOkPressed()) {
             docSaved = false;
-            refreshTableData(null);
+            refreshTableData();
             tabPane.getSelectionModel().select(selectedTabIndex);
         }
     }
 
     /**
      * Updates {@link Film}
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void updateFilmAction(ActionEvent event) throws IOException {
+    public void updateFilmAction() throws IOException {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         if (selectedTab == null) {
             AlertBox.displayError(texts.getString("error.category"), texts.getString("error.message.no_cat_no_spread"));
@@ -517,10 +504,9 @@ public class Controller implements Initializable {
 
     /**
      * Deletes currently selected {@link Film}
-     * @param event action event
      */
     @FXML
-    public void deleteFilmAction(ActionEvent event) {
+    public void deleteFilmAction() {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         if (selectedTab == null) {
             AlertBox.displayError(texts.getString("error.category"), texts.getString("error.message.no_cat_no_spread"));
@@ -555,11 +541,10 @@ public class Controller implements Initializable {
 
     /**
      * Finds film in whole database
-     * @param event action event
      * @throws IOException when FXML is not available
      */
     @FXML
-    public void findFilmAction(ActionEvent event) throws IOException {
+    public void findFilmAction() throws IOException {
         if (openedFilePath == null) {
             AlertBox.displayError(texts.getString("error.film"), texts.getString("error.message.no_spreadsheet"));
             return;
@@ -599,10 +584,9 @@ public class Controller implements Initializable {
 
     /**
      * Opens a file using FileChooser
-     * @param event action event
      */
     @FXML
-    public void openFileAction(ActionEvent event) {
+    public void openFileAction() {
         tabPane.getTabs().clear();
         // FileChooser dialog setup
         FileChooser fileChooser = new FileChooser();
@@ -621,10 +605,9 @@ public class Controller implements Initializable {
 
     /**
      * Saves the file to chosen path
-     * @param event action event
      */
     @FXML
-    public void saveAsAction(ActionEvent event) {
+    public void saveAsAction() {
         //File Chooser dialog setup
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(texts.getString("dialog.title.save_document"));
@@ -638,10 +621,9 @@ public class Controller implements Initializable {
 
     /**
      * Saves the file to its current path
-     * @param event action event
      */
     @FXML
-    public void saveChangesAction(ActionEvent event) {
+    public void saveChangesAction() {
         if (openedFilePath == null) {
             AlertBox.displayError(texts.getString("error.file"), texts.getString("error.file.nothing_to_save"));
         } else {
@@ -651,10 +633,9 @@ public class Controller implements Initializable {
 
     /**
      * Refreshes the {@link Controller#tabPane}
-     * @param event action event
      */
     @FXML
-    public void refreshTableData(ActionEvent event) {
+    public void refreshTableData() {
         if (kart == null) {
             AlertBox.displayError(texts.getString("error.refresh"), texts.getString("error.message.refresh"));
             return;
@@ -669,10 +650,9 @@ public class Controller implements Initializable {
 
     /**
      * Closes application
-     * @param event action event
      */
     @FXML
-    public void closeAppAction(ActionEvent event) {
+    public void closeAppAction() {
         unsavedChanges();
     }
 
@@ -709,7 +689,7 @@ public class Controller implements Initializable {
             statusLabel.setText(texts.getString("label.status15"));
         }
 
-        refreshTableData(null);
+        refreshTableData();
     }
 
     /**
@@ -741,13 +721,7 @@ public class Controller implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Film, String> yearCol = new TableColumn<>(texts.getString("year"));
-        //yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
-        yearCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Film, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Film, String> param) {
-                return new ReadOnlyObjectWrapper<String>(param.getValue().getYear());
-            }
-        });
+        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         TableColumn<Film, String> ratingCol = new TableColumn<>(texts.getString("rating"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
@@ -755,10 +729,10 @@ public class Controller implements Initializable {
         TableColumn<Film, String> directorCol = new TableColumn<>(texts.getString("director"));
         directorCol.setCellValueFactory(new PropertyValueFactory<>("director"));
 
-        TableColumn<Film, String> descriptonCol = new TableColumn<>(texts.getString("description"));
-        descriptonCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        TableColumn<Film, String> descriptionCol = new TableColumn<>(texts.getString("description"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptonCol);
+        tableView.getColumns().addAll(nameCol, yearCol, ratingCol, directorCol, descriptionCol);
 
         tableView.setItems(FXCollections.observableArrayList(kart.getCategory(name).getFilms()));
 
@@ -770,10 +744,7 @@ public class Controller implements Initializable {
      * Initialize filter text field, method implements listener that monitoring changes in textField
      */
     private void initFilter() {
-        filterTextField.textProperty().addListener(new InvalidationListener() {
-
-            @Override
-            public void invalidated(Observable o) {
+        filterTextField.textProperty().addListener(observable ->  {
                 String filter = filterTextField.textProperty().get();
                 for (Tab tab : tabPane.getTabs()) {
                     List<Film> films = kart.getCategory(tab.getText()).getFilms();
@@ -804,6 +775,6 @@ public class Controller implements Initializable {
                     tableView.setItems(tableItems);
                 }
             }
-        });
+        );
     }
 }

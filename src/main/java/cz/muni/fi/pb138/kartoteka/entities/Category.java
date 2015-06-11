@@ -21,7 +21,7 @@ public class Category {
     /**
      * Class logger
      */
-    final static Logger logger = LoggerFactory.getLogger(Category.class);
+    private final static Logger logger = LoggerFactory.getLogger(Category.class);
 
     /**
      * Category name
@@ -102,7 +102,7 @@ public class Category {
             throw new FilmException("Film with id "+ film.getId()+" already exists in database.");
         }
 
-        if(getFilm(film.getName()) !=  null) // opt ? - Neviem -> toto robi to ze film je unikatny ? zmenime list na set ?
+        if(getFilm(film.getName()) !=  null) // opt ?
         {
             throw new FilmException("Film with name " + film.getName() + " already exists in database.");
         }

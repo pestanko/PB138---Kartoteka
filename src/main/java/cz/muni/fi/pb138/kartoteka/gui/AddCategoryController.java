@@ -2,8 +2,6 @@ package cz.muni.fi.pb138.kartoteka.gui;
 
 import cz.muni.fi.pb138.kartoteka.entities.Category;
 import cz.muni.fi.pb138.kartoteka.managers.KartotekaManager;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -75,16 +73,9 @@ public class AddCategoryController implements Initializable {
         cancelButton.setCancelButton(true);
         okButton.setDefaultButton(true);
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                closeDialog();
-            }
-        });
+        cancelButton.setOnAction(event -> closeDialog());
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        okButton.setOnAction(event -> {
                 String categoryName = categoryNameTextField.getText();
 
                 // Validate
@@ -102,7 +93,7 @@ public class AddCategoryController implements Initializable {
                 category.setName(categoryName);
                 closeDialog();
             }
-        });
+        );
     }
 
     /**

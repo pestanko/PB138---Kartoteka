@@ -13,12 +13,12 @@ public class Tuple<T,U> {
     /**
      * First in tuple
      */
-    private T first;
+    private final T first;
 
     /**
      * Second in tuple
      */
-    private U second;
+    private final U second;
 
     /**
      * Basic constructor

@@ -21,7 +21,7 @@ public class AlertBox {
     /**
      * Resource bundle of text serving to internationalization
      */
-    private static ResourceBundle texts = ResourceBundle.getBundle("texts");
+    private static final ResourceBundle texts = ResourceBundle.getBundle("texts");
 
     /**
      * Displays error dialog

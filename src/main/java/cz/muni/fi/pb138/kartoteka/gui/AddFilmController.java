@@ -1,8 +1,6 @@
 package cz.muni.fi.pb138.kartoteka.gui;
 
 import cz.muni.fi.pb138.kartoteka.entities.Film;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -93,17 +91,9 @@ public class AddFilmController implements Initializable {
         cancelButton.setCancelButton(true);
         okButton.setDefaultButton(true);
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                closeDialog();
-            }
-        });
+        cancelButton.setOnAction(event -> closeDialog());
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
+        okButton.setOnAction(event -> {
                 if(nameTextField.getText().isEmpty()) {
                     statusLabel.setText(resources.getString("dialog.film.empty_name"));
                     return;
@@ -124,7 +114,7 @@ public class AddFilmController implements Initializable {
                 film.setDescription(descriptionTextField.getText());
                 closeDialog();
             }
-        });
+        );
     }
 
     /**

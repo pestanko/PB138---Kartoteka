@@ -3,12 +3,10 @@ package cz.muni.fi.pb138.kartoteka;
 import cz.muni.fi.pb138.kartoteka.gui.AlertBox;
 import cz.muni.fi.pb138.kartoteka.gui.Controller;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +25,7 @@ public class Program extends Application {
     /**
      * Class logger
      */
-    final static Logger logger = LoggerFactory.getLogger(Program.class);
+    private final static Logger logger = LoggerFactory.getLogger(Program.class);
 
     /**
      * Loader fot the main UI window
@@ -46,13 +44,11 @@ public class Program extends Application {
             Parent root = loader.load();
             primaryStage.setTitle("PB138 - Kartoteka");
             primaryStage.setScene(new Scene(root, 1280, 720));
-            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
+            primaryStage.setOnCloseRequest(event -> {
                     event.consume();
                     ((Controller) loader.getController()).unsavedChanges();
                 }
-            });
+            );
             primaryStage.show();
         } catch (Throwable e) {
             AlertBox.displayError("Error dialog", "Oops something went wrong ...");

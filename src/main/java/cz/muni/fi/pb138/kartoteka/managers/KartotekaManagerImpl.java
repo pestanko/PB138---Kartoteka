@@ -21,12 +21,12 @@ public class KartotekaManagerImpl implements KartotekaManager {
     /**
      * List of all categories
      */
-    List<Category> categories = new ArrayList<>();
+    private final List<Category> categories = new ArrayList<>();
 
     /**
      * Class logger
      */
-    final static Logger logger = LoggerFactory.getLogger(KartotekaManagerImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(KartotekaManagerImpl.class);
 
     /**
      * Adds {@link Category} to document
